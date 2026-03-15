@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { Play } from 'lucide-react'
 import { performances, credentials, whyReasons } from '../data'
 import { blogPosts } from '../data/blog'
 import { Stat } from '../components/ui'

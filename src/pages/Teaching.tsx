@@ -1,5 +1,4 @@
 import { useForm, ValidationError } from '@formspree/react'
-import { Link } from 'react-router-dom'
 import { CheckCircle } from 'lucide-react'
 import { whyReasons } from '../data'
 import { Stat } from '../components/ui'

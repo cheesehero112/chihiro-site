@@ -1,6 +1,80 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
-import ReactMarkdown from 'react-markdown'
 import { blogPosts } from '../data/blog'
+
+// Render custom content format with [image:...] and [youtube:...] tokens
+function renderContent(content: string) {
+  const parts = content.split(/(\[image:[^\[]+\]|\[youtube:[a-zA-Z0-9_-]+\])/g)
+
+  return parts.map((part, i) => {
+    const ytMatch = part.match(/^\[youtube:([a-zA-Z0-9_-]+)\]$/)
+    if (ytMatch) {
+      return (
+        <div key={i} className="my-8 aspect-video w-full">
+          <iframe
+            src={`https://www.youtube.com/embed/${ytMatch[1]}`}
+            title="YouTube video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="w-full h-full"
+          />
+        </div>
+      )
+    }
+
+    const imgMatch = part.match(/^\[image:([^|\]]+)\|?([^\]]*)\]$/)
+    if (imgMatch) {
+      const filename = imgMatch[1].trim()
+      const caption = imgMatch[2].trim()
+      if (!filename) return null
+      return (
+        <figure key={i} className="my-8">
+          <img
+            src={`/images/${filename}`}
+            alt={caption}
+            className="w-full h-auto"
+            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+          />
+          {caption && (
+            <figcaption className="text-[12px] text-mid-gray text-center mt-2 italic">{caption}</figcaption>
+          )}
+        </figure>
+      )
+    }
+
+    if (!part.trim()) return null
+
+    return (
+      <div key={i}>
+        {part.split('\n').map((line, j) => {
+          if (!line.trim()) return <div key={j} className="h-3" />
+          if (line.startsWith('# ')) return <h1 key={j} className="font-serif text-[30px] text-black font-normal mt-10 mb-4 leading-tight">{renderInline(line.slice(2))}</h1>
+          if (line.startsWith('## ')) return <h2 key={j} className="font-serif text-[24px] text-black font-normal mt-10 mb-3 leading-tight">{renderInline(line.slice(3))}</h2>
+          if (line.startsWith('### ')) return <h3 key={j} className="font-serif text-[20px] text-black font-normal mt-8 mb-3">{renderInline(line.slice(4))}</h3>
+          if (line.startsWith('- ')) return (
+            <div key={j} className="flex items-baseline gap-3 mb-2">
+              <span className="w-1 h-1 rounded-full bg-accent flex-shrink-0 mt-2.5" />
+              <p className="text-[15px] text-text-gray font-light leading-relaxed">{renderInline(line.slice(2))}</p>
+            </div>
+          )
+          return <p key={j} className="text-[16px] text-text-gray font-light leading-[1.9] mb-4">{renderInline(line)}</p>
+        })}
+      </div>
+    )
+  })
+}
+
+function renderInline(text: string) {
+  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*|\[[^\]]+\]\([^)]+\))/g)
+  return parts.map((part, i) => {
+    const bold = part.match(/^\*\*(.+)\*\*$/)
+    if (bold) return <strong key={i} className="text-black font-normal">{bold[1]}</strong>
+    const italic = part.match(/^\*(.+)\*$/)
+    if (italic) return <em key={i} className="italic">{italic[1]}</em>
+    const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
+    if (link) return <a key={i} href={link[2]} target="_blank" rel="noopener noreferrer" className="text-accent no-underline border-b border-accent/30 hover:border-accent transition-colors">{link[1]}</a>
+    return part
+  })
+}
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>()
@@ -29,51 +103,8 @@ export default function BlogPost() {
         </div>
 
         {/* Content */}
-        <div className="prose-custom">
-          <ReactMarkdown
-            components={{
-              p: ({ children }) => (
-                <p className="text-[16px] text-text-gray font-light leading-[1.9] mb-6">{children}</p>
-              ),
-              h2: ({ children }) => (
-                <h2 className="font-serif text-[26px] text-black font-normal mt-12 mb-5">{children}</h2>
-              ),
-              h3: ({ children }) => (
-                <h3 className="font-serif text-[22px] text-black font-normal mt-10 mb-4">{children}</h3>
-              ),
-              strong: ({ children }) => (
-                <strong className="text-black font-normal">{children}</strong>
-              ),
-              em: ({ children }) => (
-                <em className="italic">{children}</em>
-              ),
-              ul: ({ children }) => (
-                <ul className="list-none my-6 flex flex-col gap-2">{children}</ul>
-              ),
-              ol: ({ children }) => (
-                <ol className="list-decimal list-inside my-6 flex flex-col gap-2">{children}</ol>
-              ),
-              li: ({ children }) => (
-                <li className="text-[15px] text-text-gray font-light leading-relaxed flex items-baseline gap-3">
-                  <span className="w-1 h-1 rounded-full bg-accent flex-shrink-0 mt-2" />
-                  <span>{children}</span>
-                </li>
-              ),
-              a: ({ href, children }) => (
-                <a href={href} target="_blank" rel="noopener noreferrer"
-                  className="text-accent no-underline border-b border-accent/30 hover:border-accent transition-colors">
-                  {children}
-                </a>
-              ),
-              blockquote: ({ children }) => (
-                <blockquote className="border-l-[3px] border-accent pl-6 my-8 font-serif italic text-[19px] text-text-gray leading-relaxed">
-                  {children}
-                </blockquote>
-              ),
-            }}
-          >
-            {post.content}
-          </ReactMarkdown>
+        <div>
+          {renderContent(post.content)}
         </div>
 
         {/* Post nav */}

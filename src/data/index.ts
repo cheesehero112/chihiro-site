@@ -105,6 +105,6 @@ export const videos = [
   { tag: 'Marimba', title: 'J.S. Bach — Prelude from The Well-Tempered Clavier Book 1', url: 'https://www.chihiroshibayama.com/videos/2022/1/18/bachprelude', localThumb: 'Prelude-Bach.png' },
   { tag: 'Marimba', title: 'Moon River — 5 Octave Marimba', url: 'https://www.chihiroshibayama.com/videos/2022/1/18/moonriver', localThumb: 'moon-river.jpeg' },
   { tag: 'Music Video', title: 'Quarantini — Music by Yui Kitamura & Percussion by Chihiro', url: 'https://www.chihiroshibayama.com/videos/2020/11/1/jk5f4gloept2ygouoknl0vf1rooyf2', localThumb: 'quarantini-thumbnail.jpeg' },
-  { tag: 'Original', title: 'Willie\'s Dream — Artist-In-Vacancy, Newburgh Community Land Bank', url: 'https://www.chihiroshibayama.com/videos/2021/2/26/4u3a4l92jvn3962zsn7qs8qciw570v', localThumb: 'headshot.jpg' },
+  { tag: 'Original', title: 'Willie\'s Dream — Artist-In-Vacancy, Newburgh Community Land Bank', url: 'https://youtu.be/jbTP1Bl8oow?si=dmgRGPa14uzeBvH6', youtubeId: 'jbTP1Bl8oow' },
   { tag: 'Original · Animation', title: 'Get Out The Vote March', url: 'https://www.chihiroshibayama.com/videos/2020/11/1/gjgju9zzklw3r7v8ne21p3fy000bcq', localThumb: 'vote.webp' },
 ]

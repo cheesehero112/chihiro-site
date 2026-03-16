@@ -30,8 +30,8 @@ export default function Nav() {
         <div className="max-w-7xl mx-auto px-6 lg:px-16 flex items-center justify-between h-[72px]">
 
           {/* Logo */}
-          <Link to="/" className="font-serif text-lg tracking-wide text-black no-underline">
-            Chihiro Shibayama
+          <Link to="/" className="no-underline">
+            <img src="/images/shibayama_logo_lockup.svg" alt="Chihiro Shibayama" className="h-14 w-auto" />
           </Link>
 
           {/* Desktop links */}

@@ -12,7 +12,10 @@ export default function Bio() {
           <img src={HEADSHOT} alt="Chihiro Shibayama" className="w-full h-full object-cover object-top absolute inset-0" />
         </div>
         <div className="flex flex-col justify-center px-6 lg:px-16 py-16 lg:py-24 border-l border-light-gray">
-          <p className="eyebrow mb-5">Biography</p>
+          <div className="flex items-center gap-3 mb-5">
+            <img src="/images/shibayama_logo.svg" alt="Shibayama Percussion Studio" className="w-8 h-8 opacity-80 flex-shrink-0" />
+            <p className="text-xs tracking-[0.25em] uppercase text-black/70 font-medium">Biography</p>
+          </div>
           <h1 className="font-serif font-normal text-black mb-8 leading-tight" style={{ fontSize: 'clamp(2.75rem, 5.5vw, 4.5rem)' }}>
             Chihiro<br /><em className="text-accent">Shibayama.</em>
           </h1>

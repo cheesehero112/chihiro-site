@@ -80,7 +80,10 @@ export default function Teaching() {
       {/* HERO */}
       <section className="grid grid-cols-1 lg:grid-cols-2 min-h-[calc(90vh-72px)]">
         <div className="flex flex-col justify-center px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-light-gray order-2 lg:order-1">
-          <p className="eyebrow mb-7">Longmont Percussion Academy</p>
+          <div className="flex items-center gap-3 mb-7">
+            <img src="/images/shibayama_logo.svg" alt="Shibayama Percussion Studio" className="w-8 h-8 opacity-80 flex-shrink-0" />
+            <p className="text-xs tracking-[0.25em] uppercase text-black/70 font-medium">Shibayama Percussion Studio</p>
+          </div>
           <h1 className="font-serif font-normal leading-[1.05] text-black mb-8" style={{ fontSize: 'clamp(2.75rem, 5.5vw, 4.5rem)' }}>
             World-class<br />percussion<br /><em className="text-accent">instruction.</em>
           </h1>

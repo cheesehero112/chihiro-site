@@ -12,7 +12,10 @@ export default function Media() {
 
       {/* Header */}
       <div className="max-w-7xl mx-auto px-6 lg:px-16 py-16 lg:py-24 border-b border-light-gray">
-        <p className="eyebrow mb-5">Watch · Read · Listen</p>
+        <div className="flex items-center gap-3 mb-5">
+          <img src="/images/shibayama_logo.svg" alt="Shibayama Percussion Studio" className="w-8 h-8 opacity-80 flex-shrink-0" />
+          <p className="text-xs tracking-[0.25em] uppercase text-black/70 font-medium">Watch · Read · Listen</p>
+        </div>
         <h1 className="font-serif font-normal text-black leading-tight" style={{ fontSize: 'clamp(2.75rem, 6vw, 4.5rem)' }}>
           Media & <em className="text-accent">Press.</em>
         </h1>

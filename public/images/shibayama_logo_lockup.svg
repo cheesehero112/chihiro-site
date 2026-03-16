@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 80" width="520" height="80">
+  <!-- Starburst mark -->
+  <g transform="translate(40,40) scale(0.098)">
+    <g transform="rotate(-5)"><line x1="0" y1="-24" x2="0" y2="-180" stroke="#000000" stroke-width="9" stroke-linecap="round"/><ellipse cx="0" cy="-186" rx="7" ry="11" fill="#000000"/></g>
+    <g transform="rotate(38)"><line x1="0" y1="-24" x2="0" y2="-145" stroke="#000000" stroke-width="8" stroke-linecap="round"/><circle cx="0" cy="-160" r="17" fill="#000000"/></g>
+    <g transform="rotate(80)"><line x1="0" y1="-24" x2="0" y2="-160" stroke="#000000" stroke-width="6" stroke-linecap="round"/><ellipse cx="0" cy="-172" rx="13" ry="14" fill="#000000"/></g>
+    <g transform="rotate(118)"><line x1="0" y1="-24" x2="0" y2="-165" stroke="#000000" stroke-width="8.5" stroke-linecap="round"/><ellipse cx="0" cy="-171" rx="6.5" ry="10" fill="#000000"/></g>
+    <g transform="rotate(158)"><line x1="0" y1="-24" x2="0" y2="-80" stroke="#000000" stroke-width="7" stroke-linecap="round"/><line x1="0" y1="-80" x2="-18" y2="-182" stroke="#000000" stroke-width="2.5" stroke-linecap="round"/><line x1="0" y1="-80" x2="-8" y2="-188" stroke="#000000" stroke-width="2.5" stroke-linecap="round"/><line x1="0" y1="-80" x2="3" y2="-190" stroke="#000000" stroke-width="2.5" stroke-linecap="round"/><line x1="0" y1="-80" x2="13" y2="-186" stroke="#000000" stroke-width="2.5" stroke-linecap="round"/><line x1="0" y1="-80" x2="22" y2="-178" stroke="#000000" stroke-width="2.5" stroke-linecap="round"/></g>
+    <g transform="rotate(200)"><line x1="0" y1="-24" x2="0" y2="-130" stroke="#000000" stroke-width="8" stroke-linecap="round"/><rect x="-20" y="-172" width="40" height="40" rx="10" fill="#000000"/></g>
+    <g transform="rotate(240)"><line x1="0" y1="-24" x2="0" y2="-185" stroke="#000000" stroke-width="8" stroke-linecap="round"/><ellipse cx="0" cy="-191" rx="6" ry="10" fill="#000000"/></g>
+    <g transform="rotate(278)"><line x1="0" y1="-24" x2="0" y2="-155" stroke="#000000" stroke-width="5" stroke-linecap="round"/><circle cx="0" cy="-162" r="9" fill="#000000"/></g>
+    <g transform="rotate(320)"><line x1="0" y1="-24" x2="0" y2="-170" stroke="#000000" stroke-width="5" stroke-linecap="round"/><circle cx="0" cy="-174" r="4" fill="#000000"/></g>
+    <circle cx="0" cy="0" r="20" fill="#000000"/>
+  </g>
+  <!-- Name in serif -->
+  <text x="78" y="38" font-family="'Playfair Display', 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif" font-size="26" font-weight="500" fill="#000000">Chihiro Shibayama</text>
+  <!-- Subtitle -->
+  <text x="78" y="58" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" letter-spacing="3" fill="#666666">PERCUSSIONIST ・ EDUCATOR</text>
+</svg>

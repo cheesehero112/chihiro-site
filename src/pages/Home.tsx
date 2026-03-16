@@ -17,7 +17,7 @@ export default function Home() {
         <div className="flex flex-col justify-center px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-light-gray order-2 lg:order-1">
           <p className="eyebrow mb-7">Percussionist · Educator · Longmont, CO</p>
           <h1 className="font-serif font-normal leading-[1.05] text-black mb-8" style={{ fontSize: 'clamp(3.5rem, 7vw, 5.5rem)' }}>
-            Chihiro<br />Shiba<em className="text-accent">yama.</em>
+            Chihiro<br /><em className="text-accent">Shibayama.</em>
           </h1>
           <p className="text-[15px] text-text-gray font-light leading-relaxed max-w-md mb-12">
             Juilliard-trained percussionist. Broadway veteran. Now offering world-class private percussion lessons in Longmont, Colorado — and online worldwide.

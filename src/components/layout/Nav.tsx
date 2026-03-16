@@ -26,7 +26,7 @@ export default function Nav() {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-shadow ${scrolled ? 'shadow-sm' : ''}`}>
-      <nav className="bg-white/97 backdrop-blur-sm border-b border-light-gray">
+      <nav className="bg-white/90 backdrop-blur-sm border-b border-accent">
         <div className="max-w-7xl mx-auto px-6 lg:px-16 flex items-center justify-between h-[72px]">
 
           {/* Logo */}
@@ -41,7 +41,7 @@ export default function Nav() {
                 <NavLink
                   to={to}
                   className={({ isActive }) =>
-                    `text-[11px] tracking-[0.12em] uppercase no-underline transition-colors ${
+                    `text-[11px] font-medium tracking-[0.12em] uppercase no-underline transition-colors ${
                       isActive ? 'text-black border-b border-black pb-px' : 'text-black hover:text-mid-gray'
                     }`
                   }

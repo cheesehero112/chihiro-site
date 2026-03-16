@@ -43,12 +43,12 @@ export default function Home() {
             alt="Chihiro Shibayama"
             className="w-full h-full object-cover object-top absolute inset-0"
           />
-          <div className="absolute bottom-8 right-8 bg-white/93 p-4 lg:p-5 max-w-[240px] border-l-[3px] border-accent">
-            <p className="font-serif italic text-[13px] text-black leading-snug mb-1.5">
-              "The goal isn't to play the notes. It's to understand why they matter."
-            </p>
-            <p className="text-2xs tracking-[0.15em] uppercase text-mid-gray">On teaching</p>
-          </div>
+         <div className="absolute bottom-8 right-8 bg-black/80 px-5 py-4 border-l-[3px] border-accent max-w-[240px]">
+  <p className="font-serif italic text-[13px] text-white leading-snug mb-1.5">
+    "The goal isn't to play the notes. It's to understand why they matter."
+  </p>
+  <p className="text-2xs tracking-[0.15em] uppercase text-accent">On teaching</p>
+</div>
         </div>
       </section>
 

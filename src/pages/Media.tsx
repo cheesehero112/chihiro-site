@@ -11,15 +11,20 @@ export default function Media() {
     <div className="pt-[72px]">
 
       {/* Header */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-16 py-16 lg:py-24 border-b border-light-gray">
-        <div className="flex items-center gap-3 mb-5">
-          <img src="/images/shibayama_logo.svg" alt="Shibayama Percussion Studio" className="w-8 h-8 opacity-80 flex-shrink-0" />
-          <p className="text-xs tracking-[0.25em] uppercase text-black/70 font-medium">Watch · Read · Listen</p>
+      <section className="grid grid-cols-1 lg:grid-cols-2 min-h-[85vh] border-b border-light-gray">
+        <div className="relative bg-off-white overflow-hidden min-h-[60vw] lg:min-h-0">
+          <img src="/images/carnegie-chihiro.jpg" alt="Chihiro Shibayama at Carnegie Hall" className="w-full h-full object-cover object-top absolute inset-0" />
         </div>
-        <h1 className="font-serif font-normal text-black leading-tight" style={{ fontSize: 'clamp(2.75rem, 6vw, 4.5rem)' }}>
-          Media & <em className="text-accent">Press.</em>
-        </h1>
-      </div>
+        <div className="flex flex-col justify-center px-6 lg:px-16 py-16 lg:py-24 border-l border-light-gray">
+          <div className="flex items-center gap-3 mb-5">
+            <img src="/images/shibayama_logo.svg" alt="Shibayama Percussion Studio" className="w-8 h-8 opacity-80 flex-shrink-0" />
+            <p className="text-xs tracking-[0.25em] uppercase text-black/70 font-medium">Watch · Read · Listen</p>
+          </div>
+          <h1 className="font-serif font-normal text-black leading-tight" style={{ fontSize: 'clamp(2.75rem, 6vw, 4.5rem)' }}>
+            Media & <em className="text-accent">Press.</em>
+          </h1>
+        </div>
+      </section>
 
       {/* Tab nav */}
       <div className="sticky top-[72px] z-40 bg-white/97 backdrop-blur-sm border-b border-light-gray">

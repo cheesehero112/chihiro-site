@@ -3,7 +3,7 @@ import { performances, credentials, whyReasons } from '../data'
 import { blogPosts } from '../data/blog'
 import { Stat } from '../components/ui'
 
-const HEADSHOT = 'https://images.squarespace-cdn.com/content/v1/54fe992ce4b081b61d82862f/1600008341762-YP4NT2CVOQ8ER8ICT348/Chihiro+Shibayama+-+headshot.jpg'
+const HEADSHOT = '/images/headshot.jpg'
 
 export default function Home() {
   const recentPosts = blogPosts.slice(0, 3)

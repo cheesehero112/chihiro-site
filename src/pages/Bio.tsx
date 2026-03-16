@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-const HEADSHOT = '/images/headshot.jpg'
+const HEADSHOT = '/images/chihiro-bio.png'
 
 export default function Bio() {
   return (

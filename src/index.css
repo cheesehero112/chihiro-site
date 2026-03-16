@@ -16,11 +16,11 @@
 
 @layer components {
   .eyebrow {
-    @apply flex items-center gap-3 text-2xs tracking-[0.25em] uppercase text-mid-gray;
+    @apply flex items-center gap-3 text-xs tracking-[0.25em] uppercase text-black/70;
   }
   .eyebrow::before {
     content: '';
-    @apply block w-8 h-px bg-mid-gray flex-shrink-0;
+    @apply block w-8 h-px bg-black/70 flex-shrink-0;
   }
   .btn-primary {
     @apply inline-block bg-black text-white px-10 py-4 text-2xs tracking-[0.2em] uppercase font-normal transition-opacity hover:opacity-75 no-underline;

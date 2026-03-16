@@ -15,7 +15,7 @@ export default function Home() {
       {/* HERO */}
       <section className="grid grid-cols-1 lg:grid-cols-2 min-h-[calc(100vh-72px)]">
         <div className="flex flex-col justify-center px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-light-gray order-2 lg:order-1">
-          <p className="eyebrow mb-7">Percussionist · Educator · Longmont, CO</p>
+          <p className="eyebrow mb-7 text-accent [&::before]:bg-accent font-medium">Percussionist · Educator · Longmont, CO</p>
           <h1 className="font-serif font-normal leading-[1.05] text-black mb-8" style={{ fontSize: 'clamp(3.5rem, 7vw, 5.5rem)' }}>
             Chihiro<br /><em className="text-accent">Shibayama.</em>
           </h1>

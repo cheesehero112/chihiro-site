@@ -46,7 +46,7 @@ export default function Media() {
               Performances, compositions, and behind-the-scenes footage from Chihiro's career on stage and in the studio.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-light-gray border border-light-gray">
-              {videos.map(({ tag, title, url }) => (
+              {videos.map(({ tag, title, url, youtubeId, localThumb }) => (
                 <a
                   key={title}
                   href={url}
@@ -54,10 +54,25 @@ export default function Media() {
                   rel="noopener noreferrer"
                   className="bg-white no-underline group block hover:bg-off-white transition-colors"
                 >
-                  <div className="aspect-video bg-[#1a1008] relative flex items-center justify-center">
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
-                    <div className="relative w-12 h-12 rounded-full bg-white/90 flex items-center justify-center">
-                      <Play size={16} className="text-black ml-0.5" fill="black" />
+                  <div className="aspect-video bg-[#1a1008] relative flex items-center justify-center overflow-hidden">
+                    {youtubeId ? (
+                      <img
+                        src={`https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`}
+                        alt={title}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : localThumb ? (
+                      <img
+                        src={`/images/${localThumb}`}
+                        alt={title}
+                        className="w-full h-full object-cover"
+                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                      />
+                    ) : null}
+                    <div className="absolute inset-0 bg-black/25 group-hover:bg-black/45 transition-colors flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center">
+                        <Play size={16} className="text-black ml-0.5" fill="black" />
+                      </div>
                     </div>
                   </div>
                   <div className="p-5 lg:p-6">
@@ -93,21 +108,30 @@ export default function Media() {
               Press coverage, feature articles, and podcast appearances.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-light-gray border border-light-gray">
-              {pressItems.map(({ type, title, pub, desc, url }) => (
+              {pressItems.map(({ type, title, pub, image, desc, url }) => (
                 <a
                   key={title}
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white p-10 lg:p-12 no-underline flex flex-col gap-4 hover:bg-off-white transition-colors group"
+                  className="bg-white no-underline flex flex-col hover:bg-off-white transition-colors group"
                 >
-                  <span className="text-2xs tracking-[0.2em] uppercase text-accent">{type}</span>
-                  <h2 className="font-serif text-[22px] text-black leading-snug">{title}</h2>
-                  <p className="text-[12px] tracking-[0.08em] uppercase text-mid-gray">{pub}</p>
-                  <p className="text-[14px] text-text-gray font-light leading-relaxed flex-1">{desc}</p>
-                  <span className="flex items-center gap-2 text-[11px] tracking-[0.15em] uppercase text-accent mt-2">
-                    Read article <ExternalLink size={12} />
-                  </span>
+                  {image && (
+                    <div className="aspect-video overflow-hidden bg-off-white">
+                      <img src={`/images/${image}`} alt={title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.display = 'none' }} />
+                    </div>
+                  )}
+                  <div className="p-8 lg:p-10 flex flex-col gap-3 flex-1">
+                    <span className="text-2xs tracking-[0.2em] uppercase text-accent">{type}</span>
+                    <h2 className="font-serif text-[22px] text-black leading-snug">{title}</h2>
+                    <p className="text-[12px] tracking-[0.08em] uppercase text-mid-gray">{pub}</p>
+                    <p className="text-[14px] text-text-gray font-light leading-relaxed flex-1">{desc}</p>
+                    <span className="flex items-center gap-2 text-[11px] tracking-[0.15em] uppercase text-accent mt-2">
+                      Read article <ExternalLink size={12} />
+                    </span>
+                  </div>
                 </a>
               ))}
             </div>

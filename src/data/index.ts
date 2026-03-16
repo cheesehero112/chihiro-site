@@ -78,7 +78,7 @@ export const pressItems = [
     pub: 'The Miller Machine',
     image: 'my-way-broadway.jpg',
     desc: 'Chihiro shares the full story of how she landed her first Broadway show — the auditions, the preparation, and the reality of pit life.',
-    url: 'https://themillermachine.com/blogs/articles/my-way-to-broadway-by-chihiro-shibayama',
+    url: 'https://themillermachine.com/blogs/player-insights/my-way-to-broadway-percussionist-by-chihiro-shibayama',
   },
   {
     type: 'Podcast · Episode 300',

@@ -101,7 +101,7 @@ export const recordings = [
 export const videos = [
   { tag: 'Broadway · Featured', title: 'Miss Saigon — Percussionist\'s Perspective (Drum Cam)', url: 'https://www.youtube.com/watch?v=p4qC9HgXy1c', youtubeId: 'p4qC9HgXy1c' },
   { tag: 'Marimba', title: 'Blackbird — Paul McCartney / The Beatles', url: 'https://youtu.be/-zghGuoVISY?si=b7NifC_5ZT2esSpw', youtubeId: '-zghGuoVISY' },
-  { tag: 'Marimba', title: 'J.S. Bach — Two Part Invention No. 8 (2 Marimbas)', url: 'https://www.youtube.com/watch?v=8plxfiwbablejm21hauijh3iod6kg5', youtubeId: '8plxfiwbablejm21hauijh3iod6kg5', localThumb: 'invention8.jpeg' },
+{ tag: 'Marimba', title: 'J.S. Bach — Two Part Invention No. 8 (2 Marimbas)', url: 'https://youtu.be/5rez37LHBpQ?si=Cn3lgjH54MosvbDG', youtubeId: '5rez37LHBpQ' },
   { tag: 'Marimba', title: 'J.S. Bach — Prelude from The Well-Tempered Clavier Book 1', url: 'https://www.chihiroshibayama.com/videos/2022/1/18/bachprelude', localThumb: 'Prelude-Bach.png' },
   { tag: 'Marimba', title: 'Moon River — 5 Octave Marimba', url: 'https://www.chihiroshibayama.com/videos/2022/1/18/moonriver', localThumb: 'moon-river.jpeg' },
   { tag: 'Music Video', title: 'Quarantini — Music by Yui Kitamura & Percussion by Chihiro', url: 'https://www.chihiroshibayama.com/videos/2020/11/1/jk5f4gloept2ygouoknl0vf1rooyf2', localThumb: 'quarantini-thumbnail.jpeg' },

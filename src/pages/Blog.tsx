@@ -6,7 +6,7 @@ export default function Blog() {
     <div className="pt-[72px]">
       <section className="grid grid-cols-1 lg:grid-cols-2 min-h-[85vh] border-b border-light-gray">
         <div className="relative bg-off-white overflow-hidden min-h-[60vw] lg:min-h-0">
-          <img src="/images/chihiro-drumset.jpg" alt="Chihiro Shibayama at the drumset" className="w-full h-full object-cover object-center absolute inset-0" />
+          <img src="/images/chihiro-drumset.jpg" alt="Chihiro Shibayama at the drumset" className="w-full h-full object-cover object-top absolute inset-0" />
         </div>
         <div className="flex flex-col justify-center px-6 lg:px-16 py-16 lg:py-24 border-l border-light-gray">
           <div className="flex items-center gap-3 mb-5">

@@ -106,9 +106,9 @@ export default function Teaching() {
             alt="Chihiro Shibayama"
             className="w-full h-full object-cover object-top absolute inset-0"
           />
-          <div className="absolute bottom-8 left-8 bg-white/93 px-5 py-4 border-l-[3px] border-accent max-w-[260px]">
-            <p className="font-serif italic text-[15px] text-black leading-snug mb-1.5">"…impressive soloist…"</p>
-            <p className="text-2xs tracking-[0.2em] uppercase text-mid-gray">— The New York Times</p>
+          <div className="absolute bottom-8 left-8 bg-black/60 px-5 py-4 border-l-[3px] border-accent max-w-[240px]">
+            <p className="font-serif italic text-[13px] text-white leading-snug mb-1.5">"…impressive soloist…"</p>
+            <p className="text-2xs tracking-[0.2em] uppercase text-accent">— The New York Times</p>
           </div>
         </div>
       </section>

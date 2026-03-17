@@ -35,7 +35,7 @@ export default function Nav() {
           </Link>
 
           {/* Desktop links */}
-          <ul className="hidden md:flex items-center gap-9 list-none">
+          <ul className="hidden lg:flex items-center gap-9 list-none">
             {links.map(({ to, label }) => (
               <li key={to}>
                 <NavLink
@@ -55,14 +55,14 @@ export default function Nav() {
           {/* Desktop CTA */}
           <Link
             to="/teaching"
-            className="hidden md:inline-block text-[11px] tracking-[0.12em] uppercase border border-black px-5 py-2 transition-all hover:bg-black hover:text-white no-underline text-black"
+            className="hidden lg:inline-block text-[11px] tracking-[0.12em] uppercase border border-black px-5 py-2 transition-all hover:bg-black hover:text-white no-underline text-black"
           >
             Private Lessons
           </Link>
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 text-black"
+            className="lg:hidden p-2 text-black"
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
           >
@@ -73,7 +73,7 @@ export default function Nav() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden fixed inset-0 top-[72px] bg-white z-40 flex flex-col px-6 pt-8 pb-12">
+        <div className="lg:hidden fixed inset-0 top-[72px] bg-white z-40 flex flex-col px-6 pt-8 pb-12">
           <ul className="list-none flex flex-col gap-0 border-t border-light-gray">
             {links.map(({ to, label }) => (
               <li key={to} className="border-b border-light-gray">

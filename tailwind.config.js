@@ -8,7 +8,7 @@ export default {
         'accent-light': 'rgba(196,98,45,0.08)',
         'off-white': '#f8f7f5',
         'light-gray': '#e8e6e2',
-        'mid-gray': '#888888',
+        'mid-gray': '#666666',
         'text-gray': '#444444',
       },
       fontFamily: {

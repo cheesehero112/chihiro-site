@@ -28,11 +28,11 @@ export default function Footer() {
 
           {/* Pages */}
           <div>
-            <p className="text-2xs tracking-[0.2em] uppercase text-white/30 mb-5">Pages</p>
+            <p className="text-2xs tracking-[0.2em] uppercase text-white/60 mb-5">Pages</p>
             <ul className="list-none flex flex-col gap-3">
               {pages.map(({ to, label }) => (
                 <li key={to}>
-                  <Link to={to} className="text-[13px] text-white/55 no-underline hover:text-white transition-colors">
+                  <Link to={to} className="text-[13px] text-white/75 no-underline hover:text-white transition-colors">
                     {label}
                   </Link>
                 </li>
@@ -42,16 +42,16 @@ export default function Footer() {
 
           {/* Connect */}
           <div>
-            <p className="text-2xs tracking-[0.2em] uppercase text-white/30 mb-5">Connect</p>
+            <p className="text-2xs tracking-[0.2em] uppercase text-white/60 mb-5">Connect</p>
             <ul className="list-none flex flex-col gap-3">
               <li>
-                <a href="mailto:Chihiro@chihiroshibayama.com" className="text-[13px] text-white/55 no-underline hover:text-white transition-colors">
+                <a href="mailto:Chihiro@chihiroshibayama.com" className="text-[13px] text-white/75 no-underline hover:text-white transition-colors">
                   Chihiro@chihiroshibayama.com
                 </a>
               </li>
               {social.map(({ href, label }) => (
                 <li key={label}>
-                  <a href={href} target="_blank" rel="noopener noreferrer" className="text-[13px] text-white/55 no-underline hover:text-white transition-colors">
+                  <a href={href} target="_blank" rel="noopener noreferrer" className="text-[13px] text-white/75 no-underline hover:text-white transition-colors">
                     {label}
                   </a>
                 </li>
@@ -62,13 +62,13 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-[11px] text-white/20">
+          <p className="text-[11px] text-white/50">
             © {new Date().getFullYear()} Chihiro Shibayama. All rights reserved.
           </p>
           <div className="flex gap-6">
             {social.map(({ href, label }) => (
               <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-                className="text-[11px] tracking-[0.1em] uppercase text-white/30 no-underline hover:text-white transition-colors">
+                className="text-[11px] tracking-[0.1em] uppercase text-white/50 no-underline hover:text-white transition-colors">
                 {label}
               </a>
             ))}

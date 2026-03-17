@@ -7,9 +7,9 @@ export default function Bio() {
     <div className="pt-[72px]">
 
       {/* HERO */}
-      <section className="grid grid-cols-1 lg:grid-cols-2 min-h-[85vh]">
-        <div className="relative bg-off-white overflow-hidden lg:min-h-0">
-          <img src={HEADSHOT} alt="Chihiro Shibayama" className="w-full h-auto block lg:absolute lg:inset-0 lg:h-full lg:object-cover lg:object-top" />
+      <section className="grid grid-cols-1 md:grid-cols-2 min-h-[85vh]">
+        <div className="relative bg-off-white overflow-hidden md:min-h-0">
+          <img src={HEADSHOT} alt="Chihiro Shibayama" className="w-full h-auto block md:absolute md:inset-0 md:h-full md:object-cover md:object-top" />
         </div>
         <div className="flex flex-col justify-center px-6 lg:px-16 py-16 lg:py-24 border-l border-light-gray">
           <div className="flex items-center gap-3 mb-5">

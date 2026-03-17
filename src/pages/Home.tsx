@@ -13,8 +13,8 @@ export default function Home() {
     <div className="pt-[72px]">
 
       {/* HERO */}
-      <section className="grid grid-cols-1 lg:grid-cols-2 min-h-[calc(100vh-72px)]">
-        <div className="flex flex-col justify-center px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-light-gray order-2 lg:order-1">
+      <section className="grid grid-cols-1 md:grid-cols-2 min-h-[calc(100vh-72px)]">
+        <div className="flex flex-col justify-center px-6 lg:px-16 py-16 lg:py-24 border-b md:border-b-0 md:border-r border-light-gray order-2 md:order-1">
           <div className="flex items-center gap-3 mb-7">
             <img src="/images/shibayama_logo.svg" alt="Shibayama Percussion Studio" className="w-8 h-8 opacity-80 flex-shrink-0" />
             <p className="text-xs tracking-[0.25em] uppercase text-accent font-medium">Percussionist · Educator · Longmont, CO</p>
@@ -40,7 +40,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative bg-off-white overflow-hidden min-h-[85vw] lg:min-h-0 order-1 lg:order-2">
+        <div className="relative bg-off-white overflow-hidden min-h-[85vw] md:min-h-0 order-1 md:order-2">
           <img
             src={HEADSHOT}
             alt="Chihiro Shibayama"

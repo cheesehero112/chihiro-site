@@ -40,7 +40,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative bg-off-white overflow-hidden min-h-[50vw] lg:min-h-0 order-1 lg:order-2">
+        <div className="relative bg-off-white overflow-hidden min-h-[85vw] lg:min-h-0 order-1 lg:order-2">
           <img
             src={HEADSHOT}
             alt="Chihiro Shibayama"

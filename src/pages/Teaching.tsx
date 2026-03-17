@@ -88,7 +88,7 @@ export default function Teaching() {
             World-class<br />percussion<br /><em className="text-accent">instruction.</em>
           </h1>
           <p className="text-[15px] text-text-gray font-light leading-relaxed max-w-md mb-12">
-            Juilliard-trained, New York City–seasoned, and now right here in Longmont, CO. Private lessons for students of all ages — from first-time beginners to pre-college and beyond.
+            Juilliard-trained, New York City–seasoned, and now right here in Longmont, CO. Instruction for every percussionist — from first-time beginners to pre-college and beyond.
           </p>
           <div className="flex gap-8 pb-10 border-b border-light-gray mb-10">
             <Stat num="25+" label="Years performing" />
@@ -142,6 +142,44 @@ export default function Teaching() {
         </p>
         <p className="text-2xs tracking-[0.2em] uppercase text-white/30">— Chihiro Shibayama</p>
       </div>
+
+      {/* WHAT I TEACH */}
+      <section className="px-6 lg:px-16 py-16 lg:py-24 border-b border-light-gray">
+        <div className="max-w-7xl mx-auto">
+          <p className="eyebrow mb-5">What I teach</p>
+          <h2 className="section-title mb-14">
+            The full percussion <em>toolkit.</em>
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-light-gray border border-light-gray">
+            {[
+              {
+                title: 'Snare & drumset',
+                desc: 'Rudiments, reading, and musicality for concert snare and kit. From first paradiddle to advanced orchestral excerpts.',
+              },
+              {
+                title: 'Mallet percussion',
+                desc: 'Marimba, vibraphone, and xylophone — two and four mallets. Scales, sight-reading, and solo repertoire.',
+              },
+              {
+                title: 'Timpani',
+                desc: 'Tuning, touch, muffling, and musical phrasing. Orchestral excerpts and audition preparation.',
+              },
+              {
+                title: 'Accessories & more',
+                desc: 'Triangle, tambourine, bass drum, cymbals — the full section toolkit that rounds out a complete percussionist.',
+              },
+            ].map(({ title, desc }) => (
+              <div key={title} className="bg-white px-8 py-10">
+                <h3 className="font-serif text-[20px] text-black mb-3">{title}</h3>
+                <p className="text-[13.5px] text-text-gray font-light leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-[14px] text-text-gray font-light leading-relaxed mt-8 max-w-2xl">
+            Every student develops a personalized curriculum. Beginners explore different instruments to find what excites them. Advanced students build the multi-instrument proficiency that audition panels expect.
+          </p>
+        </div>
+      </section>
 
       {/* LESSONS */}
       <section id="lessons" className="px-6 lg:px-16 py-16 lg:py-24">

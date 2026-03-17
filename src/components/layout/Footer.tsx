@@ -21,12 +21,9 @@ export default function Footer() {
 
           {/* Brand */}
           <div>
-            <Link to="/" className="font-serif text-xl text-white no-underline block mb-3">
-              Chihiro Shibayama
+            <Link to="/" className="no-underline block mb-3">
+              <img src="/images/shibayama_logo_lockup_white.svg" alt="Chihiro Shibayama" className="h-20 w-auto" />
             </Link>
-            <p className="text-xs text-white/35 tracking-wide">
-              Percussionist · Educator · Longmont, CO
-            </p>
           </div>
 
           {/* Pages */}

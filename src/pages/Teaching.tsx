@@ -288,28 +288,25 @@ export default function Teaching() {
         </div>
       </section>
 
-      {/* CONTACT FORM */}
+      {/* BOOKING FORM */}
       <section id="contact" className="bg-off-white border-t border-light-gray px-6 lg:px-16 py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
-          <div>
-            <p className="eyebrow mb-5">Get in touch</p>
-            <h2 className="section-title mb-6">Ready to <em>begin?</em></h2>
-            <p className="text-[15px] text-text-gray font-light leading-relaxed mb-10">
-              Spots are limited — I keep my roster intentionally small so every student gets the attention they deserve. Reach out to ask about availability and to schedule your trial lesson.
-            </p>
-            <div className="flex flex-col gap-3">
-              <p className="text-[13px] text-text-gray font-light flex items-center gap-3">
-                <span className="w-1 h-1 rounded-full bg-accent" />
-                <a href="mailto:Chihiro@chihiroshibayama.com" className="text-black no-underline hover:text-accent transition-colors">Chihiro@chihiroshibayama.com</a>
-              </p>
-              <p className="text-[13px] text-text-gray font-light flex items-center gap-3">
-                <span className="w-1 h-1 rounded-full bg-accent" />
-                Longmont, Colorado · Online worldwide
-              </p>
-            </div>
-          </div>
-          <div className="bg-white p-8 lg:p-10 border border-light-gray">
-            <ContactForm />
+        <div className="max-w-3xl mx-auto">
+          <p className="eyebrow mb-5">Get in touch</p>
+          <h2 className="section-title mb-4">Ready to <em>begin?</em></h2>
+          <p className="text-[15px] text-text-gray font-light leading-relaxed mb-10">
+            Spots are limited — I keep my roster intentionally small so every student gets the attention they deserve. Fill out the form below to get started.
+          </p>
+          <div className="bg-white border border-light-gray overflow-hidden">
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSeEUIk58KXpBGSLBeOP7SIxTfSDN5quCjeJDygQNCbtVG7rVg/viewform?embedded=true"
+              width="100%"
+              height="2604"
+              frameBorder="0"
+              marginHeight={0}
+              marginWidth={0}
+            >
+              Loading…
+            </iframe>
           </div>
         </div>
       </section>

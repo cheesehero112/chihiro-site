@@ -158,6 +158,17 @@ export default function Home() {
         </div>
       </section>
 
+      {/* BOOKING CTA STRIP */}
+      <section className="bg-black px-6 lg:px-16 py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <p className="font-serif italic text-white text-[1.25rem]">Ready to start? Book your trial lesson.</p>
+        <a
+          href="/teaching#contact"
+          className="whitespace-nowrap text-[11px] tracking-[0.18em] uppercase border border-white text-white px-8 py-3 hover:bg-white hover:text-black transition-all no-underline"
+        >
+          Book a trial lesson →
+        </a>
+      </section>
+
       {/* RECENT POSTS */}
       <section className="px-6 lg:px-16 py-16 lg:py-24 max-w-7xl mx-auto">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-12">

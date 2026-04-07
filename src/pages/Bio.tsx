@@ -4,7 +4,7 @@ const HEADSHOT = '/images/chihiro-cym.jpg';
 
 export default function Bio() {
 	return (
-		<div className='pt-[72px]'>
+		<div className='pt-[80px]'>
 			{/* HERO */}
 			<section className='grid grid-cols-1 md:grid-cols-2 min-h-[85vh]'>
 				<div className='relative bg-off-white overflow-hidden md:min-h-0'>
@@ -37,7 +37,7 @@ export default function Bio() {
 					</p>
 					<div className='border-l-[3px] border-accent px-6 py-5 bg-off-white mb-10'>
 						<p className='font-serif italic text-[18px] text-black leading-snug mb-2'>"…impressive soloist…"</p>
-						<p className='text-2xs tracking-[0.2em] uppercase text-mid-gray'>— The New York Times</p>
+						<p className='text-[12px] tracking-[0.2em] uppercase text-mid-gray'>— The New York Times</p>
 					</div>
 					<div className='flex flex-col gap-2.5'>
 						{[
@@ -168,7 +168,7 @@ export default function Bio() {
 							key={title}
 							className='bg-off-white p-8 first:border-t-[3px] first:border-accent'
 						>
-							<p className='text-2xs tracking-[0.2em] uppercase text-mid-gray mb-5'>{title}</p>
+							<p className='text-[12px] tracking-[0.2em] uppercase text-mid-gray mb-5'>{title}</p>
 							<ul className='list-none flex flex-col gap-2.5'>
 								{items.map((item) => (
 									<li
@@ -183,7 +183,7 @@ export default function Bio() {
 						</div>
 					))}
 					<div className='bg-off-white p-8'>
-						<p className='text-2xs tracking-[0.2em] uppercase text-mid-gray mb-5'>Awards</p>
+						<p className='text-[12px] tracking-[0.2em] uppercase text-mid-gray mb-5'>Awards</p>
 						{[
 							{ name: 'Zildjian Scholarship', detail: '2004–2007' },
 							{ name: 'Irene Diamond Graduate Fellowship', detail: 'The Juilliard School, 2007–09' },
@@ -204,7 +204,7 @@ export default function Bio() {
 
 			{/* ENDORSEMENTS */}
 			<div className='border-t border-b border-light-gray px-6 lg:px-16 py-10 bg-off-white flex flex-col sm:flex-row items-start sm:items-center gap-4'>
-				<p className='text-2xs tracking-[0.2em] uppercase text-mid-gray whitespace-nowrap'>Proudly endorses</p>
+				<p className='text-[12px] tracking-[0.2em] uppercase text-mid-gray whitespace-nowrap'>Proudly endorses</p>
 				<div className='flex gap-8 flex-wrap'>
 					<span className='text-[13px] text-text-gray font-light'>Pearl Adams Concert Percussion</span>
 					<span className='text-[13px] text-text-gray font-light'>Dragonfly Percussion</span>

@@ -27,11 +27,11 @@ export default function Nav() {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-shadow ${scrolled ? 'shadow-sm' : ''}`}>
       <nav className="bg-white/90 backdrop-blur-sm border-b border-accent">
-        <div className="max-w-7xl mx-auto px-6 lg:px-16 flex items-center justify-between h-[72px]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-16 flex items-center justify-between h-[80px]">
 
           {/* Logo */}
           <Link to="/" className="no-underline">
-            <img src="/images/shibayama_logo_lockup.svg" alt="Chihiro Shibayama" className="h-14 w-auto" />
+            <img src="/images/shibayama_logo_lockup.svg" alt="Chihiro Shibayama" className="h-[68px] w-auto" />
           </Link>
 
           {/* Desktop links */}
@@ -73,7 +73,7 @@ export default function Nav() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="lg:hidden fixed inset-0 top-[72px] bg-white z-40 flex flex-col px-6 pt-8 pb-12">
+        <div className="lg:hidden fixed inset-0 top-[80px] bg-white z-40 flex flex-col px-6 pt-8 pb-12">
           <ul className="list-none flex flex-col gap-0 border-t border-light-gray">
             {links.map(({ to, label }) => (
               <li key={to} className="border-b border-light-gray">

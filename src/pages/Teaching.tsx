@@ -75,10 +75,10 @@ function ContactForm() {
 
 export default function Teaching() {
   return (
-    <div className="pt-[72px]">
+    <div className="pt-[80px]">
 
       {/* HERO */}
-      <section className="grid grid-cols-1 md:grid-cols-2 min-h-[calc(90vh-72px)]">
+      <section className="grid grid-cols-1 md:grid-cols-2 min-h-[calc(90vh-80px)]">
         <div className="flex flex-col justify-center px-6 lg:px-16 py-16 lg:py-24 border-b md:border-b-0 md:border-r border-light-gray order-2 md:order-1">
           <div className="flex items-center gap-3 mb-7">
             <img src="/images/shibayama_logo.svg" alt="Shibayama Percussion Studio" className="w-8 h-8 opacity-80 flex-shrink-0" />

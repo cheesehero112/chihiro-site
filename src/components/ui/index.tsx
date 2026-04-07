@@ -8,7 +8,7 @@ interface PageHeaderProps {
 
 export function PageHeader({ eyebrow, title, subtitle }: PageHeaderProps) {
   return (
-    <div className="pt-[72px]">
+    <div className="pt-[80px]">
       <div className="max-w-7xl mx-auto px-6 lg:px-16 py-16 lg:py-24 border-b border-light-gray">
         <p className="eyebrow mb-5">{eyebrow}</p>
         <h1 className="font-serif font-normal leading-tight text-black mb-4" style={{ fontSize: 'clamp(2.75rem, 6vw, 4.5rem)' }}>

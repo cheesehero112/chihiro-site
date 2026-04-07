@@ -3,7 +3,7 @@ import { blogPosts } from '../data/blog'
 
 export default function Blog() {
   return (
-    <div className="pt-[72px]">
+    <div className="pt-[80px]">
       <section className="grid grid-cols-1 md:grid-cols-2 min-h-[85vh] border-b border-light-gray">
         <div className="relative bg-off-white overflow-hidden min-h-[85vw] md:min-h-0">
           <img src="/images/chihiro-drumset.jpg" alt="Chihiro Shibayama at the drumset" className="w-full h-full object-cover object-top absolute inset-0" />
@@ -25,12 +25,12 @@ export default function Blog() {
             to={`/blog/${slug}`}
             className="grid grid-cols-1 md:grid-cols-[180px_1fr_auto] items-center gap-4 md:gap-10 py-8 border-b border-light-gray no-underline group"
           >
-            <span className="text-[11px] tracking-[0.12em] uppercase text-mid-gray">{date}</span>
+            <span className="text-[13px] tracking-[0.12em] uppercase text-mid-gray">{date}</span>
             <div>
               <h2 className="font-serif text-[21px] text-black leading-snug mb-1 group-hover:text-accent transition-colors">{title}</h2>
               <p className="text-[13px] text-text-gray font-light leading-relaxed hidden md:block">{excerpt}</p>
             </div>
-            <span className="text-[11px] tracking-[0.15em] uppercase text-accent whitespace-nowrap hidden md:block">Read →</span>
+            <span className="text-[13px] tracking-[0.15em] uppercase text-accent whitespace-nowrap hidden md:block">Read →</span>
           </Link>
         ))}
       </div>

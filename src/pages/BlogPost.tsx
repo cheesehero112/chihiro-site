@@ -86,7 +86,7 @@ export default function BlogPost() {
   if (!post) return <Navigate to="/blog" replace />
 
   return (
-    <div className="pt-[72px]">
+    <div className="pt-[80px]">
       <div className="max-w-[760px] mx-auto px-6 lg:px-0 py-16 lg:py-24">
 
         {/* Header */}

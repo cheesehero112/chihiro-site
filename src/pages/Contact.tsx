@@ -69,10 +69,10 @@ function ContactForm() {
 
 export default function Contact() {
   return (
-    <div className="pt-[72px]">
+    <div className="pt-[80px]">
 
       {/* HERO GRID */}
-      <section className="grid grid-cols-1 lg:grid-cols-2 min-h-[calc(90vh-72px)]">
+      <section className="grid grid-cols-1 lg:grid-cols-2 min-h-[calc(90vh-80px)]">
 
         {/* Left — dark info panel */}
         <div className="bg-black px-6 lg:px-16 py-16 lg:py-24 flex flex-col justify-center order-2 lg:order-1">

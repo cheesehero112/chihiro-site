@@ -8,7 +8,7 @@ export default function Media() {
   const [tab, setTab] = useState<Tab>('watch')
 
   return (
-    <div className="pt-[72px]">
+    <div className="pt-[80px]">
 
       {/* Header */}
       <section className="grid grid-cols-1 md:grid-cols-2 min-h-[85vh] border-b border-light-gray">
@@ -27,7 +27,7 @@ export default function Media() {
       </section>
 
       {/* Tab nav */}
-      <div className="sticky top-[72px] z-40 bg-white/97 backdrop-blur-sm border-b border-light-gray">
+      <div className="sticky top-[80px] z-40 bg-white/97 backdrop-blur-sm border-b border-light-gray">
         <div className="max-w-7xl mx-auto px-6 lg:px-16 flex gap-0">
           {(['watch', 'read', 'listen'] as Tab[]).map(t => (
             <button

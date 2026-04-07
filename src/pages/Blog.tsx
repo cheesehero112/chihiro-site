@@ -18,21 +18,34 @@ export default function Blog() {
           </h1>
         </div>
       </section>
-      <div className="max-w-7xl mx-auto px-6 lg:px-16 pb-24">
-        {blogPosts.map(({ slug, title, date, excerpt }) => (
-          <Link
-            key={slug}
-            to={`/blog/${slug}`}
-            className="grid grid-cols-1 md:grid-cols-[180px_1fr_auto] items-center gap-4 md:gap-10 py-8 border-b border-light-gray no-underline group"
-          >
-            <span className="text-[15px] tracking-[0.12em] uppercase text-mid-gray">{date}</span>
-            <div>
-              <h2 className="font-serif text-[21px] text-black leading-snug mb-1 group-hover:text-accent transition-colors">{title}</h2>
-              <p className="text-[15px] text-text-gray font-light leading-relaxed hidden md:block">{excerpt}</p>
-            </div>
-            <span className="text-[15px] tracking-[0.15em] uppercase text-accent whitespace-nowrap hidden md:block">Read →</span>
-          </Link>
-        ))}
+      <div className="max-w-7xl mx-auto px-6 lg:px-16 py-16 lg:py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-light-gray border border-light-gray">
+          {blogPosts.map(({ slug, title, date, excerpt, image }) => (
+            <Link
+              key={slug}
+              to={`/blog/${slug}`}
+              className="bg-white no-underline group flex flex-col"
+            >
+              <div className="aspect-square overflow-hidden bg-off-white">
+                {image ? (
+                  <img
+                    src={`/images/${image}`}
+                    alt={title}
+                    className="w-full h-full object-contain"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-light-gray" />
+                )}
+              </div>
+              <div className="p-7 lg:p-8 flex flex-col flex-1">
+                <span className="text-[12px] tracking-[0.15em] uppercase text-mid-gray block mb-3">{date}</span>
+                <h2 className="font-serif text-[20px] text-black leading-snug mb-3 group-hover:text-accent transition-colors">{title}</h2>
+                <p className="text-[15px] text-text-gray leading-relaxed mb-5 flex-1">{excerpt}</p>
+                <span className="text-[13px] tracking-[0.15em] uppercase text-accent">Read →</span>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   )

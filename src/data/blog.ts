@@ -83,9 +83,9 @@ Good luck at your rehearsal! Remember, everyone is there to make music together.
     slug: 'key-change-challenge-2-miyazaki',
     title: 'Key Change Challenge #2 (Miyazaki Film Ver.)',
     date: 'February 16, 2021',
-    image: 'key-change-2.webp',
+    image: 'Key+Change+Challenge+2.webp',
     excerpt: `Who loves Studio Ghibli films? I do! Today I'm sharing Key Change Challenge #2 featuring music from Hayao Miyazaki films — a sequel to the holiday version.`,
-    content: `[image:key-change-2.webp|]
+    content: `[image:Key+Change+Challenge+2.webp|]
 
 I hope you had a nice Valentine's Day and President's Day. I enjoyed some extra free time this weekend as my regular teaching was off. I watched one of the movies that inspired this week's challenge!
 
@@ -451,7 +451,7 @@ If you dare to do the challenge in public, please tag me on Instagram [@chihirop
     slug: 'key-change-challenge-1-holiday',
     title: 'Key Change Challenge #1 (Holiday Ver.)',
     date: 'November 29, 2020',
-    image: 'key-change-2.webp',
+    image: 'key-change-blog.png',
     excerpt: `Today I'm sharing a brand new practice challenge — Key Change Challenge 1 (holiday ver.)! Inspired by my days performing at Radio City Christmas Spectacular.`,
     content: `[youtube:PXD94BE0GM8]
 

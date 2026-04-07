@@ -122,7 +122,7 @@ export default function Teaching() {
             <div className="bg-black p-10 lg:p-14">
               <span className="text-[12px] tracking-[0.2em] uppercase text-white/65 block mb-5">Most popular</span>
               <h3 className="font-serif text-[28px] text-white mb-4">Private 1-on-1 Lessons</h3>
-              <p className="text-[16px] text-white/80 font-light leading-relaxed mb-8">
+              <p className="text-[16px] text-white/80 leading-relaxed mb-8">
                 Individualized instruction built entirely around your student's goals — whether that's a first recital, All-State audition, or a lifelong love of rhythm.
               </p>
               <div className="flex items-baseline gap-2 mb-1">
@@ -132,7 +132,7 @@ export default function Teaching() {
               <p className="text-[15px] text-white/65 italic mb-8">$100/hr drop-in · $30 for a 30-min trial lesson</p>
               <ul className="list-none flex flex-col mb-10">
                 {['Ages 6 to adult — all levels welcome', 'In-person (Longmont) or online worldwide', 'Semester packages include 2 makeup lessons', 'Snare, marimba, timpani & full battery', 'Audition & competition prep available'].map(item => (
-                  <li key={item} className="flex items-center gap-3 py-2.5 border-b border-white/10 text-[15px] text-white/80 font-light">
+                  <li key={item} className="flex items-center gap-3 py-2.5 border-b border-white/10 text-[15px] text-white/80">
                     <span className="w-1 h-1 rounded-full bg-white/40 flex-shrink-0" />{item}
                   </li>
                 ))}

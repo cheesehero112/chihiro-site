@@ -83,7 +83,7 @@ export default function Contact() {
           <h1 className="font-serif font-normal text-white leading-tight mb-8" style={{ fontSize: 'clamp(2.75rem, 5.5vw, 4.5rem)' }}>
             Let's<br /><em className="text-accent">connect.</em>
           </h1>
-          <p className="text-[17px] text-white/75 font-light leading-relaxed max-w-sm mb-14">
+          <p className="text-[17px] text-white/75 leading-relaxed max-w-sm mb-14">
             Whether you're interested in private lessons, a performance inquiry, or just want to say hello — I'd love to hear from you.
           </p>
 
@@ -109,7 +109,7 @@ export default function Contact() {
             ].map(({ label, content }) => (
               <div key={label} className="flex items-start gap-5 py-5 border-b border-white/8">
                 <span className="text-[12px] tracking-[0.2em] uppercase text-white/60 w-20 flex-shrink-0 pt-0.5">{label}</span>
-                <span className="text-[16px] text-white/85 font-light leading-relaxed">{content}</span>
+                <span className="text-[16px] text-white/85 leading-relaxed">{content}</span>
               </div>
             ))}
           </div>

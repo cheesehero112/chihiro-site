@@ -116,7 +116,7 @@ export default function Home() {
               <div key={name} className="bg-black px-7 py-9 hover:bg-white/5 transition-colors">
                 <span className="text-2xs tracking-[0.2em] uppercase text-accent block mb-4">{category}</span>
                 <p className="font-serif text-[18px] text-white leading-snug mb-2.5">{name}</p>
-                <p className="text-[15px] text-white/65 font-light leading-relaxed">{detail}</p>
+                <p className="text-[15px] text-white/80 leading-relaxed">{detail}</p>
               </div>
             ))}
           </div>

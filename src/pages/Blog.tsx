@@ -25,12 +25,12 @@ export default function Blog() {
             to={`/blog/${slug}`}
             className="grid grid-cols-1 md:grid-cols-[180px_1fr_auto] items-center gap-4 md:gap-10 py-8 border-b border-light-gray no-underline group"
           >
-            <span className="text-[13px] tracking-[0.12em] uppercase text-mid-gray">{date}</span>
+            <span className="text-[15px] tracking-[0.12em] uppercase text-mid-gray">{date}</span>
             <div>
               <h2 className="font-serif text-[21px] text-black leading-snug mb-1 group-hover:text-accent transition-colors">{title}</h2>
-              <p className="text-[13px] text-text-gray font-light leading-relaxed hidden md:block">{excerpt}</p>
+              <p className="text-[15px] text-text-gray font-light leading-relaxed hidden md:block">{excerpt}</p>
             </div>
-            <span className="text-[13px] tracking-[0.15em] uppercase text-accent whitespace-nowrap hidden md:block">Read →</span>
+            <span className="text-[15px] tracking-[0.15em] uppercase text-accent whitespace-nowrap hidden md:block">Read →</span>
           </Link>
         ))}
       </div>

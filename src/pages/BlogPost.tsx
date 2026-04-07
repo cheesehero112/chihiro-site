@@ -53,10 +53,10 @@ function renderContent(content: string) {
           if (line.startsWith('- ')) return (
             <div key={j} className="flex items-baseline gap-3 mb-2">
               <span className="w-1 h-1 rounded-full bg-accent flex-shrink-0 mt-2.5" />
-              <p className="text-[15px] text-text-gray font-light leading-relaxed">{renderInline(line.slice(2))}</p>
+              <p className="text-[17px] text-text-gray font-light leading-relaxed">{renderInline(line.slice(2))}</p>
             </div>
           )
-          return <p key={j} className="text-[16px] text-text-gray font-light leading-[1.9] mb-4">{renderInline(line)}</p>
+          return <p key={j} className="text-[18px] text-text-gray font-light leading-[1.9] mb-4">{renderInline(line)}</p>
         })}
       </div>
     )
@@ -92,10 +92,10 @@ export default function BlogPost() {
         {/* Header */}
         <div className="mb-12">
           <div className="flex items-center gap-5 mb-8">
-            <Link to="/blog" className="text-[11px] tracking-[0.15em] uppercase text-accent no-underline hover:opacity-70 transition-opacity">
+            <Link to="/blog" className="text-[13px] tracking-[0.15em] uppercase text-accent no-underline hover:opacity-70 transition-opacity">
               ← All posts
             </Link>
-            <span className="text-[11px] tracking-[0.15em] uppercase text-mid-gray">{post.date}</span>
+            <span className="text-[13px] tracking-[0.15em] uppercase text-mid-gray">{post.date}</span>
           </div>
           <h1 className="font-serif font-normal text-black leading-tight" style={{ fontSize: 'clamp(2rem, 5vw, 3.25rem)' }}>
             {post.title}
@@ -112,16 +112,16 @@ export default function BlogPost() {
           <div>
             {prev && (
               <Link to={`/blog/${prev.slug}`} className="no-underline group">
-                <span className="text-2xs tracking-[0.15em] uppercase text-mid-gray block mb-2">← Previous</span>
-                <span className="font-serif text-[16px] text-black group-hover:text-accent transition-colors">{prev.title}</span>
+                <span className="text-[12px] tracking-[0.15em] uppercase text-mid-gray block mb-2">← Previous</span>
+                <span className="font-serif text-[18px] text-black group-hover:text-accent transition-colors">{prev.title}</span>
               </Link>
             )}
           </div>
           <div className="text-right">
             {next && (
               <Link to={`/blog/${next.slug}`} className="no-underline group">
-                <span className="text-2xs tracking-[0.15em] uppercase text-mid-gray block mb-2">Next →</span>
-                <span className="font-serif text-[16px] text-black group-hover:text-accent transition-colors">{next.title}</span>
+                <span className="text-[12px] tracking-[0.15em] uppercase text-mid-gray block mb-2">Next →</span>
+                <span className="font-serif text-[18px] text-black group-hover:text-accent transition-colors">{next.title}</span>
               </Link>
             )}
           </div>

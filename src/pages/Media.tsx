@@ -50,7 +50,7 @@ export default function Media() {
         {/* WATCH */}
         {tab === 'watch' && (
           <>
-            <p className="text-[15px] text-text-gray font-light max-w-xl leading-relaxed mb-14">
+            <p className="text-[17px] text-text-gray font-light max-w-xl leading-relaxed mb-14">
               Performances, compositions, and behind-the-scenes footage from Chihiro's career on stage and in the studio.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-light-gray border border-light-gray">
@@ -112,7 +112,7 @@ export default function Media() {
         {/* READ */}
         {tab === 'read' && (
           <>
-            <p className="text-[15px] text-text-gray font-light max-w-xl leading-relaxed mb-14">
+            <p className="text-[17px] text-text-gray font-light max-w-xl leading-relaxed mb-14">
               Press coverage, feature articles, and podcast appearances.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-light-gray border border-light-gray">
@@ -135,7 +135,7 @@ export default function Media() {
                     <span className="text-2xs tracking-[0.2em] uppercase text-accent">{type}</span>
                     <h2 className="font-serif text-[22px] text-black leading-snug">{title}</h2>
                     <p className="text-[12px] tracking-[0.08em] uppercase text-mid-gray">{pub}</p>
-                    <p className="text-[14px] text-text-gray font-light leading-relaxed flex-1">{desc}</p>
+                    <p className="text-[16px] text-text-gray font-light leading-relaxed flex-1">{desc}</p>
                     <span className="flex items-center gap-2 text-[11px] tracking-[0.15em] uppercase text-accent mt-2">
                       Read article <ExternalLink size={12} />
                     </span>
@@ -149,12 +149,12 @@ export default function Media() {
         {/* LISTEN */}
         {tab === 'listen' && (
           <>
-            <p className="text-[15px] text-text-gray font-light max-w-xl leading-relaxed mb-10">
+            <p className="text-[17px] text-text-gray font-light max-w-xl leading-relaxed mb-10">
               Recordings from Chihiro's work as a chamber musician, ensemble member, and collaborator.
             </p>
             <div className="border-l-[3px] border-accent px-6 py-5 bg-off-white mb-14">
               <p className="font-serif text-[18px] text-black mb-2">Isabel — Zachary Joseph © 2017, Element5</p>
-              <p className="text-[13px] text-text-gray font-light leading-relaxed">
+              <p className="text-[15px] text-text-gray font-light leading-relaxed">
                 Jia Xu, Violin · Brian Sanders, Cello · Jen Volmer, Viola · Chihiro Shibayama, Marimba · Zachary Joseph, DJ & Producer
               </p>
             </div>
@@ -169,7 +169,7 @@ export default function Media() {
                 >
                   <span className="text-2xs tracking-[0.15em] uppercase text-mid-gray">{year}</span>
                   <h3 className="font-serif text-[18px] text-black leading-snug">{title}</h3>
-                  <p className="text-[13px] text-text-gray font-light flex-1">{ensemble}</p>
+                  <p className="text-[15px] text-text-gray font-light flex-1">{ensemble}</p>
                   <span className="flex items-center gap-2 text-[11px] tracking-[0.15em] uppercase text-accent mt-2">
                     View recording <ExternalLink size={12} />
                   </span>

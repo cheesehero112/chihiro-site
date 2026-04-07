@@ -15,7 +15,7 @@ export function PageHeader({ eyebrow, title, subtitle }: PageHeaderProps) {
           {title}
         </h1>
         {subtitle && (
-          <p className="text-[15px] text-text-gray font-light max-w-xl leading-relaxed mt-4">{subtitle}</p>
+          <p className="text-[17px] text-text-gray font-light max-w-xl leading-relaxed mt-4">{subtitle}</p>
         )}
       </div>
     </div>
@@ -42,7 +42,7 @@ export function Stat({ num, label, dark = false }: StatProps) {
   return (
     <div className="flex flex-col">
       <span className={`font-serif text-4xl leading-none ${dark ? 'text-white' : 'text-black'}`}>{num}</span>
-      <span className={`text-2xs tracking-[0.15em] uppercase mt-1.5 ${dark ? 'text-white/40' : 'text-mid-gray'}`}>{label}</span>
+      <span className={`text-[12px] tracking-[0.15em] uppercase mt-1.5 ${dark ? 'text-white/65' : 'text-mid-gray'}`}>{label}</span>
     </div>
   )
 }

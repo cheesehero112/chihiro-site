@@ -11,7 +11,7 @@ function ContactForm() {
       <div className="flex flex-col items-center justify-center py-20 text-center">
         <CheckCircle className="text-accent mb-5" size={44} />
         <h3 className="font-serif text-[26px] text-black mb-3">Message sent!</h3>
-        <p className="text-[14px] text-text-gray font-light max-w-sm leading-relaxed">
+        <p className="text-[16px] text-text-gray font-light max-w-sm leading-relaxed">
           Thank you for reaching out. I'll be in touch within 1–2 business days.
         </p>
       </div>
@@ -24,20 +24,20 @@ function ContactForm() {
         <div className="flex flex-col gap-2">
           <label htmlFor="c-name" className="text-[12px] tracking-[0.2em] uppercase text-mid-gray">Your name</label>
           <input id="c-name" type="text" name="name" placeholder="Jane Smith" required
-            className="bg-white border border-light-gray text-black px-4 py-3 text-[14px] font-light outline-none focus:border-black transition-colors" />
+            className="bg-white border border-light-gray text-black px-4 py-3 text-[16px] font-light outline-none focus:border-black transition-colors" />
           <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-500 text-xs" />
         </div>
         <div className="flex flex-col gap-2">
           <label htmlFor="c-email" className="text-[12px] tracking-[0.2em] uppercase text-mid-gray">Email address</label>
           <input id="c-email" type="email" name="email" placeholder="jane@email.com" required
-            className="bg-white border border-light-gray text-black px-4 py-3 text-[14px] font-light outline-none focus:border-black transition-colors" />
+            className="bg-white border border-light-gray text-black px-4 py-3 text-[16px] font-light outline-none focus:border-black transition-colors" />
           <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-xs" />
         </div>
       </div>
       <div className="flex flex-col gap-2">
         <label htmlFor="c-subject" className="text-[12px] tracking-[0.2em] uppercase text-mid-gray">I'm inquiring about</label>
         <select id="c-subject" name="subject"
-          className="bg-white border border-light-gray text-black px-4 py-3 text-[14px] font-light outline-none focus:border-black transition-colors appearance-none cursor-pointer">
+          className="bg-white border border-light-gray text-black px-4 py-3 text-[16px] font-light outline-none focus:border-black transition-colors appearance-none cursor-pointer">
           <option value="">Select a topic...</option>
           <option>Private lessons — beginner</option>
           <option>Private lessons — intermediate / advanced</option>
@@ -53,11 +53,11 @@ function ContactForm() {
         <label htmlFor="c-message" className="text-[12px] tracking-[0.2em] uppercase text-mid-gray">Message</label>
         <textarea id="c-message" name="message" rows={5}
           placeholder="Tell me a bit about yourself and what you're looking for..."
-          className="bg-white border border-light-gray text-black px-4 py-3 text-[14px] font-light outline-none focus:border-black transition-colors resize-y" />
+          className="bg-white border border-light-gray text-black px-4 py-3 text-[16px] font-light outline-none focus:border-black transition-colors resize-y" />
         <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-500 text-xs" />
       </div>
       <button type="submit" disabled={state.submitting}
-        className="bg-black text-white py-4 text-[13px] tracking-[0.2em] uppercase font-normal hover:opacity-75 transition-opacity disabled:opacity-50 cursor-pointer border-none font-sans">
+        className="bg-black text-white py-4 text-[15px] tracking-[0.2em] uppercase font-normal hover:opacity-75 transition-opacity disabled:opacity-50 cursor-pointer border-none font-sans">
         {state.submitting ? 'Sending…' : 'Send message →'}
       </button>
       <p className="text-[12px] text-mid-gray leading-relaxed">
@@ -83,7 +83,7 @@ export default function Contact() {
           <h1 className="font-serif font-normal text-white leading-tight mb-8" style={{ fontSize: 'clamp(2.75rem, 5.5vw, 4.5rem)' }}>
             Let's<br /><em className="text-accent">connect.</em>
           </h1>
-          <p className="text-[15px] text-white/75 font-light leading-relaxed max-w-sm mb-14">
+          <p className="text-[17px] text-white/75 font-light leading-relaxed max-w-sm mb-14">
             Whether you're interested in private lessons, a performance inquiry, or just want to say hello — I'd love to hear from you.
           </p>
 
@@ -100,7 +100,7 @@ export default function Contact() {
                     { href: 'https://www.facebook.com/ChihiroPercussionist', label: 'Facebook' },
                   ].map(({ href, label }) => (
                     <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-                      className="text-[13px] tracking-[0.12em] uppercase text-white/70 no-underline border-b border-white/30 pb-px hover:text-white transition-colors">
+                      className="text-[15px] tracking-[0.12em] uppercase text-white/70 no-underline border-b border-white/30 pb-px hover:text-white transition-colors">
                       {label}
                     </a>
                   ))}
@@ -109,7 +109,7 @@ export default function Contact() {
             ].map(({ label, content }) => (
               <div key={label} className="flex items-start gap-5 py-5 border-b border-white/8">
                 <span className="text-[12px] tracking-[0.2em] uppercase text-white/60 w-20 flex-shrink-0 pt-0.5">{label}</span>
-                <span className="text-[14px] text-white/85 font-light leading-relaxed">{content}</span>
+                <span className="text-[16px] text-white/85 font-light leading-relaxed">{content}</span>
               </div>
             ))}
           </div>
@@ -135,7 +135,7 @@ export default function Contact() {
           <div key={title} className="bg-white px-8 lg:px-10 py-10">
             <span className="text-2xs tracking-[0.2em] uppercase text-accent block mb-3">{tag}</span>
             <h3 className="font-serif text-[20px] text-black mb-3">{title}</h3>
-            <p className="text-[13px] text-text-gray font-light leading-relaxed">{desc}</p>
+            <p className="text-[15px] text-text-gray font-light leading-relaxed">{desc}</p>
           </div>
         ))}
       </div>

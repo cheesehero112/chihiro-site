@@ -31,7 +31,7 @@ export default function Bio() {
 						<br />
 						<em className='text-accent'>Shibayama.</em>
 					</h1>
-					<p className='text-[15px] text-text-gray font-light leading-relaxed mb-10'>
+					<p className='text-[17px] text-text-gray font-light leading-relaxed mb-10'>
 						Native of Yokohama, Japan. Juilliard-trained percussionist. Broadway veteran. New music advocate. Educator. Now based in Longmont,
 						Colorado.
 					</p>
@@ -49,7 +49,7 @@ export default function Bio() {
 						].map((cred) => (
 							<div
 								key={cred}
-								className='flex items-center gap-3 text-[13px] text-text-gray font-light'
+								className='flex items-center gap-3 text-[15px] text-text-gray font-light'
 							>
 								<span className='w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0' />
 								{cred}
@@ -66,7 +66,7 @@ export default function Bio() {
 						Chihiro Shibayama is a versatile freelance percussionist and educator whose career spans Broadway, opera, symphony, new music, and
 						television.
 					</p>
-					<p className='text-[15px] text-text-gray font-light leading-relaxed mb-6'>
+					<p className='text-[17px] text-text-gray font-light leading-relaxed mb-6'>
 						Ms. Shibayama was a percussionist for the Broadway run of <em>Miss Saigon</em> (March 2017 – January 2018), and made her Broadway debut as
 						one of three on-stage musicians for <em>The Cherry Orchard</em> starring Diane Lane, produced by The Roundabout Theatre Company. She has
 						performed for the Radio City Christmas Spectacular, NBC's <em>Good Morning America</em> with John Legend and Common, the Daytime Emmy
@@ -77,7 +77,7 @@ export default function Bio() {
 					<h2 className='font-serif text-[26px] text-black mt-12 mb-5 pt-12 border-t border-light-gray'>
 						Opera & <em>Orchestra</em>
 					</h2>
-					<p className='text-[15px] text-text-gray font-light leading-relaxed mb-6'>
+					<p className='text-[17px] text-text-gray font-light leading-relaxed mb-6'>
 						Among her most notable performances, Ms. Shibayama was one of three on-stage percussion soloists in the U.S. premiere of Tan Dun's opera{' '}
 						<em>TEA – A Mirror of Soul</em> at The Santa Fe Opera (2007), the East Coast premiere at the Opera Company of Philadelphia (2009), and the
 						Canadian premiere at the Vancouver Opera (2013). She has performed with The Metropolitan Opera, Kansas City Symphony, San Diego Symphony,
@@ -87,7 +87,7 @@ export default function Bio() {
 					<h2 className='font-serif text-[26px] text-black mt-12 mb-5 pt-12 border-t border-light-gray'>
 						New Music & <em>Chamber</em>
 					</h2>
-					<p className='text-[15px] text-text-gray font-light leading-relaxed mb-6'>
+					<p className='text-[17px] text-text-gray font-light leading-relaxed mb-6'>
 						As a passionate new music advocate, Ms. Shibayama has performed and recorded with Alarm Will Sound, American Contemporary Music Ensemble
 						(ACME), S.E.M. Ensemble, New Juilliard Ensemble, and AXIOM. She toured China in 2015 to perform at the Beijing Modern Music Festival, and
 						has appeared on Amazon Prime's <em>Mozart in the Jungle</em>. She is co-founder of{' '}
@@ -105,13 +105,13 @@ export default function Bio() {
 					<h2 className='font-serif text-[26px] text-black mt-12 mb-5 pt-12 border-t border-light-gray'>
 						Teaching & <em>Education</em>
 					</h2>
-					<p className='text-[15px] text-text-gray font-light leading-relaxed mb-6'>
+					<p className='text-[17px] text-text-gray font-light leading-relaxed mb-6'>
 						Ms. Shibayama has dedicated more than 20 years to percussion education. She served as percussion faculty at Diller-Quaile School of Music
 						for seven years and Third Street Music Settlement for two years. From 2007 to 2010 she was faculty at The Juilliard Summer Percussion
 						Seminar. Her masterclass "My Way to Broadway" has been presented at multiple universities and the Juilliard Summer Percussion Masterclass
 						Series.
 					</p>
-					<p className='text-[15px] text-text-gray font-light leading-relaxed mb-6'>
+					<p className='text-[17px] text-text-gray font-light leading-relaxed mb-6'>
 						She is currently accepting private students in Longmont, Colorado and online worldwide.
 					</p>
 					<Link
@@ -124,12 +124,12 @@ export default function Bio() {
 					<h2 className='font-serif text-[26px] text-black mt-12 mb-5 pt-12 border-t border-light-gray'>
 						Background & <em>Training</em>
 					</h2>
-					<p className='text-[15px] text-text-gray font-light leading-relaxed mb-4'>
+					<p className='text-[17px] text-text-gray font-light leading-relaxed mb-4'>
 						A native of Yokohama City, Japan, Ms. Shibayama graduated from the Interlochen Arts Academy with a performance award in 2003. She earned
 						her Bachelor of Music and Master of Music degrees from The Juilliard School in 2007 and 2009. Her mentors include Daniel Druckman, Greg
 						Zuber, Markus Rhoten, Joe Pereira, Roland Kohloff, Keith Aleo, Mariko Okada, and John Alfieri.
 					</p>
-					<p className='text-[15px] text-text-gray font-light leading-relaxed'>
+					<p className='text-[17px] text-text-gray font-light leading-relaxed'>
 						She proudly endorses Pearl Adams Concert Percussion and Dragonfly Percussion.
 					</p>
 				</div>
@@ -173,7 +173,7 @@ export default function Bio() {
 								{items.map((item) => (
 									<li
 										key={item}
-										className='flex items-baseline gap-2.5 text-[13px] text-text-gray font-light'
+										className='flex items-baseline gap-2.5 text-[15px] text-text-gray font-light'
 									>
 										<span className='w-1 h-1 rounded-full bg-accent flex-shrink-0 mt-1.5' />
 										{item}
@@ -194,7 +194,7 @@ export default function Bio() {
 								key={name}
 								className='py-3.5 border-b border-light-gray last:border-none'
 							>
-								<p className='text-[13px] text-black font-normal mb-1'>{name}</p>
+								<p className='text-[15px] text-black font-normal mb-1'>{name}</p>
 								<p className='text-[12px] text-mid-gray font-light'>{detail}</p>
 							</div>
 						))}
@@ -206,8 +206,8 @@ export default function Bio() {
 			<div className='border-t border-b border-light-gray px-6 lg:px-16 py-10 bg-off-white flex flex-col sm:flex-row items-start sm:items-center gap-4'>
 				<p className='text-[12px] tracking-[0.2em] uppercase text-mid-gray whitespace-nowrap'>Proudly endorses</p>
 				<div className='flex gap-8 flex-wrap'>
-					<span className='text-[13px] text-text-gray font-light'>Pearl Adams Concert Percussion</span>
-					<span className='text-[13px] text-text-gray font-light'>Dragonfly Percussion</span>
+					<span className='text-[15px] text-text-gray font-light'>Pearl Adams Concert Percussion</span>
+					<span className='text-[15px] text-text-gray font-light'>Dragonfly Percussion</span>
 				</div>
 			</div>
 		</div>

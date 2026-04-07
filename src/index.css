@@ -23,10 +23,10 @@
     @apply block w-8 h-px bg-black/70 flex-shrink-0;
   }
   .btn-primary {
-    @apply inline-block bg-black text-white px-10 py-4 text-2xs tracking-[0.2em] uppercase font-normal transition-opacity hover:opacity-75 no-underline;
+    @apply inline-block bg-black text-white px-10 py-4 text-[13px] tracking-[0.2em] uppercase font-normal transition-opacity hover:opacity-75 no-underline;
   }
   .btn-outline {
-    @apply inline-block border border-black text-black px-10 py-4 text-2xs tracking-[0.2em] uppercase font-normal transition-all hover:bg-black hover:text-white no-underline;
+    @apply inline-block border border-black text-black px-10 py-4 text-[13px] tracking-[0.2em] uppercase font-normal transition-all hover:bg-black hover:text-white no-underline;
   }
   .text-link {
     @apply text-accent text-2xs tracking-[0.15em] uppercase no-underline border-b border-accent/30 pb-px hover:border-accent transition-colors;

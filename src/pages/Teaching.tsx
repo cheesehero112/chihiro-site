@@ -144,19 +144,19 @@ export default function Teaching() {
 
             {/* Semi-private */}
             <div className="bg-white p-10 lg:p-14">
-              <span className="text-2xs tracking-[0.2em] uppercase text-accent block mb-5">Ages 6–11 · New</span>
+              <span className="text-[12px] tracking-[0.2em] uppercase text-accent block mb-5">Ages 6–11 · New</span>
               <h3 className="font-serif text-[28px] text-black mb-4">Kids' Semi-Private</h3>
-              <p className="text-[16px] text-text-gray font-light leading-relaxed mb-8">
+              <p className="text-[16px] text-text-gray leading-relaxed mb-8">
                 Siblings or friends learn together in a fun, collaborative session — max 2 students. Includes rhythm games, ensemble work, and age-appropriate technique.
               </p>
               <div className="flex items-baseline gap-2 mb-1">
                 <span className="font-serif text-[38px] text-black leading-none">$40</span>
-                <span className="text-[12px] text-mid-gray">/ hr per student · semester</span>
+                <span className="text-[15px] text-text-gray">/ hr per student · semester</span>
               </div>
-              <p className="text-[12px] text-mid-gray italic mb-8">$50/hr drop-in · In-person Longmont only</p>
+              <p className="text-[15px] text-text-gray italic mb-8">$50/hr drop-in · In-person Longmont only</p>
               <ul className="list-none flex flex-col mb-10">
                 {['Max 2 students per session', 'Similar age & level recommended', 'Rhythm games & ensemble playing', 'Semester packages include 2 makeup lessons', '30 or 60-minute sessions available'].map(item => (
-                  <li key={item} className="flex items-center gap-3 py-2.5 border-b border-light-gray text-[15px] text-text-gray font-light">
+                  <li key={item} className="flex items-center gap-3 py-2.5 border-b border-light-gray text-[15px] text-text-gray">
                     <span className="w-1 h-1 rounded-full bg-black/30 flex-shrink-0" />{item}
                   </li>
                 ))}

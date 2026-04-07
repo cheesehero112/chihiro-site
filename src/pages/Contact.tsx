@@ -89,7 +89,7 @@ export default function Contact() {
 
           <div className="flex flex-col border-t border-white/10">
             {[
-              { label: 'Email', content: <a href="mailto:Chihiro@chihiroshibayama.com" className="text-accent no-underline border-b border-accent/30 hover:border-accent transition-colors">Chihiro@chihiroshibayama.com</a> },
+              { label: 'Email', content: <a href="mailto:chihiro.shibayama@gmail.com" className="text-accent no-underline border-b border-accent/30 hover:border-accent transition-colors">chihiro.shibayama@gmail.com</a> },
               { label: 'Location', content: <>Longmont, Colorado<br />Online lessons available worldwide</> },
               { label: 'Lessons', content: <>Currently accepting new students.<br />Spots are limited.</> },
               { label: 'Follow', content: (

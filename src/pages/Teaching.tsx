@@ -24,13 +24,13 @@ function ContactForm() {
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="flex flex-col gap-2">
-          <label htmlFor="name" className="text-2xs tracking-[0.2em] uppercase text-mid-gray">Your name</label>
+          <label htmlFor="name" className="text-[12px] tracking-[0.2em] uppercase text-mid-gray">Your name</label>
           <input id="name" type="text" name="name" placeholder="Jane Smith" required
             className="bg-white border border-light-gray text-black px-4 py-3 text-[14px] font-light outline-none focus:border-black transition-colors" />
           <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-500 text-xs" />
         </div>
         <div className="flex flex-col gap-2">
-          <label htmlFor="email" className="text-2xs tracking-[0.2em] uppercase text-mid-gray">Email address</label>
+          <label htmlFor="email" className="text-[12px] tracking-[0.2em] uppercase text-mid-gray">Email address</label>
           <input id="email" type="email" name="email" placeholder="jane@email.com" required
             className="bg-white border border-light-gray text-black px-4 py-3 text-[14px] font-light outline-none focus:border-black transition-colors" />
           <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-xs" />
@@ -38,12 +38,12 @@ function ContactForm() {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="flex flex-col gap-2">
-          <label htmlFor="age" className="text-2xs tracking-[0.2em] uppercase text-mid-gray">Student's age</label>
+          <label htmlFor="age" className="text-[12px] tracking-[0.2em] uppercase text-mid-gray">Student's age</label>
           <input id="age" type="text" name="age" placeholder="e.g. 12, or Adult"
             className="bg-white border border-light-gray text-black px-4 py-3 text-[14px] font-light outline-none focus:border-black transition-colors" />
         </div>
         <div className="flex flex-col gap-2">
-          <label htmlFor="level" className="text-2xs tracking-[0.2em] uppercase text-mid-gray">Experience level</label>
+          <label htmlFor="level" className="text-[12px] tracking-[0.2em] uppercase text-mid-gray">Experience level</label>
           <select id="level" name="level"
             className="bg-white border border-light-gray text-black px-4 py-3 text-[14px] font-light outline-none focus:border-black transition-colors appearance-none cursor-pointer">
             <option value="">Select...</option>
@@ -56,14 +56,14 @@ function ContactForm() {
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <label htmlFor="message" className="text-2xs tracking-[0.2em] uppercase text-mid-gray">Goals & questions</label>
+        <label htmlFor="message" className="text-[12px] tracking-[0.2em] uppercase text-mid-gray">Goals & questions</label>
         <textarea id="message" name="message" rows={4}
           placeholder="Tell me about your goals. Any upcoming auditions or performances?"
           className="bg-white border border-light-gray text-black px-4 py-3 text-[14px] font-light outline-none focus:border-black transition-colors resize-y" />
         <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-500 text-xs" />
       </div>
       <button type="submit" disabled={state.submitting}
-        className="bg-black text-white py-4 text-[11px] tracking-[0.2em] uppercase font-normal hover:opacity-75 transition-opacity disabled:opacity-50 cursor-pointer border-none">
+        className="bg-black text-white py-4 text-[13px] tracking-[0.2em] uppercase font-normal hover:opacity-75 transition-opacity disabled:opacity-50 cursor-pointer border-none">
         {state.submitting ? 'Sending…' : 'Send inquiry →'}
       </button>
       <p className="text-[12px] text-mid-gray leading-relaxed">
@@ -97,7 +97,7 @@ export default function Teaching() {
           </div>
           <div className="flex flex-wrap gap-4">
             <a href="#contact" className="btn-primary">Book a trial lesson</a>
-            <a href="#lessons" className="text-[11px] tracking-[0.15em] uppercase text-mid-gray no-underline border-b border-light-gray pb-px">
+            <a href="#lessons" className="text-[13px] tracking-[0.15em] uppercase text-mid-gray no-underline border-b border-light-gray pb-px">
               View options ↓
             </a>
           </div>
@@ -140,7 +140,7 @@ export default function Teaching() {
         <p className="font-serif italic text-white leading-snug max-w-3xl mx-auto mb-5" style={{ fontSize: 'clamp(1.4rem, 3vw, 2.4rem)' }}>
           "The goal isn't to play the notes. It's to understand why they matter — and to feel that understanding in your body."
         </p>
-        <p className="text-2xs tracking-[0.2em] uppercase text-white/30">— Chihiro Shibayama</p>
+        <p className="text-[12px] tracking-[0.2em] uppercase text-white/65">— Chihiro Shibayama</p>
       </div>
 
       {/* WHAT I TEACH */}
@@ -192,24 +192,24 @@ export default function Teaching() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-light-gray border border-light-gray mb-px">
             {/* Private */}
             <div className="bg-black p-10 lg:p-14">
-              <span className="text-2xs tracking-[0.2em] uppercase text-white/40 block mb-5">Most popular</span>
+              <span className="text-[12px] tracking-[0.2em] uppercase text-white/65 block mb-5">Most popular</span>
               <h3 className="font-serif text-[28px] text-white mb-4">Private 1-on-1 Lessons</h3>
-              <p className="text-[14px] text-white/55 font-light leading-relaxed mb-8">
+              <p className="text-[14px] text-white/80 font-light leading-relaxed mb-8">
                 Individualized instruction built entirely around your student's goals — whether that's a first recital, All-State audition, or a lifelong love of rhythm.
               </p>
               <div className="flex items-baseline gap-2 mb-1">
                 <span className="font-serif text-[38px] text-white leading-none">$80</span>
-                <span className="text-[12px] text-white/35">/ hr · semester package</span>
+                <span className="text-[13px] text-white/65">/ hr · semester package</span>
               </div>
-              <p className="text-[12px] text-white/30 italic mb-8">$100/hr drop-in · $30 for a 30-min trial lesson</p>
+              <p className="text-[13px] text-white/65 italic mb-8">$100/hr drop-in · $30 for a 30-min trial lesson</p>
               <ul className="list-none flex flex-col mb-10">
                 {['Ages 6 to adult — all levels welcome', 'In-person (Longmont) or online worldwide', 'Semester packages include 2 makeup lessons', 'Snare, marimba, timpani & full battery', 'Audition & competition prep available'].map(item => (
-                  <li key={item} className="flex items-center gap-3 py-2.5 border-b border-white/10 text-[13px] text-white/60 font-light">
+                  <li key={item} className="flex items-center gap-3 py-2.5 border-b border-white/10 text-[13px] text-white/80 font-light">
                     <span className="w-1 h-1 rounded-full bg-white/40 flex-shrink-0" />{item}
                   </li>
                 ))}
               </ul>
-              <a href="#contact" className="inline-block bg-white text-black px-8 py-3.5 text-[11px] tracking-[0.18em] uppercase font-normal hover:opacity-85 transition-opacity no-underline">
+              <a href="#contact" className="inline-block bg-white text-black px-8 py-3.5 text-[13px] tracking-[0.18em] uppercase font-normal hover:opacity-85 transition-opacity no-underline">
                 Inquire about availability
               </a>
             </div>

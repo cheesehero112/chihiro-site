@@ -41,7 +41,7 @@ export default function Nav() {
                 <NavLink
                   to={to}
                   className={({ isActive }) =>
-                    `text-[11px] font-medium tracking-[0.12em] uppercase no-underline transition-colors ${
+                    `text-[13px] font-medium tracking-[0.12em] uppercase no-underline transition-colors ${
                       isActive ? 'text-black border-b border-black pb-px' : 'text-black hover:text-mid-gray'
                     }`
                   }
@@ -55,7 +55,7 @@ export default function Nav() {
           {/* Desktop CTA */}
           <Link
             to="/teaching"
-            className="hidden lg:inline-block text-[11px] tracking-[0.12em] uppercase border border-black px-5 py-2 transition-all hover:bg-black hover:text-white no-underline text-black"
+            className="hidden lg:inline-block text-[13px] tracking-[0.12em] uppercase border border-black px-5 py-2 transition-all hover:bg-black hover:text-white no-underline text-black"
           >
             Private Lessons
           </Link>

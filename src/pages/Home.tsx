@@ -27,15 +27,15 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap items-center gap-4 mb-14">
             <Link to="/teaching" className="btn-primary">Study with me</Link>
-            <Link to="/bio" className="text-[11px] tracking-[0.15em] uppercase text-mid-gray no-underline border-b border-light-gray pb-px">
+            <Link to="/bio" className="text-[13px] tracking-[0.15em] uppercase text-mid-gray no-underline border-b border-light-gray pb-px">
               Read biography →
             </Link>
           </div>
           <div className="pt-12 border-t border-light-gray flex items-center gap-6">
-            <span className="text-2xs tracking-[0.2em] uppercase text-mid-gray whitespace-nowrap">Press</span>
+            <span className="text-[12px] tracking-[0.2em] uppercase text-mid-gray whitespace-nowrap">Press</span>
             <div>
               <p className="font-serif italic text-[15px] text-black">"…impressive soloist…"</p>
-              <p className="text-2xs tracking-[0.15em] uppercase text-accent mt-1">— The New York Times</p>
+              <p className="text-[12px] tracking-[0.15em] uppercase text-accent mt-1">— The New York Times</p>
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@ export default function Home() {
               <p className="font-serif italic text-[13px] text-white leading-snug mb-1.5">
               "The goal isn't to play the notes. It's to understand why they matter."
               </p>
-              <p className="text-2xs tracking-[0.15em] uppercase text-accent">On teaching</p>
+              <p className="text-[12px] tracking-[0.15em] uppercase text-accent">On teaching</p>
           </div>
         </div>
       </section>
@@ -107,7 +107,7 @@ export default function Home() {
             <h2 className="font-serif font-normal text-white leading-tight" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
               Selected<br /><em className="text-accent">performances.</em>
             </h2>
-            <Link to="/media" className="text-[11px] tracking-[0.15em] uppercase text-white/40 no-underline border-b border-white/20 pb-px">
+            <Link to="/media" className="text-[13px] tracking-[0.15em] uppercase text-white/75 no-underline border-b border-white/40 pb-px">
               View all media →
             </Link>
           </div>
@@ -116,7 +116,7 @@ export default function Home() {
               <div key={name} className="bg-black px-7 py-9 hover:bg-white/5 transition-colors">
                 <span className="text-2xs tracking-[0.2em] uppercase text-accent block mb-4">{category}</span>
                 <p className="font-serif text-[18px] text-white leading-snug mb-2.5">{name}</p>
-                <p className="text-[12px] text-white/40 font-light leading-relaxed">{detail}</p>
+                <p className="text-[13px] text-white/65 font-light leading-relaxed">{detail}</p>
               </div>
             ))}
           </div>
@@ -163,7 +163,7 @@ export default function Home() {
         <p className="font-serif italic text-white text-[1.25rem]">Ready to start? Book your trial lesson.</p>
         <a
           href="/teaching#contact"
-          className="whitespace-nowrap text-[11px] tracking-[0.18em] uppercase border border-white text-white px-8 py-3 hover:bg-white hover:text-black transition-all no-underline"
+          className="whitespace-nowrap text-[13px] tracking-[0.18em] uppercase border border-white text-white px-8 py-3 hover:bg-white hover:text-black transition-all no-underline"
         >
           Book a trial lesson →
         </a>
@@ -181,10 +181,10 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-light-gray border border-light-gray">
           {recentPosts.map(({ slug, title, date, excerpt }) => (
             <Link key={slug} to={`/blog/${slug}`} className="bg-white p-8 lg:p-10 no-underline hover:bg-off-white transition-colors block">
-              <span className="text-2xs tracking-[0.15em] uppercase text-mid-gray block mb-3">{date}</span>
+              <span className="text-[12px] tracking-[0.15em] uppercase text-mid-gray block mb-3">{date}</span>
               <h3 className="font-serif text-[19px] text-black leading-snug mb-3">{title}</h3>
               <p className="text-[13px] text-text-gray font-light leading-relaxed mb-5">{excerpt}</p>
-              <span className="text-2xs tracking-[0.12em] uppercase text-accent">Read post →</span>
+              <span className="text-[12px] tracking-[0.12em] uppercase text-accent">Read post →</span>
             </Link>
           ))}
         </div>

@@ -77,6 +77,19 @@ export default function Footer() {
 					</div>
 				</div>
 
+				{/* Endorsements */}
+				<div className='flex flex-col sm:flex-row items-start sm:items-center gap-6 pb-10 mb-10 border-b border-white/10'>
+					<p className='text-[12px] tracking-[0.2em] uppercase text-white/70 whitespace-nowrap'>Proudly endorses</p>
+					<div className='flex items-center gap-8 flex-wrap'>
+						<a href='https://pearldrum.com/en/products/adams-percussion' target='_blank' rel='noopener noreferrer' className='no-underline opacity-70 hover:opacity-100 transition-opacity'>
+							<img src='/images/pearl-adams-black-logo.png' alt='Pearl Adams Concert Percussion' className='h-7 w-auto brightness-0 invert' />
+						</a>
+						<a href='https://dragonflypercussion.com/' target='_blank' rel='noopener noreferrer' className='text-[13px] text-white/75 no-underline hover:text-white transition-colors'>
+							Dragonfly Percussion
+						</a>
+					</div>
+				</div>
+
 				{/* Bottom bar */}
 				<div className='flex flex-col md:flex-row justify-between items-center gap-4'>
 					<p className='text-[12px] text-white/70'>© {new Date().getFullYear()} Chihiro Shibayama. All rights reserved.</p>

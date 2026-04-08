@@ -203,11 +203,15 @@ export default function Bio() {
 			</section>
 
 			{/* ENDORSEMENTS */}
-			<div className='border-t border-b border-light-gray px-6 lg:px-16 py-10 bg-off-white flex flex-col sm:flex-row items-start sm:items-center gap-4'>
+			<div className='border-t border-b border-light-gray px-6 lg:px-16 py-10 bg-off-white flex flex-col sm:flex-row items-start sm:items-center gap-8'>
 				<p className='text-[12px] tracking-[0.2em] uppercase text-mid-gray whitespace-nowrap'>Proudly endorses</p>
-				<div className='flex gap-8 flex-wrap'>
-					<span className='text-[15px] text-text-gray font-light'>Pearl Adams Concert Percussion</span>
-					<span className='text-[15px] text-text-gray font-light'>Dragonfly Percussion</span>
+				<div className='flex items-center gap-10 flex-wrap'>
+					<a href='https://pearldrum.com/en/products/adams-percussion' target='_blank' rel='noopener noreferrer' className='no-underline opacity-70 hover:opacity-100 transition-opacity'>
+						<img src='/images/pearl-adams-black-logo.png' alt='Pearl Adams Concert Percussion' className='h-10 w-auto' />
+					</a>
+					<a href='https://dragonflypercussion.com/' target='_blank' rel='noopener noreferrer' className='text-[15px] text-text-gray no-underline border-b border-text-gray/50 hover:border-text-gray transition-colors'>
+						Dragonfly Percussion
+					</a>
 				</div>
 			</div>
 		</div>

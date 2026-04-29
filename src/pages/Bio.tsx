@@ -1,4 +1,108 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+
+const performancePhotos = [
+	{ src: 'Miss Saigon playing.jpeg', alt: 'Miss Saigon on Broadway' },
+	{ src: 'Chihiro.MET Opera.jpg', alt: 'Metropolitan Opera' },
+	{ src: 'timpani-carnegie.jpeg', alt: 'Timpani at Carnegie Hall' },
+	{ src: 'Chihiro-Radio City Christmas Spactacular.jpg', alt: 'Radio City Christmas Spectacular' },
+	{ src: 'radio city me.jpg', alt: 'Radio City' },
+	{ src: 'Cinderella Pit.jpg', alt: 'Cinderella Broadway pit' },
+	{ src: 'chihiro plays Cinderella Broadway.jpg', alt: 'Cinderella Broadway' },
+	{ src: 'GMA-Selma.jpg', alt: 'Good Morning America' },
+	{ src: 'Chihiro-SA.Dartmouth (Colin Lowry).jpeg', alt: 'Performance at Dartmouth' },
+	{ src: 'GLANK-trayo.jpg', alt: 'GLANK trio' },
+	{ src: 'kcs-cymbals.jpg', alt: 'Kansas City Symphony' },
+	{ src: 'Glassmen-timpani.jpg', alt: 'Glassmen Drum & Bugle Corps' },
+	{ src: 'carnegie-chihiro.jpg', alt: 'Carnegie Hall' },
+	{ src: 'miss-saigon-sign.webp', alt: 'Miss Saigon marquee' },
+	{ src: 'radio-city-jacket.webp', alt: 'Radio City backstage' },
+	{ src: 'mozart-jungle.jpg', alt: 'Mozart in the Jungle' },
+];
+
+function PhotoCarousel() {
+	const [index, setIndex] = useState(0);
+	const [displayedIndex, setDisplayedIndex] = useState(0);
+	const [opacity, setOpacity] = useState(1);
+	const [visible, setVisible] = useState(true);
+	const containerRef = useRef<HTMLDivElement>(null);
+
+	const goTo = (newIndex: number) => {
+		setOpacity(0);
+		setTimeout(() => {
+			setDisplayedIndex(newIndex);
+			setIndex(newIndex);
+			setOpacity(1);
+		}, 500);
+	};
+
+	const prev = () => goTo((index - 1 + performancePhotos.length) % performancePhotos.length);
+	const next = () => goTo((index + 1) % performancePhotos.length);
+
+	useEffect(() => {
+		const observer = new IntersectionObserver(
+			([entry]) => setVisible(entry.isIntersecting),
+			{ threshold: 0.3 }
+		);
+		if (containerRef.current) observer.observe(containerRef.current);
+		return () => observer.disconnect();
+	}, []);
+
+	useEffect(() => {
+		if (!visible) return;
+		const timer = setInterval(() => {
+			setOpacity(0);
+			setTimeout(() => {
+				setDisplayedIndex((i) => {
+					const next = (i + 1) % performancePhotos.length;
+					setIndex(next);
+					return next;
+				});
+				setOpacity(1);
+			}, 500);
+		}, 4000);
+		return () => clearInterval(timer);
+	}, [visible]);
+
+	const { src, alt } = performancePhotos[displayedIndex];
+
+	return (
+		<div ref={containerRef} className='relative mt-10 mb-2'>
+			<div className='bg-off-white flex items-center justify-center' style={{ minHeight: '260px', maxHeight: '420px' }}>
+				<img
+					src={`/images/${src}`}
+					alt={alt}
+					className='w-full h-auto max-h-[420px] object-contain'
+					style={{ opacity, transition: 'opacity 0.5s ease-in-out' }}
+				/>
+			</div>
+			<button
+				onClick={prev}
+				aria-label='Previous photo'
+				className='absolute left-0 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white px-3 py-4 transition-colors'
+			>
+				‹
+			</button>
+			<button
+				onClick={next}
+				aria-label='Next photo'
+				className='absolute right-0 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white px-3 py-4 transition-colors'
+			>
+				›
+			</button>
+			<div className='flex justify-center gap-1.5 mt-3'>
+				{performancePhotos.map((_, i) => (
+					<button
+						key={i}
+						onClick={() => setIndex(i)}
+						aria-label={`Go to photo ${i + 1}`}
+						className={`w-1.5 h-1.5 rounded-full transition-colors ${i === index ? 'bg-accent' : 'bg-light-gray'}`}
+					/>
+				))}
+			</div>
+		</div>
+	);
+}
 
 const HEADSHOT = '/images/chihiro-cym.jpg';
 
@@ -32,174 +136,87 @@ export default function Bio() {
 						<em className='text-accent'>Shibayama.</em>
 					</h1>
 					<p className='text-[17px] text-text-gray font-light leading-relaxed mb-10'>
-						Native of Yokohama, Japan. Juilliard-trained percussionist. Broadway veteran. New music advocate. Educator. Now based in Longmont,
-						Colorado.
+						After more than 25 years performing on some of music's most demanding stages — from Broadway and the Metropolitan Opera to Carnegie Hall and national television — Chihiro Shibayama has come to focus on what she sees as music's most important work: helping musicians build careers that are creative, sustainable, and authentically their own.
 					</p>
-					<div className='border-l-[3px] border-accent px-6 py-5 bg-off-white mb-10'>
+					<div className='border-l-[3px] border-accent px-6 py-5 bg-off-white'>
 						<p className='font-serif italic text-[18px] text-black leading-snug mb-2'>"…impressive soloist…"</p>
 						<p className='text-[12px] tracking-[0.2em] uppercase text-mid-gray'>— The New York Times</p>
-					</div>
-					<div className='flex flex-col gap-2.5'>
-						{[
-							'B.M. & M.M., The Juilliard School',
-							'Interlochen Arts Academy, Performance Award 2003',
-							'Zildjian Scholarship 2004–2007',
-							'Irene Diamond Graduate Fellowship, Juilliard 2007–09',
-							'Pearl Adams Concert Percussion & Dragonfly Percussion endorser',
-						].map((cred) => (
-							<div
-								key={cred}
-								className='flex items-center gap-3 text-[15px] text-text-gray font-light'
-							>
-								<span className='w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0' />
-								{cred}
-							</div>
-						))}
 					</div>
 				</div>
 			</section>
 
 			{/* MAIN BIO */}
-			<section className='max-w-7xl mx-auto px-6 lg:px-16 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-20'>
-				<div className='lg:col-span-2'>
-					<p className='font-serif italic text-[20px] text-black leading-relaxed mb-7'>
-						Chihiro Shibayama is a versatile freelance percussionist and educator whose career spans Broadway, opera, symphony, new music, and
-						television.
+			<section className='max-w-7xl mx-auto px-6 lg:px-16 py-16 lg:py-24'>
+				<div className='max-w-3xl'>
+
+					{/* About */}
+					<p className='text-[17px] text-text-gray font-light leading-relaxed mb-6'>
+						Based in Longmont, Colorado, Chihiro runs Shibayama Percussion Studio, where she teaches students of all ages and levels in person and online, drawing on more than two decades of teaching experience. She is currently developing <em>Creating Your Own Path: How to Build a Sustainable Music Career</em>, a webinar drawing on the strategies and lessons she's gathered navigating a multi-decade career across genres, cities, and life stages.
 					</p>
 					<p className='text-[17px] text-text-gray font-light leading-relaxed mb-6'>
-						Ms. Shibayama was a percussionist for the Broadway run of <em>Miss Saigon</em> (March 2017 – January 2018), and made her Broadway debut as
-						one of three on-stage musicians for <em>The Cherry Orchard</em> starring Diane Lane, produced by The Roundabout Theatre Company. She has
-						performed for the Radio City Christmas Spectacular, NBC's <em>Good Morning America</em> with John Legend and Common, the Daytime Emmy
-						Awards, and Broadway productions including <em>The Addams Family</em>, <em>Anything Goes</em>, <em>Cinderella</em>, and{' '}
-						<em>West Side Story</em>.
+						As a performer, Chihiro continues to play with the Longmont Symphony, the Colorado Symphony, and other regional ensembles, and she actively seeks collaborations with musicians in her community.
+					</p>
+					<Link to='/teaching' className='text-link'>View lesson options →</Link>
+
+					<PhotoCarousel />
+
+					{/* Selected Credits */}
+					<h2 className='font-serif text-[26px] text-black mt-12 mb-5 pt-12 border-t border-light-gray'>
+						Selected <em>Credits</em>
+					</h2>
+
+					<h3 className='font-serif text-[20px] text-black mt-8 mb-4'>
+						Broadway & <em>Television</em>
+					</h3>
+					<p className='text-[17px] text-text-gray font-light leading-relaxed mb-6'>
+						Chihiro was a percussionist for the Broadway run of <em>Miss Saigon</em> (March 2017 – January 2018), and made her Broadway debut as one of three on-stage musicians for <em>The Cherry Orchard</em> starring Diane Lane, produced by The Roundabout Theatre Company. She has performed for the Radio City Christmas Spectacular, NBC's <em>Good Morning America</em> with John Legend and Common, the Daytime Emmy Awards, and Broadway productions including <em>The Addams Family</em>, <em>Anything Goes</em>, <em>Cinderella</em>, and <em>West Side Story</em>.
 					</p>
 
-					<h2 className='font-serif text-[26px] text-black mt-12 mb-5 pt-12 border-t border-light-gray'>
+					<h3 className='font-serif text-[20px] text-black mt-8 mb-4'>
 						Opera & <em>Orchestra</em>
-					</h2>
+					</h3>
 					<p className='text-[17px] text-text-gray font-light leading-relaxed mb-6'>
-						Among her most notable performances, Ms. Shibayama was one of three on-stage percussion soloists in the U.S. premiere of Tan Dun's opera{' '}
-						<em>TEA – A Mirror of Soul</em> at The Santa Fe Opera (2007), the East Coast premiere at the Opera Company of Philadelphia (2009), and the
-						Canadian premiere at the Vancouver Opera (2013). She has performed with The Metropolitan Opera, Kansas City Symphony, San Diego Symphony,
-						New Jersey Symphony, and many others.
+						Chihiro was one of three on-stage percussion soloists in the U.S. premiere of Tan Dun's opera <em>TEA – A Mirror of Soul</em> at The Santa Fe Opera (2007), the East Coast premiere at the Opera Company of Philadelphia (2009), and the Canadian premiere at the Vancouver Opera (2013). She has performed with The Metropolitan Opera, Kansas City Symphony, San Diego Symphony, New Jersey Symphony, the Longmont Symphony, the Colorado Symphony, and many others.
 					</p>
 
-					<h2 className='font-serif text-[26px] text-black mt-12 mb-5 pt-12 border-t border-light-gray'>
+					<h3 className='font-serif text-[20px] text-black mt-8 mb-4'>
 						New Music & <em>Chamber</em>
-					</h2>
+					</h3>
 					<p className='text-[17px] text-text-gray font-light leading-relaxed mb-6'>
-						As a passionate new music advocate, Ms. Shibayama has performed and recorded with Alarm Will Sound, American Contemporary Music Ensemble
-						(ACME), S.E.M. Ensemble, New Juilliard Ensemble, and AXIOM. She toured China in 2015 to perform at the Beijing Modern Music Festival, and
-						has appeared on Amazon Prime's <em>Mozart in the Jungle</em>. She is co-founder of{' '}
-						<a
-							href='https://www.musefriends.org'
-							target='_blank'
-							rel='noopener noreferrer'
-							className='text-accent no-underline border-b border-accent/30 hover:border-accent'
-						>
+						A passionate new music advocate, Chihiro has performed and recorded with Alarm Will Sound, American Contemporary Music Ensemble (ACME), S.E.M. Ensemble, New Juilliard Ensemble, and AXIOM. She toured China in 2015 to perform at the Beijing Modern Music Festival, and has appeared on Amazon Prime's <em>Mozart in the Jungle</em>. She is co-founder of{' '}
+						<a href='https://www.musefriends.org' target='_blank' rel='noopener noreferrer' className='text-accent no-underline border-b border-accent/30 hover:border-accent'>
 							Multicultural Sonic Evolution (MuSE)
-						</a>
-						.
+						</a>.
 					</p>
 
-					<h2 className='font-serif text-[26px] text-black mt-12 mb-5 pt-12 border-t border-light-gray'>
-						Teaching & <em>Education</em>
-					</h2>
+					<h3 className='font-serif text-[20px] text-black mt-8 mb-4'>
+						<em>Teaching</em>
+					</h3>
 					<p className='text-[17px] text-text-gray font-light leading-relaxed mb-6'>
-						Ms. Shibayama has dedicated more than 20 years to percussion education. She served as percussion faculty at Diller-Quaile School of Music
-						for seven years and Third Street Music Settlement for two years. From 2007 to 2010 she was faculty at The Juilliard Summer Percussion
-						Seminar. Her masterclass "My Way to Broadway" has been presented at multiple universities and the Juilliard Summer Percussion Masterclass
-						Series.
+						Chihiro has dedicated more than 20 years to percussion education. She served as percussion faculty at Diller-Quaile School of Music for seven years and Third Street Music Settlement for two years. From 2007 to 2010 she was faculty at The Juilliard Summer Percussion Seminar. Her masterclass <em>My Way to Broadway</em> has been presented at multiple universities and the Juilliard Summer Percussion Masterclass Series.
 					</p>
 					<p className='text-[17px] text-text-gray font-light leading-relaxed mb-6'>
 						She is currently accepting private students in Longmont, Colorado and online worldwide.
 					</p>
-					<Link
-						to='/teaching'
-						className='text-link'
-					>
-						View lesson options →
-					</Link>
+					<Link to='/teaching' className='text-link'>View lesson options →</Link>
 
+					{/* Background & Training */}
 					<h2 className='font-serif text-[26px] text-black mt-12 mb-5 pt-12 border-t border-light-gray'>
 						Background & <em>Training</em>
 					</h2>
-					<p className='text-[17px] text-text-gray font-light leading-relaxed mb-4'>
-						A native of Yokohama City, Japan, Ms. Shibayama graduated from the Interlochen Arts Academy with a performance award in 2003. She earned
-						her Bachelor of Music and Master of Music degrees from The Juilliard School in 2007 and 2009. Her mentors include Daniel Druckman, Greg
-						Zuber, Markus Rhoten, Joe Pereira, Roland Kohloff, Keith Aleo, Mariko Okada, and John Alfieri.
+					<p className='text-[17px] text-text-gray font-light leading-relaxed mb-6'>
+						A native of Yokohama, Japan, Chihiro graduated from the Interlochen Arts Academy with a performance award in 2003. She earned her Bachelor of Music and Master of Music degrees from The Juilliard School in 2007 and 2009. Her mentors include Daniel Druckman, Greg Zuber, Markus Rhoten, Joe Pereira, Roland Kohloff, Keith Aleo, Mariko Okada, and John Alfieri.
 					</p>
+
+					{/* Endorsements */}
+					<h2 className='font-serif text-[26px] text-black mt-12 mb-5 pt-12 border-t border-light-gray'>
+						<em>Endorsements</em>
+					</h2>
 					<p className='text-[17px] text-text-gray font-light leading-relaxed'>
-						She proudly endorses Pearl Adams Concert Percussion and Dragonfly Percussion.
+						Chihiro proudly endorses Pearl Adams Concert Percussion and Dragonfly Percussion.
 					</p>
 				</div>
 
-				{/* Sidebar */}
-				<aside className='flex flex-col gap-0.5'>
-					{[
-						{
-							title: 'Broadway',
-							items: [
-								'Miss Saigon',
-								'The Cherry Orchard',
-								'Cinderella',
-								'West Side Story',
-								'The Addams Family',
-								'Anything Goes',
-								'Radio City Christmas Spectacular',
-							],
-						},
-						{
-							title: 'Orchestras & Opera',
-							items: [
-								'Metropolitan Opera',
-								'Colorado Symphony',
-								'Longmont Symphony',
-								'Kansas City Symphony',
-								'San Diego Symphony',
-								'Santa Fe Opera',
-								'New Jersey Symphony',
-								'Vancouver Opera',
-								'Malaysian Philharmonic',
-							],
-						},
-					].map(({ title, items }) => (
-						<div
-							key={title}
-							className='bg-off-white p-8 first:border-t-[3px] first:border-accent'
-						>
-							<p className='text-[12px] tracking-[0.2em] uppercase text-mid-gray mb-5'>{title}</p>
-							<ul className='list-none flex flex-col gap-2.5'>
-								{items.map((item) => (
-									<li
-										key={item}
-										className='flex items-baseline gap-2.5 text-[15px] text-text-gray font-light'
-									>
-										<span className='w-1 h-1 rounded-full bg-accent flex-shrink-0 mt-1.5' />
-										{item}
-									</li>
-								))}
-							</ul>
-						</div>
-					))}
-					<div className='bg-off-white p-8'>
-						<p className='text-[12px] tracking-[0.2em] uppercase text-mid-gray mb-5'>Awards</p>
-						{[
-							{ name: 'Zildjian Scholarship', detail: '2004–2007' },
-							{ name: 'Irene Diamond Graduate Fellowship', detail: 'The Juilliard School, 2007–09' },
-							{ name: 'Weekes Memorial Scholarship', detail: 'Glassmen Drum & Bugle Corps, 2006' },
-							{ name: 'PAS High School Keyboard Competition', detail: 'Third prize, 2003' },
-						].map(({ name, detail }) => (
-							<div
-								key={name}
-								className='py-3.5 border-b border-light-gray last:border-none'
-							>
-								<p className='text-[15px] text-black font-normal mb-1'>{name}</p>
-								<p className='text-[12px] text-mid-gray font-light'>{detail}</p>
-							</div>
-						))}
-					</div>
-				</aside>
 			</section>
 
 			{/* ENDORSEMENTS */}

@@ -9,6 +9,38 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: 'is-where-you-live-holding-your-music-career-back',
+    title: 'Is Where You Live Holding Your Music Career Back?',
+    date: 'June 17, 2026',
+    image: 'location_blog_061726.png',
+    excerpt: `Most musicians obsess over the things they can practice. But there's one factor that quietly shapes a career more than almost anything else — and most people don't think about it until it's too late: location.`,
+    content: `[image:location_blog_061726.png|]
+
+Most musicians obsess over the things they can practice: technique, repertoire, networking, how to market themselves. All of that matters. But there's one factor that quietly shapes a career more than almost anything else, and most people don't think about it until it's too late: location.
+
+When I talk to freelancers who feel stuck — not getting the calls they want, spinning their wheels — one of the most overlooked reasons is geography.
+
+Here's the truth: certain markets require physical presence. Full stop.
+
+If your dream is playing in Broadway pit orchestras, you need to be in or near New York City. If film and TV scoring is your goal, Los Angeles is where that world lives — the composers, the contractors, the scoring stages. No amount of talent or networking from afar will substitute for showing up in the right city.
+
+This doesn't mean you must move. But it does mean you need to be honest with yourself about the gap between where you are and where the work you want actually lives. Once you see it clearly, you can make a real plan — whether that's relocating, doing extended residencies in that market, or intentionally pivoting toward what is thriving where you already are.
+
+Geography is a career decision. Treat it like one.
+
+But picking a city isn't only about the industry that's there. It's also about the people who are already there. And that's something I learned firsthand.
+
+Having a connection in a city — especially someone prominent in your field — can dramatically change how fast you gain traction. When I moved to Colorado, I already knew two percussionists who regularly play in the Colorado Symphony. That mattered: getting into orchestra subbing isn't about auditioning cold — it starts with the principal percussionist giving you a chance. Having colleagues who could speak well of me, and a former teacher who knew the principal and could make a proper introduction, gave me a real foothold from day one.
+
+That's not luck. That's strategy. Before you commit to a city, ask yourself: who do I already know there, and can they open a door?
+
+Let me know if you have any thoughts or comments!
+
+I'm rooting for your success!!
+
+Chihiro`,
+  },
+  {
     slug: 'test-of-time-challenge',
     title: 'Test of Time Challenge!',
     date: 'March 24, 2021',

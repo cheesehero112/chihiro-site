@@ -1,5 +1,21 @@
 import { Link } from 'react-router-dom'
+import { useEffect, useRef } from 'react'
 import { blogPosts } from '../data/blog'
+
+function KitSignupForm() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+    const script = document.createElement('script')
+    script.src = 'https://chihiroshibayama.kit.com/607d7131a2/index.js'
+    script.setAttribute('data-uid', '607d7131a2')
+    script.async = true
+    container.appendChild(script)
+    return () => { container.innerHTML = '' }
+  }, [])
+  return <div ref={containerRef} />
+}
 
 export default function Blog() {
   return (
@@ -18,6 +34,19 @@ export default function Blog() {
           </h1>
         </div>
       </section>
+
+      {/* Newsletter signup */}
+      <div className="border-b border-light-gray bg-off-white px-6 lg:px-16 py-16 lg:py-24">
+        <div className="max-w-xl mx-auto text-center">
+          <p className="eyebrow mb-5">Stay in the loop</p>
+          <h2 className="section-title mb-5">Tips for working<br /><em>musicians.</em></h2>
+          <p className="text-[17px] text-text-gray leading-relaxed mb-10">
+            Sign up to receive practical tips on building a life in music — delivered straight to your inbox.
+          </p>
+          <KitSignupForm />
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-6 lg:px-16 py-16 lg:py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-light-gray border border-light-gray">
           {blogPosts.map(({ slug, title, date, excerpt, image }) => (
@@ -45,6 +74,18 @@ export default function Blog() {
               </div>
             </Link>
           ))}
+        </div>
+      </div>
+
+      {/* Newsletter signup bottom */}
+      <div className="border-t border-light-gray bg-black px-6 lg:px-16 py-16 lg:py-24">
+        <div className="max-w-xl mx-auto text-center">
+          <p className="eyebrow mb-5 text-white/60">Don't miss a post</p>
+          <h2 className="section-title mb-5 text-white">Join the list and get<br /><em className="text-accent">notified.</em></h2>
+          <p className="text-[17px] text-white/75 leading-relaxed mb-10">
+            New posts go straight to your inbox — no social media algorithm required.
+          </p>
+          <KitSignupForm />
         </div>
       </div>
     </div>

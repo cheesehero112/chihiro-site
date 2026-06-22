@@ -117,62 +117,94 @@ export default function Teaching() {
             Find the right format<br /><em>for your student.</em>
           </h2>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-light-gray border border-light-gray mb-px">
-            {/* Private */}
-            <div className="bg-black p-10 lg:p-14">
-              <span className="text-[12px] tracking-[0.2em] uppercase text-white/65 block mb-5">Most popular</span>
-              <h3 className="font-serif text-[28px] text-white mb-4">Private 1-on-1 Lessons</h3>
-              <p className="text-[16px] text-white/80 leading-relaxed mb-8">
-                Individualized instruction built entirely around your student's goals — whether that's a first recital, All-State audition, or a lifelong love of rhythm.
-              </p>
-              <div className="flex items-baseline gap-2 mb-1">
-                <span className="font-serif text-[38px] text-white leading-none">$80</span>
-                <span className="text-[15px] text-white/65">/ hr · semester package</span>
+          <p className="text-[15px] text-mid-gray mb-10">All lessons are 60–75 minutes.</p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-light-gray border border-light-gray mb-px">
+
+            {/* 8-Lesson Pack — Recommended */}
+            <div className="bg-black p-8 flex flex-col">
+              <div className="flex flex-wrap items-center gap-2 mb-4">
+                <span className="text-[11px] tracking-[0.2em] uppercase text-white/80">Most flexible</span>
+                <span className="text-[11px] tracking-[0.12em] uppercase bg-accent text-black px-2 py-0.5 font-normal">Recommended</span>
               </div>
-              <p className="text-[15px] text-white/65 italic mb-8">$100/hr drop-in · $30 for a 30-min trial lesson</p>
-              <ul className="list-none flex flex-col mb-10">
-                {['Ages 6 to adult — all levels welcome', 'In-person (Longmont) or online worldwide', 'Semester packages include 2 makeup lessons', 'Snare, marimba, timpani & full battery', 'Audition & competition prep available'].map(item => (
-                  <li key={item} className="flex items-center gap-3 py-2.5 border-b border-white/10 text-[15px] text-white/80">
-                    <span className="w-1 h-1 rounded-full bg-white/40 flex-shrink-0" />{item}
+              <h3 className="font-serif text-[22px] text-white mb-4">8-Lesson Pack</h3>
+              <div className="flex items-baseline gap-1.5 mb-1">
+                <span className="font-serif text-[34px] text-white leading-none">$85</span>
+                <span className="text-[14px] text-white/80">/ lesson</span>
+              </div>
+              <p className="text-[13px] text-white/80 italic mb-6">$680 total · save $120 vs. drop-in</p>
+              <ul className="list-none flex flex-col">
+                {['Prepaid block of 8 lessons', 'Flexible scheduling — no weekly commitment', 'In-person (Longmont) or online worldwide', 'All ages and levels welcome'].map(item => (
+                  <li key={item} className="flex items-start gap-2.5 py-2 border-b border-white/10 text-[14px] text-white/90">
+                    <span className="w-1 h-1 rounded-full bg-white/50 flex-shrink-0 mt-[6px]" />{item}
                   </li>
                 ))}
               </ul>
-              <a href="#contact" className="inline-block bg-white text-black px-8 py-3.5 text-[15px] tracking-[0.18em] uppercase font-normal hover:opacity-85 transition-opacity no-underline">
-                Inquire about availability
-              </a>
             </div>
 
-            {/* Semi-private */}
-            <div className="bg-white p-10 lg:p-14">
-              <span className="text-[12px] tracking-[0.2em] uppercase text-accent block mb-5">Ages 6–11 · New</span>
-              <h3 className="font-serif text-[28px] text-black mb-4">Kids' Semi-Private</h3>
-              <p className="text-[16px] text-text-gray leading-relaxed mb-8">
-                Siblings or friends learn together in a fun, collaborative session — max 2 students. Includes rhythm games, ensemble work, and age-appropriate technique.
-              </p>
-              <div className="flex items-baseline gap-2 mb-1">
-                <span className="font-serif text-[38px] text-black leading-none">$40</span>
-                <span className="text-[15px] text-text-gray">/ hr per student · semester</span>
+            {/* Monthly Membership */}
+            <div className="bg-white p-8">
+              <span className="text-[12px] tracking-[0.2em] uppercase text-text-gray block mb-4">Month-to-month</span>
+              <h3 className="font-serif text-[22px] text-black mb-4">Monthly Membership</h3>
+              <div className="flex items-baseline gap-1.5 mb-1">
+                <span className="font-serif text-[34px] text-black leading-none">$90</span>
+                <span className="text-[15px] text-black">/ lesson</span>
               </div>
-              <p className="text-[15px] text-text-gray italic mb-8">$50/hr drop-in · In-person Longmont only</p>
-              <ul className="list-none flex flex-col mb-10">
-                {['Max 2 students per session', 'Similar age & level recommended', 'Rhythm games & ensemble playing', 'Semester packages include 2 makeup lessons', '30 or 60-minute sessions available'].map(item => (
-                  <li key={item} className="flex items-center gap-3 py-2.5 border-b border-light-gray text-[15px] text-text-gray">
-                    <span className="w-1 h-1 rounded-full bg-black/30 flex-shrink-0" />{item}
+              <p className="text-[14px] text-text-gray italic mb-6">$360 / month · billed monthly</p>
+              <ul className="list-none flex flex-col">
+                {['4 lessons per month', 'Weekly schedule', 'Billed monthly, cancel anytime', 'In-person (Longmont) or online worldwide'].map(item => (
+                  <li key={item} className="flex items-start gap-2.5 py-2 border-b border-light-gray text-[15px] text-black">
+                    <span className="w-1 h-1 rounded-full bg-accent flex-shrink-0 mt-[7px]" />{item}
                   </li>
                 ))}
               </ul>
-              <a href="#contact" className="btn-outline">Inquire about availability</a>
+            </div>
+
+            {/* Semester Package */}
+            <div className="bg-white p-8">
+              <span className="text-[12px] tracking-[0.2em] uppercase text-text-gray block mb-4">Best per-lesson rate</span>
+              <h3 className="font-serif text-[22px] text-black mb-4">Semester Package</h3>
+              <div className="flex items-baseline gap-1.5 mb-1">
+                <span className="font-serif text-[34px] text-black leading-none">$80</span>
+                <span className="text-[15px] text-black">/ lesson</span>
+              </div>
+              <p className="text-[14px] text-text-gray italic mb-6">12–16 lessons · prepaid per semester</p>
+              <ul className="list-none flex flex-col">
+                {['Lowest per-lesson rate', 'Prepaid for full semester', 'Includes 2 makeup lessons', 'In-person (Longmont) or online worldwide'].map(item => (
+                  <li key={item} className="flex items-start gap-2.5 py-2 border-b border-light-gray text-[15px] text-black">
+                    <span className="w-1 h-1 rounded-full bg-accent flex-shrink-0 mt-[7px]" />{item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Single Lesson */}
+            <div className="bg-white p-8">
+              <span className="text-[12px] tracking-[0.2em] uppercase text-text-gray block mb-4">Pay as you go</span>
+              <h3 className="font-serif text-[22px] text-black mb-4">Single Lesson</h3>
+              <div className="flex items-baseline gap-1.5 mb-1">
+                <span className="font-serif text-[34px] text-black leading-none">$100</span>
+                <span className="text-[15px] text-black">/ lesson</span>
+              </div>
+              <p className="text-[14px] text-text-gray italic mb-6">Pay per session · no package required</p>
+              <ul className="list-none flex flex-col">
+                {['No commitment required', 'Book when it works for you', 'In-person (Longmont) or online worldwide'].map(item => (
+                  <li key={item} className="flex items-start gap-2.5 py-2 border-b border-light-gray text-[15px] text-black">
+                    <span className="w-1 h-1 rounded-full bg-accent flex-shrink-0 mt-[7px]" />{item}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
-          {/* Trial banner */}
-          <div className="bg-off-white border border-light-gray p-8 lg:p-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-            <div>
-              <h3 className="font-serif text-[24px] text-black mb-2">Not sure where to start? Try a trial lesson.</h3>
-              <p className="text-[16px] text-text-gray font-light">30-minute private trial lesson for $30 — in-person or online. Or book a free 15-minute consultation.</p>
-            </div>
-            <a href="#contact" className="btn-primary whitespace-nowrap">Book a trial</a>
+          {/* Single CTA below grid */}
+          <div className="border border-t-0 border-light-gray bg-off-white px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <p className="text-[16px] text-black">Ready to get started? Reach out and we'll find the right fit.</p>
+            <a href="#contact" className="btn-primary whitespace-nowrap">Inquire about availability</a>
           </div>
+          <p className="text-[15px] text-black italic mt-4">
+            30-minute lessons are also available for younger or beginning students at roughly half the listed rates — just reach out and we'll find the right fit.
+          </p>
         </div>
       </section>
 
@@ -206,7 +238,7 @@ export default function Teaching() {
             {[
               { q: 'Do I need my own instrument to start?', a: 'Not necessarily! For beginners, I\'ll guide you on exactly what to get and when. In-person students have access to instruments in my studio. Online students will need some equipment at home — I\'m happy to recommend affordable options based on your goals.' },
               { q: 'What ages do you teach?', a: 'I teach students of all ages — starting around age 6 through teens, adults, and returning musicians. My approach is always tailored to each student\'s goals and learning style. It\'s never too late to start.' },
-              { q: 'Do you offer online lessons?', a: 'Yes! Private 1-on-1 lessons are available both in-person (Longmont, CO) and online worldwide. Semi-private kids\' lessons are currently in-person only.' },
+              { q: 'Do you offer online lessons?', a: 'Yes! All lesson packages are available both in-person (Longmont, CO) and online worldwide.' },
               { q: 'What is your cancellation policy?', a: 'Semester packages include 2 makeup lessons per term. Drop-in lessons must be canceled at least 24 hours in advance to avoid being charged. I understand life happens and always try to be flexible.' },
               { q: 'What percussion instruments do you teach?', a: 'I teach the full percussion battery — snare drum, marimba, xylophone, vibraphone, timpani, and drum kit fundamentals. Pre-college students develop proficiency across all major classical percussion instruments.' },
             ].map(({ q, a }, i) => (

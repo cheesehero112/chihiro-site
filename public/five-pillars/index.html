@@ -295,6 +295,8 @@ const PILLARS = [
    ============================================================ */
 const answers = PILLARS.map(p => p.qs.map(() => null)); // true = yes, false = no
 let page = 0, result = null, rating = 0, submitted = false;
+// Preview: add ?preview to the URL to see a sample results page. Nothing is saved or sent.
+const PREVIEW = new URLSearchParams(location.search).has("preview");
 const $ = id => document.getElementById(id);
 document.getElementById("yr").textContent = new Date().getFullYear();
 
@@ -437,7 +439,7 @@ async function submitAll(){
   result = computeResult();
   const btn = $("seeBtn"); btn.disabled = true; btn.textContent = "Building your results…";
 
-  if (!submitted){
+  if (!submitted && !PREVIEW){
     submitted = true;
     const data = {
       "form-name":"five-pillars-quiz",
@@ -472,7 +474,7 @@ async function submitAll(){
 /* ---------- Debrief waitlist (one click) ---------- */
 async function joinWaitlist(){
   const btn = $("ctaBtn"); btn.disabled = true; btn.textContent = "Adding you…";
-  if (CONFIG.waitlistFormId){
+  if (CONFIG.waitlistFormId && !PREVIEW){
     const f = new URLSearchParams();
     f.append("email_address", val("fEmail")); f.append("first_name", val("fName"));
     f.append("fields[weakest_pillar]", PILLARS[result.weakest].name);
@@ -485,7 +487,7 @@ async function joinWaitlist(){
 function rate(n){ rating = n; [...$("stars").children].forEach((b,i)=>b.classList.toggle("on", i<n)); $("fbBtn").disabled = false; }
 async function sendFeedback(){
   $("fbBtn").disabled = true;
-  try {
+  if (!PREVIEW) try {
     await fetch(location.pathname, { method:"POST", headers:{"Content-Type":"application/x-www-form-urlencoded"},
       body: encode({ "form-name":"five-pillars-feedback", email: val("fEmail"), accuracy: rating, comment: val("fbComment"), weakest: PILLARS[result.weakest].name }) });
   } catch(e){ console.warn(e); }
@@ -598,6 +600,17 @@ async function downloadPdf(){
   try { (await makePdf()).save(`5-Pillars-Results-${fname}.pdf`); }
   catch(e){ console.error(e); alert("Sorry, the PDF couldn't be created in this browser. Try another browser, or take a screenshot of your results."); }
   btn.disabled = false; btn.textContent = "Download my one-page PDF";
+}
+
+/* ---------- Preview mode ---------- */
+if (PREVIEW){
+  answers.forEach(p => p.forEach((_,i) => p[i] = Math.random() < 0.65));
+  $("fName").value = "Preview"; $("fEmail").value = "preview@example.com";
+  result = computeResult(); renderResults();
+  const bar = document.createElement("div");
+  bar.textContent = "Preview mode: random answers, nothing is saved or sent. Refresh for a new sample.";
+  bar.style.cssText = "background:#1d2430;color:#fff;text-align:center;font-size:.85rem;padding:8px 12px;position:sticky;top:0;z-index:10";
+  document.body.prepend(bar);
 }
 </script>
 </body>

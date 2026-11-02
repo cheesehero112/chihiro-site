@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 /* ============================================================
    EDIT HERE: brand colors
@@ -83,20 +83,6 @@ textarea{min-height:80px}
 .cta .btn{background:#fff;color:var(--ink)}
 footer{text-align:center;font-size:.8rem;color:var(--muted);margin-top:24px}
 
-/* ---------- One-page PDF report (rendered off-screen) ---------- */
-#reportHost{position:fixed;left:-10000px;top:0}
-#report{width:816px;height:1056px;padding:48px 56px;background:#fff;color:var(--ink);font:13px/1.5 Inter,sans-serif;overflow:hidden}
-#report h1{font-size:28px;margin:0 0 2px}
-#report .rhead{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:20px}
-#report .rgrid{display:grid;grid-template-columns:340px 1fr;gap:28px;align-items:center;margin-bottom:18px}
-#report .rcall{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
-#report .callout{padding:12px}
-#report .callout b{font-size:16px}
-#report h3{font-size:17px;margin:0 0 10px}
-#report .steps li{padding-bottom:10px;padding-left:38px}
-#report .steps li:before{width:26px;height:26px;font-size:13px}
-#report .rfoot{position:absolute;left:56px;right:56px;bottom:40px;border-top:1px solid var(--line);padding-top:12px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between}
-#report{position:relative}
 </style>
 </head>
 <body>
@@ -208,7 +194,6 @@ footer{text-align:center;font-size:.8rem;color:var(--muted);margin-top:24px}
   <footer>&copy; <span id="yr"></span> Chihiro Shibayama &middot; chihiroshibayama.com</footer>
 </div>
 
-<div id="reportHost"><div id="report"></div></div>
 
 <script>
 /* ============================================================
@@ -426,7 +411,6 @@ function renderResults(){
   $("ctaTitle").textContent = CONFIG.ctaTitle; $("ctaText").textContent = CONFIG.ctaText; $("ctaMeta").textContent = CONFIG.ctaMeta;
   $("ctaBtn").textContent = CONFIG.ctaButton;
   $("stars").innerHTML = [1,2,3,4,5].map(n=>`<button type="button" aria-label="${n} of 5" onclick="rate(${n})">${n}</button>`).join("");
-  buildReport();
   show("results");
 }
 
@@ -508,53 +492,111 @@ async function sendFeedback(){
   $("fbThanks").classList.remove("hidden"); $("fbBtn").textContent = "Sent";
 }
 
-/* ---------- One-page PDF ---------- */
-function buildReport(){
-  const r = result, name = $("fName").value.trim();
-  const date = new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
-  $("report").innerHTML = `
-    <div class="rhead"><div><div class="pillar-tag" style="font-size:11px">The 5 Pillars Career Check</div><h1>${esc(name)}'s career map</h1></div>
-      <div class="small" style="text-align:right;font-size:12px">${date}<br>Chihiro Shibayama &middot; Musicians Career Coach</div></div>
-    <div class="rgrid"><div id="rChartPdf">${pentagon(r.scores, 280)}</div><ul class="scores">${scoreList(r)}</ul></div>
-    <div class="rcall">${calloutsHtml(r)}</div>
-    <h3>Your 3 next steps</h3>
-    <ol class="steps">${stepsHtml(r)}</ol>
-    <div class="rfoot"><span>Next: a live 5 Pillars group debrief. Details at ${esc(CONFIG.website)}</span><span>${esc(CONFIG.website)}</span></div>`;
-}
-// The PDF renderer can't draw inline SVG reliably, so the chart is turned into a PNG first.
-function svgToPng(svg, px){
+/* ---------- One-page PDF (drawn directly: sharp text, nothing cut off) ---------- */
+// The chart is drawn as SVG, then turned into a high-resolution image for the PDF.
+function svgToPng(svg, w, h){
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.onload = () => {
-      const ratio = img.width && img.height ? img.height/img.width : 280/392;
-      const cv = document.createElement("canvas"); cv.width = px; cv.height = Math.round(px*ratio);
-      const ctx = cv.getContext("2d"); ctx.fillStyle = "#fff"; ctx.fillRect(0,0,cv.width,cv.height);
-      ctx.drawImage(img, 0, 0, cv.width, cv.height); resolve(cv.toDataURL("image/png"));
+      const cv = document.createElement("canvas"); cv.width = w; cv.height = h;
+      const ctx = cv.getContext("2d"); ctx.fillStyle = "#fff"; ctx.fillRect(0,0,w,h);
+      ctx.drawImage(img, 0, 0, w, h); resolve(cv.toDataURL("image/png"));
     };
     img.onerror = reject;
-    const sized = svg.replace('width="100%"', 'width="784" height="560"');
-    img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(sized);
+    img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg.replace('width="100%"', `width="${w}" height="${h}"`));
   });
+}
+// Standard PDF fonts only cover Latin characters, so other scripts fall back to a generic title.
+function pdfSafe(t){ return /^[\u0000-ÿ–—‘’“”•…]*$/.test(t) ? t : ""; }
+
+async function makePdf(){
+  const { jsPDF } = window.jspdf;
+  const r = result, doc = new jsPDF({ unit:"pt", format:"letter" });
+  const W = 612, M = 48, R = W - M;
+  const C = { ink:[29,36,48], muted:[93,102,114], accent:[168,73,42], good:[47,107,79], line:[227,222,214], goodSoft:[226,239,231], accentSoft:[244,230,223] };
+  const color = (c) => doc.setTextColor(...c);
+  const font = (size, style="normal") => { doc.setFont("helvetica", style); doc.setFontSize(size); };
+  const name = pdfSafe($("fName").value.trim());
+  const date = new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
+
+  // Header
+  font(8,"bold"); color(C.accent); doc.text("THE 5 PILLARS CAREER CHECK", M, 56, {charSpace:0.8});
+  font(22,"bold"); color(C.ink); doc.text(name ? `${name}'s career map` : "Your career map", M, 82);
+  font(9); color(C.muted);
+  doc.text(date, R, 62, {align:"right"});
+  doc.text("Chihiro Shibayama · Musicians Career Coach", R, 75, {align:"right"});
+  doc.setDrawColor(...C.ink); doc.setLineWidth(1.5); doc.line(M, 94, R, 94);
+
+  // Pentagon chart (left)
+  const chartW = 236, chartH = chartW * 280/392;
+  const png = await svgToPng(pentagon(r.scores, 280), 392*3, 280*3);
+  doc.addImage(png, "PNG", M - 6, 110, chartW, chartH);
+
+  // Scores with bars (right)
+  const sx = 300; let y = 122;
+  PILLARS.forEach((p,i) => {
+    const s = r.scores[i];
+    font(10.5); color(C.ink); doc.text(p.name, sx, y);
+    font(9.5,"bold"); const sc = `${s}/10`;
+    font(9); color(C.muted); const bandTxt = `  ·  ${band(s)}`; const bw = doc.getTextWidth(bandTxt);
+    doc.text(bandTxt, R, y, {align:"right"});
+    font(9.5,"bold"); color(C.ink); doc.text(sc, R - bw, y, {align:"right"});
+    const barY = y + 6, barW = R - sx;
+    doc.setFillColor(...C.line); doc.roundedRect(sx, barY, barW, 5, 2.5, 2.5, "F");
+    const fill = i===r.weakest ? C.accent : i===r.strongest ? C.good : C.ink;
+    if (s > 0){ doc.setFillColor(...fill); doc.roundedRect(sx, barY, Math.max(barW*s/10, 5), 5, 2.5, 2.5, "F"); }
+    y += 33;
+  });
+
+  // Strongest / focus callouts
+  y = Math.max(110 + chartH, y) + 14;
+  const boxW = (R - M - 12) / 2;
+  const same = r.weakest === r.strongest;
+  const boxes = [
+    { x:M, bg:C.goodSoft, label:"Strongest pillar", title:PILLARS[r.strongest].name, text: same ? "Your pillars are evenly balanced." : "Keep doing what's working here, and lean on it as you grow." },
+    { x:M + boxW + 12, bg:C.accentSoft, label:"Focus pillar", title:PILLARS[r.weakest].name, text:"This is where small changes will make the biggest difference right now." }
+  ];
+  font(9.5); const lines = boxes.map(b => doc.splitTextToSize(b.text, boxW - 24));
+  const boxH = 50 + Math.max(...lines.map(l=>l.length)) * 12;
+  boxes.forEach((b,k) => {
+    doc.setFillColor(...b.bg); doc.roundedRect(b.x, y, boxW, boxH, 8, 8, "F");
+    font(8.5); color(C.muted); doc.text(b.label, b.x + 12, y + 18);
+    font(13,"bold"); color(C.ink); doc.text(b.title, b.x + 12, y + 34);
+    font(9.5); doc.text(lines[k], b.x + 12, y + 50);
+  });
+  y += boxH + 30;
+
+  // Next steps
+  font(14,"bold"); color(C.ink); doc.text("Your 3 next steps", M, y); y += 20;
+  const steps = r.steps.length ? r.steps.map(s => ({ from:PILLARS[s.pi].name, text:s.text }))
+    : [{ from:"All pillars", text:"You answered yes to every question. Impressive! Pick the pillar that matters most for your next season and look for one way to raise the bar there." }];
+  steps.forEach((st, i) => {
+    font(10); const body = doc.splitTextToSize(st.text, R - (M + 34));
+    const need = 14 + body.length * 13.5 + 12;
+    if (y + need > 720){ doc.addPage(); y = 60; }
+    doc.setFillColor(...C.accent); doc.circle(M + 11, y + 4, 11, "F");
+    font(10,"bold"); doc.setTextColor(255,255,255); doc.text(String(i+1), M + 11, y + 7.5, {align:"center"});
+    font(8.5); color(C.muted); doc.text(st.from, M + 34, y);
+    font(10); color(C.ink); doc.text(body, M + 34, y + 14, {lineHeightFactor:1.35});
+    y += need;
+  });
+
+  // Footer (every page)
+  const pages = doc.getNumberOfPages();
+  for (let pg = 1; pg <= pages; pg++){
+    doc.setPage(pg);
+    doc.setDrawColor(...C.line); doc.setLineWidth(0.75); doc.line(M, 742, R, 742);
+    font(8.5); color(C.muted);
+    doc.text("Next: a live 5 Pillars group debrief. Details at " + CONFIG.website, M, 758);
+    doc.text(CONFIG.website, R, 758, {align:"right"});
+  }
+  return doc;
 }
 async function downloadPdf(){
   const btn = $("pdfBtn"); btn.disabled = true; btn.textContent = "Preparing PDF…";
-  const name = ($("fName").value.trim() || "My").replace(/[^\w-]+/g,"-");
-  const y = window.scrollY; window.scrollTo(0,0);   // html2canvas renders blank if the page is scrolled
-  const host = $("reportHost"); host.style.left = "0"; host.style.zIndex = "-1";
-  try {
-    const chart = $("rChartPdf");
-    if (chart && chart.querySelector("svg")){
-      const png = await svgToPng(chart.innerHTML, 784);
-      chart.innerHTML = `<img src="${png}" style="width:100%;display:block" alt="Pentagon chart">`;
-    }
-    await html2pdf().set({
-      margin:0, filename:`5-Pillars-Results-${name}.pdf`,
-      image:{type:"jpeg",quality:0.95},
-      html2canvas:{scale:2, useCORS:true, backgroundColor:"#ffffff", scrollX:0, scrollY:0, windowWidth:900},
-      jsPDF:{unit:"px", format:[816,1056], orientation:"portrait", hotfixes:["px_scaling"]}
-    }).from($("report")).save();
-  } catch(e){ console.error(e); alert("Sorry, the PDF couldn't be created in this browser. Try another browser, or take a screenshot of your results."); }
-  host.style.left = "-10000px"; window.scrollTo(0,y);
+  const fname = (pdfSafe($("fName").value.trim()) || "My").replace(/[^\w-]+/g,"-");
+  try { (await makePdf()).save(`5-Pillars-Results-${fname}.pdf`); }
+  catch(e){ console.error(e); alert("Sorry, the PDF couldn't be created in this browser. Try another browser, or take a screenshot of your results."); }
   btn.disabled = false; btn.textContent = "Download my one-page PDF";
 }
 </script>

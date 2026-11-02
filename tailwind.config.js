@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         accent: '#C4622D',
+        'accent-dark': '#A8501F', // brand orange, darkened so small text meets WCAG contrast
         'accent-light': 'rgba(196,98,45,0.08)',
         'off-white': '#f8f7f5',
         'light-gray': '#e8e6e2',

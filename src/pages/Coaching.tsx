@@ -28,8 +28,9 @@ export default function Coaching() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-px bg-light-gray border border-light-gray">
             {pillars.map(({ num, name, sub, text }) => (
               <div key={num} className="bg-off-white px-7 py-9 relative">
-                <span className="absolute top-5 right-5 font-serif text-[48px] text-black/5 leading-none">{num}</span>
-                <p className="text-[11px] tracking-[0.2em] uppercase text-accent mb-2 pr-12">{sub}</p>
+                {/* decorative watermark number, drawn with CSS so it isn't read as text */}
+                <span aria-hidden="true" data-num={num} className="absolute top-5 right-5 font-serif text-[48px] text-black/5 leading-none before:content-[attr(data-num)]" />
+                <p className="text-[12px] tracking-[0.18em] uppercase text-accent-dark font-normal mb-2 pr-12">{sub}</p>
                 <h3 className="font-serif text-[20px] text-black mb-3">{name}</h3>
                 <p className="text-[15px] text-text-gray font-light leading-relaxed">{text}</p>
               </div>
@@ -50,7 +51,7 @@ export default function Coaching() {
 
             {/* Quiz */}
             <div className="bg-black p-8 lg:p-10 flex flex-col">
-              <span className="text-[11px] tracking-[0.2em] uppercase text-white/80 mb-4">Step 1 · Free</span>
+              <span className="text-[12px] tracking-[0.2em] uppercase text-white/85 mb-4">Step 1 · Free</span>
               <h3 className="font-serif text-[26px] text-white mb-4">The 5 Pillars Career Check</h3>
               <p className="text-[15px] text-white/85 font-light leading-relaxed mb-6">
                 50 yes/no questions, about 10 minutes. Get an instant map of where your career is strong and where it's stuck.
@@ -70,7 +71,7 @@ export default function Coaching() {
 
             {/* Group debrief */}
             <div className="bg-white p-8 lg:p-10 flex flex-col">
-              <span className="text-[11px] tracking-[0.2em] uppercase text-mid-gray mb-4">Step 2 · Live on Zoom</span>
+              <span className="text-[12px] tracking-[0.2em] uppercase text-mid-gray mb-4">Step 2 · Live on Zoom</span>
               <h3 className="font-serif text-[26px] text-black mb-4">5 Pillars Group Debrief</h3>
               <div className="flex items-baseline gap-2 mb-1">
                 <span className="font-serif text-[34px] text-black leading-none">$25</span>

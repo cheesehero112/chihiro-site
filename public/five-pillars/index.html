@@ -16,6 +16,7 @@
 :root{
   --ink:#1d2430; --muted:#5d6672; --line:#e3ded6; --paper:#fbf9f5; --card:#ffffff;
   --accent:#a8492a; --accent-soft:#f4e6df; --good:#2f6b4f; --good-soft:#e2efe7;
+  --control:#8f877b; /* outlines for answer buttons and form fields (3:1 contrast) */
 }
 *{box-sizing:border-box}
 html,body{margin:0}
@@ -30,7 +31,7 @@ p{margin:0 0 1em}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 24px;margin-bottom:20px}
 .btn{display:inline-block;border:0;border-radius:999px;background:var(--accent);color:#fff;font:600 1rem Inter,sans-serif;padding:14px 28px;cursor:pointer;text-decoration:none;text-align:center}
 .btn:hover{filter:brightness(1.08)}
-.btn.secondary{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.secondary{background:transparent;color:var(--ink);border:1px solid var(--control)}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 .small{font-size:.875rem;color:var(--muted)}
@@ -45,13 +46,13 @@ p{margin:0 0 1em}
 .yn{display:flex;gap:10px}
 .yn label{flex:1;max-width:140px}
 .yn input{position:absolute;opacity:0;pointer-events:none}
-.yn span{display:block;text-align:center;padding:10px;border:1px solid var(--line);border-radius:10px;cursor:pointer;font-weight:500}
+.yn span{display:block;text-align:center;padding:10px;border:1px solid var(--control);border-radius:10px;cursor:pointer;font-weight:500}
 .yn input:checked+span{background:var(--ink);border-color:var(--ink);color:#fff}
 .yn input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
-.q.missing span{border-color:var(--accent)}
+.q.missing span{border-color:var(--accent);border-width:2px}
 .field{margin-bottom:18px}
 .field label.lab{display:block;font-weight:600;margin-bottom:6px}
-input[type=text],input[type=email],select,textarea{width:100%;font:inherit;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+input[type=text],input[type=email],select,textarea{width:100%;font:inherit;padding:11px 12px;border:1px solid var(--control);border-radius:10px;background:#fff;color:var(--ink)}
 textarea{min-height:80px}
 .consent{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px}
 .consent input{margin-top:4px}
@@ -76,7 +77,7 @@ textarea{min-height:80px}
 .steps li:before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-weight:600;display:flex;align-items:center;justify-content:center}
 .steps .from{display:block;font-size:.8rem;color:var(--muted);margin-bottom:2px}
 .stars{display:flex;gap:8px;margin:8px 0 14px}
-.stars button{width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:#fff;font:600 1rem Inter;cursor:pointer;color:var(--ink)}
+.stars button{width:44px;height:44px;border-radius:10px;border:1px solid var(--control);background:#fff;font:600 1rem Inter;cursor:pointer;color:var(--ink)}
 .stars button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .cta{background:var(--ink);color:#fff;border:0}
 .cta h2{color:#fff}
@@ -97,7 +98,7 @@ footer{text-align:center;font-size:.8rem;color:var(--muted);margin-top:24px}
   <input name="email"><input name="accuracy"><textarea name="comment"></textarea><input name="weakest">
 </form>
 
-<div class="wrap">
+<main class="wrap">
   <div class="brand">Chihiro Shibayama &middot; Musicians Career Coach</div>
 
   <!-- ===== Intro ===== -->
@@ -105,7 +106,7 @@ footer{text-align:center;font-size:.8rem;color:var(--muted);margin-top:24px}
     <h1>The 5 Pillars Career Check</h1>
     <p>Conservatory teaches you to play. It rarely teaches you how freelance careers actually get built. This free check-up looks at the five pillars I've seen make the difference over 20+ years of freelancing on Broadway, at the Met, and with orchestras: <b>Outreach, Reputation, Network, Income Architecture, and Mindset.</b></p>
     <div class="card">
-      <h3>What you'll get</h3>
+      <h2 style="font-size:1.15rem">What you'll get</h2>
       <p style="margin:0">Your score on each pillar, a visual map of your career, your strongest and weakest pillar, and three concrete next steps chosen from your answers. You can download it all as a one-page PDF.</p>
     </div>
     <p class="small">50 yes/no questions &middot; about 10 minutes &middot; answer honestly; there are no wrong answers.</p>
@@ -116,7 +117,7 @@ footer{text-align:center;font-size:.8rem;color:var(--muted);margin-top:24px}
   <section id="quiz" class="hidden">
     <div class="row" style="justify-content:space-between"><span class="pillar-tag" id="pTag"></span><span class="small" id="pCount"></span></div>
     <div class="progress"><span id="pBar"></span></div>
-    <h2 id="pTitle"></h2>
+    <h1 id="pTitle" style="font-size:1.6rem"></h1>
     <p class="small" id="pSub"></p>
     <div class="card" id="qList"></div>
     <p class="error hidden" id="qErr">Please answer every question on this page.</p>
@@ -130,7 +131,7 @@ footer{text-align:center;font-size:.8rem;color:var(--muted);margin-top:24px}
   <section id="about" class="hidden">
     <span class="pillar-tag">Last step</span>
     <div class="progress"><span style="width:100%"></span></div>
-    <h2>A little about you</h2>
+    <h1 style="font-size:1.6rem">A little about you</h1>
     <p class="small">This helps me understand who the quiz is reaching and improve it for musicians like you.</p>
     <div class="card">
       <div class="field"><label class="lab" for="fName">First name</label><input id="fName" type="text" autocomplete="given-name"></div>
@@ -191,8 +192,8 @@ footer{text-align:center;font-size:.8rem;color:var(--muted);margin-top:24px}
     </div>
   </section>
 
-  <footer>&copy; <span id="yr"></span> Chihiro Shibayama &middot; chihiroshibayama.com</footer>
-</div>
+  </main>
+  <footer class="wrap" style="padding-top:0">&copy; <span id="yr"></span> Chihiro Shibayama &middot; chihiroshibayama.com</footer>
 
 
 <script>
@@ -609,8 +610,8 @@ if (PREVIEW){
   result = computeResult(); renderResults();
   const bar = document.createElement("div");
   bar.textContent = "Preview mode: random answers, nothing is saved or sent. Refresh for a new sample.";
-  bar.style.cssText = "background:#1d2430;color:#fff;text-align:center;font-size:.85rem;padding:8px 12px;position:sticky;top:0;z-index:10";
-  document.body.prepend(bar);
+  bar.setAttribute("role","note"); bar.style.cssText = "background:#1d2430;color:#fff;text-align:center;font-size:.85rem;padding:8px 12px;position:sticky;top:0;z-index:10";
+  document.querySelector("main").prepend(bar);
 }
 </script>
 </body>

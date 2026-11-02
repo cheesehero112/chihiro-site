@@ -2,563 +2,561 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex,nofollow">
-<title>The 5 Pillars Quiz</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The 5 Pillars Career Check | Chihiro Shibayama</title>
+<meta name="description" content="A free 10-minute check-up for freelance musicians. See where your career is strong, where it's stuck, and three concrete next steps.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Literata:opsz,wght@7..72,400;7..72,600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <style>
-*,*::before,*::after{box-sizing:border-box}body{margin:0}[hidden]{display:none!important}img{max-width:100%}
-/* Layout: one centered column like a music stand; quiz is a single card at a time, coach view stacks scorecard over talking points */
+/* ============================================================
+   EDIT HERE: brand colors
+   ============================================================ */
 :root{
-  --bg:#EEF1F4; --surface:#FFFFFF; --ink:#1B2433; --muted:#5B6576; --line:#D5DBE3;
-  --brass:#9A6F22; --brass-soft:#F3E7CF; --good:#2F7A55; --warn:#A8641B; --gap:#B23A3A;
-  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
-  --body:"Literata",Georgia,"Times New Roman",serif;
-  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --ink:#1d2430; --muted:#5d6672; --line:#e3ded6; --paper:#fbf9f5; --card:#ffffff;
+  --accent:#a8492a; --accent-soft:#f4e6df; --good:#2f6b4f; --good-soft:#e2efe7;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#121821; --surface:#1B2330; --ink:#E7EBF1; --muted:#9AA5B5; --line:#2E3949;
-  --brass:#D6A955; --brass-soft:#3A3020; --good:#6CC395; --warn:#E3A35A; --gap:#EF7B7B; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#121821; --surface:#1B2330; --ink:#E7EBF1; --muted:#9AA5B5; --line:#2E3949;
-  --brass:#D6A955; --brass-soft:#3A3020; --good:#6CC395; --warn:#E3A35A; --gap:#EF7B7B; color-scheme:dark}
-[hidden]{display:none!important}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
-.wrap{max-width:640px;margin:0 auto;padding-inline:16px;padding-block:28px 56px;display:flex;flex-direction:column;gap:22px}
-header .eyebrow{font-family:var(--display);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);font-weight:700}
-h1{font-family:var(--display);font-weight:700;font-size:clamp(30px,7vw,42px);line-height:1.05;margin:.25em 0 .2em;text-wrap:balance}
-header p{margin:0;color:var(--muted)}
-h2{font-family:var(--display);font-weight:700;font-size:22px;line-height:1.2;margin:0;text-wrap:balance}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:16px}
-label{font-family:var(--display);font-size:13px;font-weight:500;letter-spacing:.04em;color:var(--muted)}
-.field{display:flex;flex-direction:column;gap:6px}
-input[type=text]{font:inherit;font-size:17px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);width:100%;box-sizing:border-box}
-input[type=text]:focus-visible,button:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
-button{font-family:var(--display);font-weight:700;font-size:16px;border-radius:10px;border:1px solid transparent;padding:12px 18px;cursor:pointer}
-.primary{background:var(--ink);color:var(--bg)}
-.ghost{background:transparent;color:var(--muted);border-color:var(--line)}
-.link{background:none;border:0;padding:6px 0;color:var(--muted);font-weight:500;text-decoration:underline;text-underline-offset:3px}
-.err{color:var(--gap);font-size:14px;margin:0}
-.note{font-size:14px;color:var(--muted);margin:0}
-/* progress: five segments, one per pillar */
-.progress{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
-.seg{height:6px;border-radius:3px;background:var(--line);overflow:hidden}
-.seg i{display:block;height:100%;background:var(--brass);width:0;transition:width .25s}
-.qmeta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
-.pill-name{font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--brass)}
-.pill-sub{font-size:14px;color:var(--muted)}
-.count{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
-.question{font-size:21px;line-height:1.4;margin:4px 0 6px;min-height:3.6em}
-.answers{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.answers button{padding:18px;font-size:19px;background:var(--bg);color:var(--ink);border-color:var(--line)}
-.answers button.on{background:var(--brass-soft);border-color:var(--brass)}
-.code{font-family:var(--mono);font-size:clamp(17px,5vw,22px);letter-spacing:.04em;padding:14px;background:var(--brass-soft);border-radius:10px;text-align:center;user-select:all;word-break:break-all}
-.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-/* coach view */
-.coach-flag{font-family:var(--display);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--brass);font-weight:700}
-.radar{width:100%;max-width:460px;align-self:center}
-.radar text{font-family:var(--display);fill:var(--ink)}
-.scores{display:flex;flex-direction:column;gap:2px}
-.score{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
-.score b{font-family:var(--display);font-weight:500}
-.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
-.chip{font-family:var(--display);font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px;white-space:nowrap}
-.t-good{color:var(--good);border:1px solid var(--good)}
-.t-mid{color:var(--warn);border:1px solid var(--warn)}
-.t-gap{color:var(--gap);border:1px solid var(--gap)}
-.start{background:var(--ink);color:var(--bg);border:0}
-details{border-top:1px solid var(--line);padding-top:10px}
-summary{font-family:var(--display);font-weight:700;cursor:pointer;padding:4px 0}
-details ul{margin:8px 0 4px;padding-left:20px;display:flex;flex-direction:column;gap:6px}
-details li{font-size:15px}
-.none{font-size:15px;color:var(--muted);margin:8px 0}
-.example-tag{font-family:var(--display);font-size:12px;color:var(--warn);font-weight:700;letter-spacing:.05em}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
-.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
-input[type=date],select,textarea{font:inherit;font-size:17px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);width:100%;box-sizing:border-box}
-textarea{resize:vertical}
-#sum-a1,#sum-a2,#sum-a3{font:inherit;font-size:17px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);width:100%}
-input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
-/* printable summary */
-#print-sheet{display:none}
-.ps{font-family:var(--body);color:var(--ink);display:flex;flex-direction:column;gap:18px}
-.ps-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;border-bottom:2px solid var(--brass);padding-bottom:12px}
-.ps-eyebrow{font-family:var(--display);font-size:10pt;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);font-weight:700}
-.ps h1{font-family:var(--display);font-size:24pt;margin:2px 0 0;line-height:1.1}
-.ps-meta{text-align:right;font-size:11pt;color:var(--muted)}
-.ps-meta b{display:block;color:var(--ink);font-family:var(--display);font-size:14pt}
-.ps-top{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;align-items:center}
-.ps-top .radar{max-width:100%}
-.ps table{width:100%;border-collapse:collapse;font-size:11pt}
-.ps td{padding:7px 0;border-bottom:1px solid var(--line)}
-.ps td.n{text-align:right;font-family:var(--mono);white-space:nowrap}
-.ps td.d{text-align:right;width:3.2em;font-family:var(--display);font-weight:700}
-.ps .up{color:var(--good)} .ps .down{color:var(--gap)}
-.ps-total{font-size:10.5pt;color:var(--muted);margin-top:8px}
-.ps-focus{background:var(--brass-soft);border-radius:10px;padding:14px 16px}
-.ps-focus small{font-family:var(--display);font-size:9.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--brass);font-weight:700}
-.ps-focus div{font-family:var(--display);font-size:17pt;font-weight:700;margin-top:2px}
-.ps-focus span{font-size:11pt;color:var(--muted)}
-.ps h2{font-size:13pt;margin:0 0 8px}
-.ps-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.ps-steps li{display:grid;grid-template-columns:18px 1fr;gap:12px;font-size:12pt;align-items:start}
-.ps-steps li::before{content:"";width:14px;height:14px;border:1.5px solid var(--ink);border-radius:3px;margin-top:4px}
-.ps-note{font-size:11.5pt;white-space:pre-wrap;border-left:3px solid var(--brass);padding-left:14px;margin:0}
-.ps-foot{margin-top:auto;border-top:1px solid var(--line);padding-top:10px;font-size:9.5pt;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-@media print{
-  :root,:root[data-theme="dark"],:root:not([data-theme="light"]){
-    --bg:#FFFFFF; --surface:#FFFFFF; --ink:#1B2433; --muted:#5B6576; --line:#D5DBE3;
-    --brass:#9A6F22; --brass-soft:#F3E7CF; --good:#2F7A55; --warn:#A8641B; --gap:#B23A3A; color-scheme:light}
-  body{background:#fff}
-  .wrap{display:none!important}
-  #print-sheet{display:block!important}
-  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  @page{size:letter;margin:0.55in}
-}
-</style>
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:650;line-height:1.2;margin:0 0 .5em}
+h1{font-size:clamp(1.9rem,5vw,2.7rem)}
+h2{font-size:1.5rem}
+h3{font-size:1.15rem}
+p{margin:0 0 1em}
+.wrap{max-width:720px;margin:0 auto;padding:32px 16px 64px}
+.brand{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:28px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 24px;margin-bottom:20px}
+.btn{display:inline-block;border:0;border-radius:999px;background:var(--accent);color:#fff;font:600 1rem Inter,sans-serif;padding:14px 28px;cursor:pointer;text-decoration:none;text-align:center}
+.btn:hover{filter:brightness(1.08)}
+.btn.secondary{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.small{font-size:.875rem;color:var(--muted)}
+.hidden{display:none!important}
+.progress{height:6px;background:var(--line);border-radius:6px;overflow:hidden;margin:6px 0 24px}
+.progress span{display:block;height:100%;background:var(--accent);transition:width .3s}
+.pillar-tag{font-size:.8rem;font-weight:600;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
+.q{padding:16px 0;border-top:1px solid var(--line)}
+.q:first-of-type{border-top:0}
+.q p{margin:0 0 10px;font-weight:500}
+.q .note{display:block;font-weight:400;font-size:.85rem;color:var(--muted);margin-top:4px}
+.yn{display:flex;gap:10px}
+.yn label{flex:1;max-width:140px}
+.yn input{position:absolute;opacity:0;pointer-events:none}
+.yn span{display:block;text-align:center;padding:10px;border:1px solid var(--line);border-radius:10px;cursor:pointer;font-weight:500}
+.yn input:checked+span{background:var(--ink);border-color:var(--ink);color:#fff}
+.yn input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.q.missing span{border-color:var(--accent)}
+.field{margin-bottom:18px}
+.field label.lab{display:block;font-weight:600;margin-bottom:6px}
+input[type=text],input[type=email],select,textarea{width:100%;font:inherit;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+textarea{min-height:80px}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px}
+.consent input{margin-top:4px}
+.error{color:var(--accent);font-size:.9rem;margin-top:8px}
+.result-top{display:grid;grid-template-columns:1fr;gap:20px;align-items:center}
+@media(min-width:640px){.result-top{grid-template-columns:300px 1fr}}
+.scores{list-style:none;padding:0;margin:0}
+.scores li{margin-bottom:10px}
+.scores .name{display:flex;justify-content:space-between;font-weight:500;font-size:.95rem}
+.bar{height:8px;background:var(--line);border-radius:8px;overflow:hidden;margin-top:4px}
+.bar span{display:block;height:100%;background:var(--ink)}
+.bar.weak span{background:var(--accent)}
+.bar.strong span{background:var(--good)}
+.callouts{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:640px){.callouts{grid-template-columns:1fr 1fr}}
+.callout{border-radius:12px;padding:16px}
+.callout.strong{background:var(--good-soft)}
+.callout.weak{background:var(--accent-soft)}
+.callout b{display:block;font-family:Fraunces,serif;font-size:1.15rem}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:s;position:relative;padding:0 0 18px 44px}
+.steps li:before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-weight:600;display:flex;align-items:center;justify-content:center}
+.steps .from{display:block;font-size:.8rem;color:var(--muted);margin-bottom:2px}
+.stars{display:flex;gap:8px;margin:8px 0 14px}
+.stars button{width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:#fff;font:600 1rem Inter;cursor:pointer;color:var(--ink)}
+.stars button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.cta{background:var(--ink);color:#fff;border:0}
+.cta h2{color:#fff}
+.cta .btn{background:#fff;color:var(--ink)}
+footer{text-align:center;font-size:.8rem;color:var(--muted);margin-top:24px}
 
+/* ---------- One-page PDF report (rendered off-screen) ---------- */
+#reportHost{position:fixed;left:-10000px;top:0}
+#report{width:816px;height:1056px;padding:48px 56px;background:#fff;color:var(--ink);font:13px/1.5 Inter,sans-serif;overflow:hidden}
+#report h1{font-size:28px;margin:0 0 2px}
+#report .rhead{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:20px}
+#report .rgrid{display:grid;grid-template-columns:340px 1fr;gap:28px;align-items:center;margin-bottom:18px}
+#report .rcall{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
+#report .callout{padding:12px}
+#report .callout b{font-size:16px}
+#report h3{font-size:17px;margin:0 0 10px}
+#report .steps li{padding-bottom:10px;padding-left:38px}
+#report .steps li:before{width:26px;height:26px;font-size:13px}
+#report .rfoot{position:absolute;left:56px;right:56px;bottom:40px;border-top:1px solid var(--line);padding-top:12px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between}
+#report{position:relative}
+</style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <div class="eyebrow">Creating Your Own Path</div>
-    <h1>The 5 Pillars Quiz</h1>
-    <p>Chihiro Shibayama · Musicians Career Coach</p>
-  </header>
 
-  <!-- gate -->
-  <section id="gate" class="card">
-    <h2>Before our session</h2>
-    <p class="note">Fifty quick yes-or-no questions about how you run your career. Answer honestly; there are no wrong answers. It takes about ten minutes, and we'll go through it together.</p>
-    <form id="gate-form" class="card" style="padding:0;border:0;background:none">
-      <div class="field">
-        <label for="name-in">Your name</label>
-        <input type="text" id="name-in" autocomplete="name" required>
-      </div>
-      <div class="field" id="email-field">
-        <label for="email-in">Your email</label>
-        <input type="text" id="email-in" inputmode="email" autocomplete="email" required>
-      </div>
-      <div class="field">
-        <label for="access-in">Access code from Chihiro</label>
-        <input type="text" id="access-in" autocomplete="off" spellcheck="false" required>
-      </div>
-      <p class="err" id="gate-err" hidden></p>
-      <div class="row"><button class="primary" type="submit" id="start-btn">Start</button></div>
-    </form>
-  </section>
-
-  <!-- quiz -->
-  <section id="quiz" class="card" hidden>
-    <div class="progress" id="progress"></div>
-    <div class="qmeta">
-      <div><div class="pill-name" id="pname"></div><div class="pill-sub" id="psub"></div></div>
-      <div class="count" id="qcount"></div>
-    </div>
-    <p class="question" id="qtext"></p>
-    <div class="answers">
-      <button type="button" id="yes-btn">Yes</button>
-      <button type="button" id="no-btn">No</button>
-    </div>
-    <div class="row"><button class="link" type="button" id="back-btn">Back</button></div>
-  </section>
-
-  <!-- done -->
-  <section id="done" class="card" hidden>
-    <h2 id="done-title">Thank you.</h2>
-    <p class="note" id="send-status" aria-live="polite">Sending your answers to Chihiro…</p>
-    <p class="note" id="done-note">She'll read your results before your session, and you'll go through them together. Your backup code is below, in case she asks for it.</p>
-    <div class="code" id="code-out"></div>
-    <div class="row">
-      <button class="primary" type="button" id="copy-btn">Copy name and code</button>
-      <span class="note" id="copy-msg" aria-live="polite"></span>
-    </div>
-    <button class="link" type="button" id="restart-btn">Start over</button>
-  </section>
-</div>
-<div id="print-sheet"></div>
-
-<form name="five-pillars" data-netlify="true" netlify-honeypot="bot-field" hidden>
-  <input name="bot-field"><input name="name"><input name="email"><input name="code"><input name="lowest"><input name="outreach"><input name="reputation"><input name="network"><input name="income-architecture"><input name="mindset">
+<!-- Netlify needs these hidden copies of the forms to detect them at deploy time. -->
+<form name="five-pillars-quiz" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input name="bot-field"><input name="first_name"><input name="email"><input name="age_range"><input name="gender"><input name="career_stage"><input name="instrument"><input name="consent">
+  <input name="answers"><input name="score_outreach"><input name="score_reputation"><input name="score_network"><input name="score_income"><input name="score_mindset">
+  <input name="weakest"><input name="strongest"><input name="steps_shown"><input name="quiz_version">
+</form>
+<form name="five-pillars-feedback" data-netlify="true" hidden>
+  <input name="email"><input name="accuracy"><textarea name="comment"></textarea><input name="weakest">
 </form>
 
+<div class="wrap">
+  <div class="brand">Chihiro Shibayama &middot; Musicians Career Coach</div>
+
+  <!-- ===== Intro ===== -->
+  <section id="intro">
+    <h1>The 5 Pillars Career Check</h1>
+    <p>Conservatory teaches you to play. It rarely teaches you how freelance careers actually get built. This free check-up looks at the five pillars I've seen make the difference over 20+ years of freelancing on Broadway, at the Met, and with orchestras: <b>Outreach, Reputation, Network, Income Architecture, and Mindset.</b></p>
+    <div class="card">
+      <h3>What you'll get</h3>
+      <p style="margin:0">Your score on each pillar, a visual map of your career, your strongest and weakest pillar, and three concrete next steps chosen from your answers. You can download it all as a one-page PDF.</p>
+    </div>
+    <p class="small">50 yes/no questions &middot; about 10 minutes &middot; answer honestly; there are no wrong answers.</p>
+    <button class="btn" onclick="startQuiz()">Start the quiz</button>
+  </section>
+
+  <!-- ===== Questions ===== -->
+  <section id="quiz" class="hidden">
+    <div class="row" style="justify-content:space-between"><span class="pillar-tag" id="pTag"></span><span class="small" id="pCount"></span></div>
+    <div class="progress"><span id="pBar"></span></div>
+    <h2 id="pTitle"></h2>
+    <p class="small" id="pSub"></p>
+    <div class="card" id="qList"></div>
+    <p class="error hidden" id="qErr">Please answer every question on this page.</p>
+    <div class="row">
+      <button class="btn secondary" id="backBtn" onclick="prevPage()">Back</button>
+      <button class="btn" id="nextBtn" onclick="nextPage()">Next</button>
+    </div>
+  </section>
+
+  <!-- ===== About you ===== -->
+  <section id="about" class="hidden">
+    <span class="pillar-tag">Last step</span>
+    <div class="progress"><span style="width:100%"></span></div>
+    <h2>A little about you</h2>
+    <p class="small">This helps me understand who the quiz is reaching and improve it for musicians like you.</p>
+    <div class="card">
+      <div class="field"><label class="lab" for="fName">First name</label><input id="fName" type="text" autocomplete="given-name"></div>
+      <div class="field"><label class="lab" for="fEmail">Email (your results will also be linked to it)</label><input id="fEmail" type="email" autocomplete="email"></div>
+      <div class="field"><label class="lab" for="fInstrument">Main instrument</label>
+        <select id="fInstrument"><option value="">Choose one</option></select>
+        <input id="fInstrumentOther" type="text" class="hidden" placeholder="Your instrument" style="margin-top:8px">
+      </div>
+      <div class="field"><label class="lab" for="fStage">Where are you in your career?</label>
+        <select id="fStage"><option value="">Choose one</option></select></div>
+      <div class="field"><label class="lab" for="fAge">Age range</label>
+        <select id="fAge"><option value="">Choose one</option></select></div>
+      <div class="field"><label class="lab" for="fGender">Gender</label>
+        <select id="fGender"><option value="">Choose one</option></select>
+        <input id="fGenderOther" type="text" class="hidden" placeholder="How you describe your gender" style="margin-top:8px">
+      </div>
+      <label class="consent"><input type="checkbox" id="fConsent"><span>I understand that my answers are private: Chihiro will never share my name or individual answers publicly. She reviews responses to improve the quiz and create resources for musicians, and may email me about related workshops and offers. I can unsubscribe anytime.</span></label>
+      <p class="error hidden" id="aErr"></p>
+    </div>
+    <div class="row">
+      <button class="btn secondary" onclick="backToQuiz()">Back</button>
+      <button class="btn" id="seeBtn" onclick="submitAll()">See my results</button>
+    </div>
+  </section>
+
+  <!-- ===== Results ===== -->
+  <section id="results" class="hidden">
+    <span class="pillar-tag">Your results</span>
+    <h1 id="rTitle" style="margin-top:6px"></h1>
+    <div class="card">
+      <div class="result-top">
+        <div id="rChart"></div>
+        <ul class="scores" id="rScores"></ul>
+      </div>
+    </div>
+    <div class="callouts" id="rCallouts" style="margin-bottom:20px"></div>
+    <div class="card">
+      <h2>Your 3 next steps</h2>
+      <p class="small">Chosen from the questions you answered "no" in your weakest pillar. Small moves, done this week, add up.</p>
+      <ol class="steps" id="rSteps"></ol>
+      <button class="btn" id="pdfBtn" onclick="downloadPdf()">Download my one-page PDF</button>
+    </div>
+
+    <div class="card" id="fbCard">
+      <h3>How accurate did this feel?</h3>
+      <p class="small" style="margin:0">1 = not at all like me, 5 = spot on. Your honest feedback shapes the next version.</p>
+      <div class="stars" id="stars"></div>
+      <textarea id="fbComment" placeholder="Anything that surprised you, felt off, or was missing? (optional)"></textarea>
+      <div class="row" style="margin-top:12px"><button class="btn secondary" id="fbBtn" onclick="sendFeedback()" disabled>Send feedback</button><span class="small hidden" id="fbThanks">Thank you, received.</span></div>
+    </div>
+
+    <div class="card cta">
+      <h2 id="ctaTitle"></h2>
+      <p id="ctaText"></p>
+      <p id="ctaMeta" style="font-weight:600"></p>
+      <button class="btn" id="ctaBtn" type="button" onclick="joinWaitlist()"></button>
+      <p class="hidden" id="ctaDone" style="font-weight:600;margin:12px 0 0">You're on the list! I'll email you the date as soon as it's set.</p>
+    </div>
+  </section>
+
+  <footer>&copy; <span id="yr"></span> Chihiro Shibayama &middot; chihiroshibayama.com</footer>
+</div>
+
+<div id="reportHost"><div id="report"></div></div>
+
 <script>
-(function(){
-  "use strict";
-  const ARTIFACT = false;
-  const DATA = JSON.parse(decodeURIComponent(escape(atob("eyJhY2Nlc3MiOiAiTVlQQVRIIiwgInBpbGxhcnMiOiBbeyJuYW1lIjogIk91dHJlYWNoIiwgInN1YiI6ICJNYWtpbmcgdGhlIEZpcnN0IE1vdmUiLCAicSI6IFsiSGF2ZSB5b3UgcmVhY2hlZCBvdXQgdG8gYXQgbGVhc3Qgb25lIG5ldyBjb250cmFjdG9yIG9yIGhpcmluZyBtdXNpY2lhbiBpbiB0aGUgbGFzdCBtb250aD8iLCAiRG8geW91IGhhdmUgYSBjbGVhciBpZGVhIG9mIHdobyBhY3R1YWxseSBkb2VzIHRoZSBoaXJpbmcgZm9yIHRoZSBlbnNlbWJsZXMgeW91IHdhbnQgdG8gcGxheSBpbj8iLCAiQmVmb3JlIHlvdSByZWFjaCBvdXQgdG8gc29tZW9uZSwgZG8geW91IHJlc2VhcmNoIHdoZXRoZXIgdGhleSdyZSB0aGUgcmlnaHQgcGVyc29uIHRvIGNvbnRhY3Q/IiwgIkFyZSB5b3UgY29tZm9ydGFibGUgc2VuZGluZyBhIGNvbGQgZW1haWwgb3IgbWFraW5nIGEgY29sZCBjYWxsIHRvIHNvbWVvbmUgeW91IGRvbid0IGtub3c/IiwgIkhhdmUgeW91IGV2ZXIgZ29uZSB0byBzZWUgc29tZW9uZSBwbGF5IHNwZWNpZmljYWxseSBzbyB5b3UgY291bGQgaW50cm9kdWNlIHlvdXJzZWxmIGFmdGVyd2FyZD8iLCAiRG8geW91IGhhdmUgYSBnby10byBhcHByb2FjaCBvciBzY3JpcHQgZm9yIGludHJvZHVjaW5nIHlvdXJzZWxmIHRvIGEgbmV3IGNvbnRhY3Q/IiwgIldoZW4geW91IGRvbid0IGhlYXIgYmFjayBmcm9tIGFuIG91dHJlYWNoIG1lc3NhZ2UsIGRvIHlvdSBmb2xsb3cgdXAgcmF0aGVyIHRoYW4gYXNzdW1lIGl0J3MgYSBubz8iLCAiRG8geW91IGtlZXAgZ29pbmcgd2l0aCBvdXRyZWFjaCBldmVuIHdoZW4gcmVzdWx0cyB0YWtlIG1vbnRocyB0byBzaG93IHVwPyIsICJJbiB0aGUgbGFzdCB0aHJlZSBtb250aHMsIGhhdmUgeW91IHB1dCB5b3VyIG5hbWUgaW4gZnJvbnQgb2Ygc29tZW9uZSB3aG8gZGlkbid0IGFscmVhZHkga25vdyB5b3U/IiwgIkRvIHlvdSB0aGluayBvZiBvdXRyZWFjaCBhcyBhIG5vcm1hbCwgb25nb2luZyBwYXJ0IG9mIHlvdXIgd29yayByYXRoZXIgdGhhbiBzb21ldGhpbmcgdG8gYXZvaWQ/Il19LCB7Im5hbWUiOiAiUmVwdXRhdGlvbiIsICJzdWIiOiAiVGhlIFdvcmsgQmVoaW5kIHRoZSBXb3JrIiwgInEiOiBbIkRvIHlvdSBrbm93IHlvdXIgYm9vayAob3IgeW91ciBwYXJ0KSBjb2xkIGJlZm9yZSB0aGUgZG93bmJlYXQ/IiwgIkRvIHlvdSBjb25zaXN0ZW50bHkgYXJyaXZlIGVhcmx5IHRvIHNldCB1cD8iLCAiRG8geW91IHN0YXkgdG8gYnJlYWsgZG93biBhbmQgbGVhdmUgdGhlIHNwYWNlIHJpZ2h0LCBldmVuIHdoZW4geW91J3JlIHRpcmVkPyIsICJXb3VsZCB0aGUgY29udHJhY3RvcnMgeW91J3ZlIHdvcmtlZCB3aXRoIGRlc2NyaWJlIHlvdSBhcyByZWxpYWJsZT8iLCAiQXJlIHlvdSBlYXN5IHRvIHdvcmsgd2l0aCBvbiBhIGxvbmcsIGhpZ2gtcHJlc3N1cmUgZGF5PyIsICJEbyBwZW9wbGUgZ2VuZXJhbGx5IHNlZW0gdG8gZW5qb3kgc3BlbmRpbmcgdGhlIGRheSB3aXRoIHlvdT8iLCAiSGF2ZSB5b3UgYmVlbiBjYWxsZWQgYmFjayB0byB3b3JrIHdpdGggdGhlIHNhbWUgcGVvcGxlIG1vcmUgdGhhbiBvbmNlPyIsICJEbyB5b3UgcHJlcGFyZSB0aG9yb3VnaGx5IGV2ZW4gZm9yIGdpZ3MgdGhhdCBmZWVsIHJvdXRpbmUgb3IgbG93LXN0YWtlcz8iLCAiRG8geW91IGhhbmRsZSBtaXN0YWtlcyBvciBsYXN0LW1pbnV0ZSBjaGFuZ2VzIGNhbG1seSwgd2l0aG91dCBjcmVhdGluZyBmcmljdGlvbj8iLCAiSWYgc29tZW9uZSBpbiB5b3VyIG5ldHdvcmsgd2FzIGFza2VkIOKAnHdoYXQgYXJlIHRoZXkgbGlrZSB0byB3b3JrIHdpdGg/4oCdLCBhcmUgeW91IGNvbmZpZGVudCB0aGUgYW5zd2VyIHdvdWxkIGhlbHAgeW91PyJdfSwgeyJuYW1lIjogIk5ldHdvcmsiLCAic3ViIjogIlJlbGF0aW9uc2hpcHMgVGhhdCBDb21wb3VuZCIsICJxIjogWyJEbyB5b3Ugc2VuZCBhIHRoYW5rLXlvdSBhZnRlciBnaWdzPyIsICJEbyB5b3Ugc3RheSBpbiB0b3VjaCB3aXRoIGNvbGxlYWd1ZXMgYmV0d2VlbiBnaWdzLCBub3QganVzdCB3aGVuIHlvdSBuZWVkIHNvbWV0aGluZz8iLCAiQ2FuIHlvdSBuYW1lIGZpdmUgcGVvcGxlIHdobyB3b3VsZCB0aGluayBvZiB5b3UgaWYgYSBnaWcgb3BlbmVkIHVwIHRvbW9ycm93PyIsICJIYXZlIHlvdSBrZXB0IHJlbGF0aW9uc2hpcHMgYWxpdmUgd2l0aCBwZW9wbGUgeW91IHdvcmtlZCB3aXRoIHllYXJzIGFnbz8iLCAiRG8geW91IG1haW50YWluIGNvbm5lY3Rpb25zIGV2ZW4gYWZ0ZXIgbW92aW5nIGNpdGllcyBvciBjaGFuZ2luZyBzY2VuZXM/IiwgIkhhcyBzb21lb25lIHJlY29tbWVuZGVkIHlvdSBmb3Igd29yayBpbiB0aGUgbGFzdCB5ZWFyPyIsICJEbyB5b3UgaGF2ZSBhIHdheSBvZiBrZWVwaW5nIHRyYWNrIG9mIHRoZSBwZW9wbGUgaW4geW91ciBuZXR3b3JrPyIsICJEbyB5b3UgcmVhY2ggb3V0IHRvIHlvdXIgbmV0d29yayB3aXRoIHRoaW5ncyBvdGhlciB0aGFuIHJlcXVlc3RzLCBsaWtlIGNvbmdyYXR1bGF0aW9ucywgY2hlY2staW5zLCBvciBzaGFyaW5nIHRoZWlyIHdvcms/IiwgIkRvIHlvdSBmZWVsIGxpa2UgeW91ciByZWxhdGlvbnNoaXBzIGFyZSBnZW51aW5lIHJhdGhlciB0aGFuIHB1cmVseSB0cmFuc2FjdGlvbmFsPyIsICJIYXZlIGFueSByZWxhdGlvbnNoaXBzIGluIHlvdXIgY2FyZWVyIHBhaWQgb2ZmIGluIHdheXMgeW91IGRpZG4ndCBvcmlnaW5hbGx5IGV4cGVjdD8iXX0sIHsibmFtZSI6ICJJbmNvbWUgQXJjaGl0ZWN0dXJlIiwgInN1YiI6ICJEZXNpZ25pbmcgdGhlIFBvcnRmb2xpbyIsICJxIjogWyJEbyB5b3UgaGF2ZSBtb3JlIHRoYW4gb25lIHNvdXJjZSBvZiBpbmNvbWUgcmlnaHQgbm93PyIsICJJZiB5b3VyIGJpZ2dlc3QgaW5jb21lIHN0cmVhbSBkaXNhcHBlYXJlZCB0b21vcnJvdywgd291bGQgeW91IHN0aWxsIGJlIG9rYXk/IiwgIkRvIHlvdSBhY3RpdmVseSB0aGluayBvZiB5b3VyIGNhcmVlciBhcyBhIHBvcnRmb2xpbyByYXRoZXIgdGhhbiBhIHNpbmdsZSBqb2I/IiwgIkFyZSB5b3UgaW50ZW50aW9uYWxseSBncm93aW5nIGF0IGxlYXN0IG9uZSBpbmNvbWUgc3RyZWFtIHJpZ2h0IG5vdz8iLCAiRG8geW91IGtub3cgeW91ciBudW1iZXJzLCBtZWFuaW5nIHdoYXQgeW91IG5lZWQgdG8gZWFybiB0byBjb3ZlciB5b3VyIGxpZmU/IiwgIkRvIHlvdSBoYXZlIGEgcHJpY2luZyBzdHJ1Y3R1cmUgeW91IGZlZWwgY29uZmlkZW50IHF1b3Rpbmc/IiwgIkRvIHlvdSBzZXQgbW9uZXkgYXNpZGUgZm9yIHRheGVzIGFuZCBzbG93IHBlcmlvZHM/IiwgIkRvIHlvdSBoYXZlIGluY29tZSB0aGF0IGlzbid0IHRpZWQgdG8geW91IHBoeXNpY2FsbHkgcGVyZm9ybWluZz8iLCAiSGF2ZSB5b3UgYWRqdXN0ZWQgeW91ciBpbmNvbWUgbWl4IGFzIHlvdXIgbGlmZSBjaXJjdW1zdGFuY2VzIGNoYW5nZWQ/IiwgIkRvIHlvdSBmZWVsIGluIGNvbnRyb2wgb2YgaG93IHlvdSBnZXQgcGFpZCwgcmF0aGVyIHRoYW4gYXQgdGhlIG1lcmN5IG9mIHdoYXRldmVyIGNvbWVzIGluPyJdfSwgeyJuYW1lIjogIk1pbmRzZXQiLCAic3ViIjogIlRoZSBJbm5lciBHYW1lIiwgInEiOiBbIldoZW4gc29tZXRoaW5nIGRvZXNuJ3Qgd29yaywgZG8geW91IGFzayB3aGF0IHlvdSBjb3VsZCBkbyBkaWZmZXJlbnRseT8iLCAiRG8geW91IHRha2UgYWN0aW9uIG9uIHlvdXIgY2FyZWVyIHJhdGhlciB0aGFuIHdhaXRpbmcgZm9yIG9wcG9ydHVuaXRpZXMgdG8gY29tZSB0byB5b3U/IiwgIldoZW4geW91IGhpdCBhbiBvYnN0YWNsZSwgZG8geW91IGxvb2sgZm9yIGEgcmVzb3VyY2VmdWwgd29ya2Fyb3VuZD8iLCAiRG8geW91IGJlbGlldmUgeW91IGNhbiBidWlsZCB0aGUgY2FyZWVyIHlvdSB3YW50IHdpdGggd2hhdCB5b3UgY3VycmVudGx5IGhhdmU/IiwgIkRvIHlvdSB0YWtlIHJlc3BvbnNpYmlsaXR5IGZvciB5b3VyIGNhcmVlciByYXRoZXIgdGhhbiBibGFtaW5nIHRoZSBtYXJrZXQgb3IgbHVjaz8iLCAiV2hlbiBtb25leSBvciB3b3JrIGdldHMgdGlnaHQsIGRvIHlvdSBmaW5kIGEgd2F5IHRvIGtlZXAgbW92aW5nPyIsICJEbyB5b3UgZm9sbG93IHRocm91Z2ggb24gdGhlIG91dHJlYWNoLCBwcmVwLCBhbmQgbmV0d29ya2luZyBldmVuIHdoZW4geW91IGRvbid0IGZlZWwgbGlrZSBpdD8iLCAiQXJlIHlvdSB3aWxsaW5nIHRvIHRyeSBhbiB1bmZhbWlsaWFyIHBhdGggd2hlbiB0aGUgdXN1YWwgb25lIGlzbid0IHdvcmtpbmc/IiwgIkRvIHlvdSBzZWUgc2V0YmFja3MgYXMgaW5mb3JtYXRpb24gcmF0aGVyIHRoYW4gcHJvb2YgeW91IHNob3VsZCBxdWl0PyIsICJEbyB5b3UgZ2VuZXJhbGx5IGZlZWwgbGlrZSB0aGUgZHJpdmVyIG9mIHlvdXIgY2FyZWVyIHJhdGhlciB0aGFuIGEgcGFzc2VuZ2VyPyJdfV19"))));
-  const P = DATA.pillars, ACCESS = DATA.access;
-  const Q = []; P.forEach((p,pi)=>p.q.forEach((t,qi)=>Q.push({pi,qi,t})));
-  const N = Q.length; // 50
-  const ALPHA = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
-  const $ = id => document.getElementById(id);
-  const KEY = "cyop-5p-draft";
+/* ============================================================
+   EDIT HERE: settings
+   ============================================================ */
+const CONFIG = {
+  quizVersion: "2026-11",
+  // Kit (ConvertKit): the number in your form's URL, e.g. app.kit.com/forms/1234567 -> "1234567"
+  kitFormId: "10134444",
+  // Optional: Kit tag IDs, one per weakest pillar. Leave blank to skip tagging.
+  kitTagIds: { outreach:"", reputation:"", network:"", income:"", mindset:"" },
+  // Call to action at the bottom of the results
+  ctaTitle: "Unpack your results with me, live",
+  ctaText: "Your results are a starting point. In a small-group Zoom session (10 people max), I'll walk through what your pentagon shape is telling you, why your focus pillar matters most right now, and how to turn your next steps into a plan you'll actually follow. You'll also hear how other musicians are tackling the same challenges. Bring your PDF and your questions.",
+  ctaMeta: "90 minutes · Founding price $25 (regularly $50)",
+  ctaButton: "Notify me about the next debrief",
+  // Kit form for the debrief waitlist (one click adds the quiz-taker's email)
+  waitlistFormId: "10134517",
+  ctaUrl: "https://chihiroshibayama.com",   // replace with the debrief sign-up link
+  website: "chihiroshibayama.com"
+};
 
-  let state = {name:"", answers:Array(N).fill(null), i:0, done:false};
-  let previewMode = false;
+const OPTIONS = {
+  instrument: ["Percussion","Drum set","Piano / keyboard","Voice","Violin","Viola","Cello","Double bass","Harp","Guitar","Flute","Oboe","Clarinet","Bassoon","Saxophone","Horn","Trumpet","Trombone","Tuba / euphonium","Composer / arranger","Conductor","Other"],
+  stage: ["Pre-college student","College or conservatory student","Early-career professional (0–5 years)","Established professional (5+ years)","Amateur / hobbyist","Returning after a break"],
+  age: ["Under 18","18–24","25–34","35–44","45–54","55–64","65+"],
+  gender: ["Woman","Man","Non-binary","Prefer to self-describe","Prefer not to say"]
+};
 
-  function save(){ if(previewMode) return; try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
-  function load(){ try{ const s = JSON.parse(localStorage.getItem(KEY)||"null"); if(s && Array.isArray(s.answers) && s.answers.length===N) state = s; }catch(e){} }
+/* ============================================================
+   EDIT HERE: pillars, questions, and next steps.
+   Within each pillar, question order is priority order for next steps.
+   ============================================================ */
+const PILLARS = [
+ { key:"outreach", name:"Outreach", sub:"Making the first move", qs:[
+  ["In the last month, have you reached out to someone new, in music or outside it, who could open a door for you?","This week, reach out to one new person who could open a door: a contractor, a fellow musician, a venue owner, a teacher, or someone outside music, like an event planner. Keep it short: who you are, what you do, and a genuine reason you're reaching out."],
+  ["Do you have a clear idea of who actually does the hiring for the ensembles you want to play in?","For the three ensembles you most want to play with, find the name of the person who books subs. Ask a player in the group, or check the ensemble's staff page."],
+  ["Before you reach out to someone, do you research whether they're the right person to contact?","Before your next outreach message, spend 15 minutes confirming the person actually hires for your instrument: their role, recent seasons or shows, and who they've hired before."],
+  ["Are you comfortable sending a cold email or making a cold call to someone you don't know?","Write your cold email once, send it to a former teacher or colleague for honest feedback, then send the revised version to one person you don't know."],
+  ["Have you ever gone to hear someone play specifically so you could introduce yourself afterward?","Find one concert this month featuring a player or contractor you'd like to meet. Go, and introduce yourself afterward with one specific compliment about the performance. Exchange contact information if possible, and write a follow-up email within a week."],
+  ["Do you have a go-to approach or script for introducing yourself to a new contact?","Write a 3–4 sentence introduction: who you are, one credential that matters to them, what you're asking for, and a thank-you. Save it so you can adapt it in minutes."],
+  ["When you don't hear back from an outreach message, do you follow up rather than assume it's a no?","Look through your sent messages from the past three months and send a brief, friendly follow-up to anyone who didn't reply. From now on, set a two-week reminder for every new message."],
+  ["Do you keep going with outreach even when results take months to show up?","Set a small, steady goal, such as two new contacts a month, and track it for three months. Count messages sent, not replies received."],
+  ["If someone wanted to learn about you and hear you play, could they find you easily (website, social media, recordings, business card)?","Make sure anyone who hears your name can find you in two minutes. Set up a simple website or link page with a short bio, two or three recordings, and your contact info. Link it from your social profiles and email signature, and carry business cards with a QR code that goes to it."],
+  ["Do you think of outreach as a normal, ongoing part of your work rather than something to avoid?","Block 30 minutes on your calendar each week labeled \"Outreach,\" and treat it like a rehearsal you can't skip."]
+ ]},
+ { key:"reputation", name:"Reputation", sub:"The work behind the work", qs:[
+  ["Do you know your part cold before the downbeat, even for gigs that feel routine?","For your next gig, even an \"easy\" one, get the music or a recording as early as possible and drill the hardest passages until you could play them without the conductor. Check timing, dress code, and parking ahead too. If you don't have the part yet, ask the contractor or librarian for it."],
+  ["Do you consistently arrive early to set up?","For your next three gigs, plan to arrive 45–60 minutes before the call, so you're set up, warmed up, and calm before anyone else arrives."],
+  ["Do you look for ways to help out at gigs without overstepping your role?","At your next gig, find one small way to make the day easier for someone: help a colleague carry gear, ask the organizer or stage manager if they need a hand, or share a spare pencil or mute. Ask before jumping in, and stay within your role as a player."],
+  ["Would the contractors you've worked with describe you as reliable?","List the ways you may have let a contractor down this past year (slow replies, lateness, under-preparation). Pick the most common one and fix it with a rule, such as replying to every work inquiry within 24 hours."],
+  ["Are you easy and enjoyable to spend a long day with?","Before your next long rehearsal or double, pack what keeps you steady: snacks, water, a warm layer, and spare supplies. Comfortable people are easier to be around. Then learn the names of the people near you and invite one of them for coffee or food on the break."],
+  ["Do you keep complaints and gossip out of the rehearsal room?","At your next few gigs, notice when conversation turns to complaining about the conductor, the pay, or another player, and gently change the subject or stay out of it. Word travels fast, and the players who stay positive are the ones trusted with the next call."],
+  ["Have you been called back to work with the same people more than once?","List the last five people who hired you. For anyone who hasn't called again, send a friendly note thanking them and saying you'd love to work together again."],
+  ["When you sub, do you adapt to the section's style and the leader's preferences rather than playing it your way?","Before your next sub gig, listen to a recording of the group if you can. In rehearsal, watch the principal and listen closely to the section: notice tempos, articulation, sound, and how they set up, and match them first. Learn by observing rather than asking lots of questions, and save your own interpretation for when you're asked. If the principal says nothing, that usually means you're doing it right."],
+  ["Do you handle mistakes or last-minute changes calmly, without creating friction?","Think of the last time a gig went sideways. Write down how you reacted and what a calm, helpful response would look like, so you have a plan ready next time."],
+  ["If someone in your network was asked \"what are they like to work with?\", are you confident the answer would help you?","Ask two colleagues you trust: \"What's one thing that would make me easier to work with?\" Listen without defending, and choose one thing to change."]
+ ]},
+ { key:"network", name:"Network", sub:"Relationships that compound", qs:[
+  ["Do you send a thank-you after gigs?","List the gigs you've played and truly enjoyed in the last few months. Send a thank-you note to whoever is appropriate: the personnel manager, the music director, or whoever recommended you."],
+  ["Do you stay in touch with your network between gigs, even after moving cities, with congratulations, check-ins, or sharing their work, not just when you need something?","This month, send three messages that ask for nothing to colleagues you haven't talked to in a while, including someone from a city you've left. Congratulate them on a win, share their concert post, or simply check in."],
+  ["Can you name five people who would think of you if a gig opened up tomorrow?","Write down five people you'd want to call you if a gig opened up tomorrow. Note when you last talked to each, and reach out to anyone it's been more than six months."],
+  ["Are you building relationships with peers at your own career stage, not just established players?","Pick three peers at your career stage whose playing or work you admire. Go to one of their concerts, share their work, or suggest getting together to collaborate. Today's classmates and fellow subs are tomorrow's principals, contractors, and music directors."],
+  ["Do you show up to social events to strengthen your relationships and meet new people?","Pick two events in the next month, such as a colleague's concert, a post-concert reception, a conference, or a union or community event, and go. Set a simple goal for each: catch up with one person you know and meet one person you don't."],
+  ["Has someone recommended you for work in the last year?","Recommend a colleague for a gig you can't take. Generosity tends to come back, and it reminds people you're well connected."],
+  ["Do you have a way of keeping track of the people in your network?","Start a simple contact list in a spreadsheet or notes app: name, where you met, what they do, and last contact. Add 20 people this week."],
+  ["Do you introduce people in your network to each other when it could help them both?","Think of two people you know who could help each other, like a composer who needs players and a colleague who'd be perfect, or a parent looking for a teacher and a colleague who teaches. Introduce them in a short message explaining why they should meet."],
+  ["Do you feel like your relationships are genuine rather than purely transactional?","Before your next networking message, write down one thing you truly appreciate or are curious about in that person, and open with it."],
+  ["Have any relationships in your career paid off in ways you didn't originally expect?","Trace how you got your three best gigs back to the first person who connected you. Then thank that person."]
+ ]},
+ { key:"income", name:"Income Architecture", sub:"Designing the portfolio", qs:[
+  ["Do you have more than one source of income right now?","List three things people already ask you for help with, like lessons, subbing, or arranging. Pick one you could offer more regularly and tell five people you're available for it."],
+  ["If your biggest income stream disappeared tomorrow, would you still be okay?","Work out how many months you could cover your expenses if your biggest income stream stopped. Write down one step that would make that number larger."],
+  ["Is any debt you carry (student loans, credit cards) under control, with a plan to pay it down?","List every debt you have with its balance, interest rate, and minimum payment. Pay at least the minimum on all of them, and put anything extra toward the highest-interest debt first, usually credit cards. For student loans, ask your loan servicer which repayment options fit an irregular income.","If you have no debt, answer Yes."],
+  ["Are you intentionally growing at least one income stream right now?","Pick one income stream you control and set a specific 90-day goal, such as adding two students or raising your rate by $10."],
+  ["Do you know your numbers: what you need to earn each month to cover your life?","Add up your monthly expenses (housing, food, insurance, transportation, debt, savings) to find your baseline: what you need to earn each month."],
+  ["Do you have a pricing structure you feel confident quoting?","Write down your rate for every service you offer. Compare them with two or three colleagues' rates, then practice saying your numbers out loud."],
+  ["Do you set money aside for taxes and slow periods?","Open a separate savings account and move a set percentage of every payment into it. Many freelancers use 25–30% for taxes and slow months."],
+  ["If you couldn't play or teach for a few months, do you have income or a skill that could still earn money, even outside music?","List the skills you have outside performing and teaching, such as languages, writing, tech, admin, or customer service. Pick one and figure out how you could earn from it within a month if you needed to. Think of it as a safety net, not a replacement for your music career."],
+  ["Have you adjusted your income mix as your life circumstances changed?","Write down what has changed in your life in the past two years, then ask whether your current income mix still fits it."],
+  ["Do you feel in control of how you get paid, rather than at the mercy of whatever comes in?","For each income stream, mark whether you set the price and schedule or someone else does. Pick one stream where you could take more control."]
+ ]},
+ { key:"mindset", name:"Mindset", sub:"The inner game", qs:[
+  ["When something doesn't work, do you take ownership of what you could do differently, rather than blaming luck or the market?","Write down the outside factors you feel are holding you back, like the market, luck, or timing. Next to each, write one thing within your control that you could do differently."],
+  ["Do you drive your career by taking action instead of waiting for opportunities to come to you?","Name one opportunity you've been hoping someone will offer you, and take one step this week toward creating it yourself."],
+  ["Do you find workarounds and keep moving when obstacles, money, or work get tight?","Name your biggest current obstacle and brainstorm ten ways around it, even unrealistic ones. Try the most doable one."],
+  ["Do you believe you can build the career you want with what you currently have?","List every asset you already have: skills, training, relationships, gear, location, languages, etc. Circle three you aren't using yet."],
+  ["When you don't get a gig or audition, can you move on without taking it as a verdict on your worth?","After your next rejection, give yourself a day to feel it. Then write down one thing you learned and one thing that went well, and send your next application or outreach message within a week."],
+  ["Can you celebrate a peer's success without it shaking your confidence in your own path?","The next time a peer's news stings, send them a genuine congratulations. Then write down one thing from your own path this year that you're proud of. Their win doesn't take your spot, and they may be the one hiring you someday."],
+  ["Do you follow through on outreach, prep, and networking even when you don't feel like it?","Pick the career task you avoid most and do a 10-minute version of it three times a week for the next month."],
+  ["Are you willing to try an unfamiliar path when the usual one isn't working?","Talk to one musician whose career looks different from yours and ask how they built it."],
+  ["Do you define success on your own terms, rather than by income, big names, or titles?","Write your own definition of a successful music career in three or four sentences, including what matters to you beyond money, names, and titles. Then list three things from the past year that already meet it. Come back to it whenever you feel behind."],
+  ["Do you have a clear vision of where you want your career to be in 5–10 years?","Write a few sentences describing your ideal work life 5–10 years from now: what you play, where, with whom, and how your income works. Then work backward: what would need to be true in three years, and what's one step you can take this month?"]
+ ]}
+];
 
-  // ---- code encoding: 50 yes/no bits -> 10 base32 chars + 2 check chars
-  function checksum(chars){ let s=0; for(let k=0;k<chars.length;k++) s=(s*31 + ALPHA.indexOf(chars[k])*(k+7))%1024; return ALPHA[s>>5]+ALPHA[s&31]; }
-  function encode(ans){
-    let out="";
-    for(let k=0;k<N;k+=5){ let v=0; for(let b=0;b<5;b++) v=(v<<1)|(ans[k+b]?1:0); out+=ALPHA[v]; }
-    const c = checksum(out);
-    return "CYOP-"+out.slice(0,5)+"-"+out.slice(5)+"-"+c;
-  }
-  function decode(raw){
-    let s = String(raw||"").toUpperCase().replace(/[^0-9A-Z]/g,"");
-    if(s.startsWith("CYOP")) s=s.slice(4);
-    s = s.replace(/O/g,"0").replace(/[IL]/g,"1").replace(/U/g,"V");
-    if(s.length!==12) return null;
-    const body=s.slice(0,10), c=s.slice(10);
-    if([...body].some(ch=>ALPHA.indexOf(ch)<0) || checksum(body)!==c) return null;
-    const ans=[];
-    for(const ch of body){ const v=ALPHA.indexOf(ch); for(let b=4;b>=0;b--) ans.push(((v>>b)&1)===1); }
-    return ans;
-  }
-  function scores(ans){ return P.map((p,pi)=>ans.slice(pi*10,pi*10+10).filter(Boolean).length); }
-  function tier(s){ return s>=8?["Strength","t-good"]:s>=5?["Room to sharpen","t-mid"]:["Growth area","t-gap"]; }
+/* ============================================================
+   App logic (no need to edit below)
+   ============================================================ */
+const answers = PILLARS.map(p => p.qs.map(() => null)); // true = yes, false = no
+let page = 0, result = null, rating = 0, submitted = false;
+const $ = id => document.getElementById(id);
+document.getElementById("yr").textContent = new Date().getFullYear();
 
-  function simpleHash(str){ let h=5381; for(const ch of str) h=((h*33)^ch.charCodeAt(0))>>>0; return h; }
-  const ACCESS_HASH = simpleHash(ACCESS.toUpperCase());
+function show(id){ ["intro","quiz","about","results"].forEach(s => $(s).classList.toggle("hidden", s!==id)); window.scrollTo(0,0); }
+function esc(s){ return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
 
-  // ---- views
-  function show(view){ ["gate","quiz","done"].forEach(v=>$(v).hidden = v!==view); }
+function startQuiz(){ page = 0; renderPage(); show("quiz"); }
 
-  function renderProgress(){
-    const box=$("progress"); box.textContent="";
-    P.forEach((p,pi)=>{
-      const n = state.answers.slice(pi*10,pi*10+10).filter(a=>a!==null).length;
-      const seg=document.createElement("div"); seg.className="seg"; seg.title=p.name;
-      const fill=document.createElement("i"); fill.style.width=(n*10)+"%"; seg.appendChild(fill); box.appendChild(seg);
-    });
+function renderPage(){
+  const p = PILLARS[page];
+  $("pTag").textContent = `Pillar ${page+1} of 5`;
+  $("pCount").textContent = `${p.name}`;
+  $("pBar").style.width = `${(page/5)*100}%`;
+  $("pTitle").textContent = p.name;
+  $("pSub").textContent = p.sub;
+  $("qList").innerHTML = p.qs.map((q,i) => {
+    const a = answers[page][i];
+    const n = `q${page}_${i}`;
+    return `<div class="q" id="w_${n}"><p>${i+1}. ${esc(q[0])}${q[2] ? `<span class="note">${esc(q[2])}</span>` : ""}</p>
+      <div class="yn" role="radiogroup" aria-label="Question ${i+1}">
+        <label><input type="radio" name="${n}" value="1" ${a===true?"checked":""} onchange="setA(${page},${i},true)"><span>Yes</span></label>
+        <label><input type="radio" name="${n}" value="0" ${a===false?"checked":""} onchange="setA(${page},${i},false)"><span>No</span></label>
+      </div></div>`;
+  }).join("");
+  $("backBtn").classList.toggle("hidden", page===0);
+  $("nextBtn").textContent = page===4 ? "Almost done" : "Next pillar";
+  $("qErr").classList.add("hidden");
+}
+function setA(p,i,v){ answers[p][i] = v; const w = $(`w_q${p}_${i}`); if (w) w.classList.remove("missing"); }
+function nextPage(){
+  const missing = answers[page].map((a,i)=>a===null?i:-1).filter(i=>i>=0);
+  if (missing.length){
+    missing.forEach(i => $(`w_q${page}_${i}`).classList.add("missing"));
+    $("qErr").classList.remove("hidden");
+    $(`w_q${page}_${missing[0]}`).scrollIntoView({behavior:"smooth",block:"center"});
+    return;
   }
-  function renderQ(){
-    const q=Q[state.i], p=P[q.pi];
-    $("pname").textContent = "Pillar "+(q.pi+1)+" · "+p.name;
-    $("psub").textContent = p.sub;
-    $("qcount").textContent = (state.i+1)+" / "+N;
-    $("qtext").textContent = q.t;
-    $("yes-btn").classList.toggle("on", state.answers[state.i]===true);
-    $("no-btn").classList.toggle("on", state.answers[state.i]===false);
-    $("back-btn").hidden = state.i===0;
-    renderProgress();
-  }
-  function answer(v){
-    state.answers[state.i]=v;
-    if(state.i<N-1){ state.i++; save(); renderQ(); }
-    else { state.done=true; save(); renderDone(); }
-  }
-  function renderDone(){
-    if(state.answers.some(a=>a===null)){ state.i=state.answers.indexOf(null); state.done=false; show("quiz"); renderQ(); return; }
-    $("done-title").textContent = "Thank you, "+(state.name.split(" ")[0]||"")+".";
-    $("code-out").textContent = encode(state.answers);
-    $("copy-msg").textContent="";
-    show("done");
-    submitResults();
-  }
-  function submitResults(){
-    const st=$("send-status");
-    if(previewMode){ st.textContent="Preview mode: nothing was sent."; return; }
-    if(state.sent){ st.textContent="Your answers were sent to Chihiro."; return; }
-    const form=document.querySelector('form[name="five-pillars"]');
-    if(!form){ st.textContent="One last step: copy your name and code below, and send them to Chihiro by replying to her email or message."; return; }
-    const sc=scores(state.answers), min=Math.min(...sc);
-    const body=new URLSearchParams({
-      "form-name":"five-pillars", name:state.name, email:state.email||"",
-      code:encode(state.answers), lowest:P.filter((p,i)=>sc[i]===min).map(p=>p.name).join(", ")
-    });
-    P.forEach((p,i)=>body.append(p.name.toLowerCase().replace(/\s+/g,"-"), sc[i]+"/10"));
-    fetch(location.pathname,{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:body.toString()})
-      .then(r=>{ if(!r.ok) throw 0; state.sent=true; save(); st.textContent="Your answers were sent to Chihiro."; })
-      .catch(()=>{ st.textContent="Your answers couldn't be sent automatically. Copy the code below and send it to Chihiro."; });
-  }
+  if (page < 4){ page++; renderPage(); window.scrollTo(0,0); }
+  else { show("about"); }
+}
+function prevPage(){ if (page>0){ page--; renderPage(); window.scrollTo(0,0);} }
+function backToQuiz(){ page = 4; renderPage(); show("quiz"); }
 
-  $("gate-form").addEventListener("submit",e=>{
-    e.preventDefault();
-    const name=$("name-in").value.trim(), email=$("email-in").value.trim(), code=$("access-in").value.trim().toUpperCase();
-    const err=$("gate-err");
-    if(!name){ err.textContent="Enter your name so Chihiro knows whose results these are."; err.hidden=false; return; }
-    if(!ARTIFACT && !/^\S+@\S+\.\S+$/.test(email)){ err.textContent="Enter a valid email address, like name@example.com."; err.hidden=false; return; }
-    if(!previewMode && simpleHash(code)!==ACCESS_HASH){ err.textContent="That access code doesn't match. Check the code Chihiro sent you."; err.hidden=false; return; }
-    err.hidden=true;
-    if(state.name!==name){ state={name, email, answers:Array(N).fill(null), i:0, done:false}; }
-    state.email=email;
-    save(); show("quiz"); renderQ();
+// Fill the dropdowns
+function fill(sel, list){ list.forEach(o => { const el=document.createElement("option"); el.value=o; el.textContent=o; sel.appendChild(el); }); }
+fill($("fInstrument"), OPTIONS.instrument); fill($("fStage"), OPTIONS.stage); fill($("fAge"), OPTIONS.age); fill($("fGender"), OPTIONS.gender);
+$("fInstrument").addEventListener("change", e => $("fInstrumentOther").classList.toggle("hidden", e.target.value!=="Other"));
+$("fGender").addEventListener("change", e => $("fGenderOther").classList.toggle("hidden", e.target.value!=="Prefer to self-describe"));
+
+/* ---------- Scoring ---------- */
+function computeResult(){
+  const scores = PILLARS.map((p,pi) => answers[pi].filter(a=>a===true).length);
+  const order = PILLARS.map((p,i)=>i).sort((a,b) => scores[a]-scores[b] || a-b); // weakest first; ties -> earlier pillar
+  const weakest = order[0];
+  const strongest = PILLARS.map((p,i)=>i).sort((a,b) => scores[b]-scores[a] || a-b)[0];
+  const steps = [];
+  for (const pi of order){
+    PILLARS[pi].qs.forEach((q,qi) => { if (answers[pi][qi]===false && steps.length<3) steps.push({pi, qi, text:q[1]}); });
+    if (steps.length >= 3) break;
+  }
+  return { scores, weakest, strongest, steps };
+}
+function band(s){ return s>=8 ? "Strength" : s>=5 ? "Solid, room to sharpen" : "Growth area"; }
+
+/* ---------- Pentagon chart ---------- */
+function pentagon(scores, size){
+  const c = size/2, R = size*0.36, n = 5;
+  const pt = (i, r) => { const a = -Math.PI/2 + i*2*Math.PI/n; return [c + r*Math.cos(a), c + r*Math.sin(a)]; };
+  let g = "";
+  for (let k=1; k<=10; k++){
+    const pts = [...Array(n)].map((_,i)=>pt(i, R*k/10).join(",")).join(" ");
+    g += `<polygon points="${pts}" fill="none" stroke="${k===10?"#b9b2a6":"#e7e2da"}" stroke-width="${k===10?1.4:1}"/>`;
+  }
+  for (let i=0;i<n;i++){ const [x,y]=pt(i,R); g += `<line x1="${c}" y1="${c}" x2="${x}" y2="${y}" stroke="#e7e2da"/>`; }
+  const shape = scores.map((s,i)=>pt(i, R*Math.max(s,0.15)/10).join(",")).join(" ");
+  g += `<polygon points="${shape}" fill="rgba(168,73,42,.22)" stroke="#a8492a" stroke-width="2.2" stroke-linejoin="round"/>`;
+  scores.forEach((s,i)=>{ const [x,y]=pt(i, R*Math.max(s,0.15)/10); g += `<circle cx="${x}" cy="${y}" r="4" fill="#a8492a"/>`; });
+  const short = ["Outreach","Reputation","Network","Income","Mindset"];
+  scores.forEach((s,i)=>{
+    const [x,y] = pt(i, R + size*0.085);
+    const anchor = Math.abs(x-c) < 4 ? "middle" : (x > c ? "start" : "end");
+    const dx = anchor==="start" ? -6 : anchor==="end" ? 6 : 0;
+    g += `<text x="${x+dx}" y="${y}" text-anchor="${anchor}" font-family="Inter,sans-serif" font-size="${size*0.042}" font-weight="600" fill="#1d2430">${short[i]}</text>`;
+    g += `<text x="${x+dx}" y="${y + size*0.05}" text-anchor="${anchor}" font-family="Inter,sans-serif" font-size="${size*0.04}" fill="#5d6672">${s}/10</text>`;
   });
-  $("yes-btn").addEventListener("click",()=>answer(true));
-  $("no-btn").addEventListener("click",()=>answer(false));
-  $("back-btn").addEventListener("click",()=>{ if(state.i>0){ state.i--; save(); renderQ(); } });
-  $("restart-btn").addEventListener("click",()=>{
-    state={name:state.name, email:state.email, answers:Array(N).fill(null), i:0, done:false}; save(); show("quiz"); renderQ();
+  const pad = size*0.2;
+  return `<svg viewBox="${-pad} 0 ${size+2*pad} ${size}" width="100%" style="max-width:${size}px;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pentagon chart of your five pillar scores">${g}</svg>`;
+}
+
+/* ---------- Results rendering ---------- */
+function scoreList(r){
+  return PILLARS.map((p,i)=>{
+    const cls = i===r.weakest ? "weak" : i===r.strongest ? "strong" : "";
+    return `<li><div class="name"><span>${p.name}</span><span>${r.scores[i]}/10 &middot; <span class="small">${band(r.scores[i])}</span></span></div><div class="bar ${cls}"><span style="width:${r.scores[i]*10}%"></span></div></li>`;
+  }).join("");
+}
+function calloutsHtml(r){
+  const W = PILLARS[r.weakest], S = PILLARS[r.strongest];
+  const same = r.weakest === r.strongest;
+  return `<div class="callout strong"><span class="small">Strongest pillar</span><b>${S.name}</b>${same ? "Your pillars are evenly balanced." : "Keep doing what's working here, and lean on it as you grow."}</div>
+          <div class="callout weak"><span class="small">Focus pillar</span><b>${W.name}</b>This is where small changes will make the biggest difference right now.</div>`;
+}
+function stepsHtml(r){
+  if (!r.steps.length) return `<li>You answered yes to every question. Impressive! Pick the pillar that matters most for your next season and look for one way to raise the bar there.</li>`;
+  return r.steps.map(s => `<li><span class="from">${PILLARS[s.pi].name}</span>${esc(s.text)}</li>`).join("");
+}
+function renderResults(){
+  const r = result, name = $("fName").value.trim();
+  $("rTitle").textContent = `${name ? name + ", here" : "Here"}'s your career map`;
+  $("rChart").innerHTML = pentagon(r.scores, 300);
+  $("rScores").innerHTML = scoreList(r);
+  $("rCallouts").innerHTML = calloutsHtml(r);
+  $("rSteps").innerHTML = stepsHtml(r);
+  $("ctaTitle").textContent = CONFIG.ctaTitle; $("ctaText").textContent = CONFIG.ctaText; $("ctaMeta").textContent = CONFIG.ctaMeta;
+  $("ctaBtn").textContent = CONFIG.ctaButton;
+  $("stars").innerHTML = [1,2,3,4,5].map(n=>`<button type="button" aria-label="${n} of 5" onclick="rate(${n})">${n}</button>`).join("");
+  buildReport();
+  show("results");
+}
+
+/* ---------- Submit ---------- */
+function encode(obj){ return Object.keys(obj).map(k => encodeURIComponent(k)+"="+encodeURIComponent(obj[k] ?? "")).join("&"); }
+function val(id){ return $(id).value.trim(); }
+
+async function submitAll(){
+  const err = $("aErr");
+  const instrument = val("fInstrument")==="Other" ? val("fInstrumentOther") : val("fInstrument");
+  const gender = val("fGender")==="Prefer to self-describe" ? val("fGenderOther") : val("fGender");
+  const email = val("fEmail");
+  let msg = "";
+  if (!val("fName")) msg = "Please enter your first name.";
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) msg = "Please enter a valid email address.";
+  else if (!instrument) msg = "Please choose your instrument.";
+  else if (!val("fStage")) msg = "Please choose your career stage.";
+  else if (!val("fAge")) msg = "Please choose your age range.";
+  else if (!gender) msg = "Please choose your gender.";
+  else if (!$("fConsent").checked) msg = "Please check the box to agree to how your answers are used.";
+  if (msg){ err.textContent = msg; err.classList.remove("hidden"); return; }
+  err.classList.add("hidden");
+
+  result = computeResult();
+  const btn = $("seeBtn"); btn.disabled = true; btn.textContent = "Building your results…";
+
+  if (!submitted){
+    submitted = true;
+    const data = {
+      "form-name":"five-pillars-quiz",
+      first_name: val("fName"), email, age_range: val("fAge"), gender, career_stage: val("fStage"), instrument,
+      consent: "yes",
+      answers: answers.map(p => p.map(a => a ? "Y" : "N").join("")).join("|"),
+      score_outreach: result.scores[0], score_reputation: result.scores[1], score_network: result.scores[2],
+      score_income: result.scores[3], score_mindset: result.scores[4],
+      weakest: PILLARS[result.weakest].name, strongest: PILLARS[result.strongest].name,
+      steps_shown: result.steps.map(s => `${PILLARS[s.pi].name} Q${s.qi+1}`).join(", "),
+      quiz_version: CONFIG.quizVersion
+    };
+    // 1) Full answers -> Netlify Forms (your database)
+    try { await fetch(location.pathname, { method:"POST", headers:{"Content-Type":"application/x-www-form-urlencoded"}, body: encode(data) }); } catch(e){ console.warn("Netlify submit failed", e); }
+    // 2) Name + email -> Kit mailing list
+    if (CONFIG.kitFormId){
+      const kit = new URLSearchParams();
+      kit.append("email_address", email);
+      kit.append("first_name", val("fName"));
+      kit.append("fields[weakest_pillar]", PILLARS[result.weakest].name);
+      kit.append("fields[career_stage]", val("fStage"));
+      kit.append("fields[instrument]", instrument);
+      const tag = CONFIG.kitTagIds[PILLARS[result.weakest].key];
+      if (tag) kit.append("tags[]", tag);
+      try { await fetch(`https://app.kit.com/forms/${CONFIG.kitFormId}/subscriptions`, { method:"POST", mode:"no-cors", body: kit }); } catch(e){ console.warn("Kit submit failed", e); }
+    }
+  }
+  btn.disabled = false; btn.textContent = "See my results";
+  renderResults();
+}
+
+/* ---------- Debrief waitlist (one click) ---------- */
+async function joinWaitlist(){
+  const btn = $("ctaBtn"); btn.disabled = true; btn.textContent = "Adding you…";
+  if (CONFIG.waitlistFormId){
+    const f = new URLSearchParams();
+    f.append("email_address", val("fEmail")); f.append("first_name", val("fName"));
+    f.append("fields[weakest_pillar]", PILLARS[result.weakest].name);
+    try { await fetch(`https://app.kit.com/forms/${CONFIG.waitlistFormId}/subscriptions`, { method:"POST", mode:"no-cors", body: f }); } catch(e){ console.warn("Waitlist submit failed", e); }
+  }
+  btn.classList.add("hidden"); $("ctaDone").classList.remove("hidden");
+}
+
+/* ---------- Feedback ---------- */
+function rate(n){ rating = n; [...$("stars").children].forEach((b,i)=>b.classList.toggle("on", i<n)); $("fbBtn").disabled = false; }
+async function sendFeedback(){
+  $("fbBtn").disabled = true;
+  try {
+    await fetch(location.pathname, { method:"POST", headers:{"Content-Type":"application/x-www-form-urlencoded"},
+      body: encode({ "form-name":"five-pillars-feedback", email: val("fEmail"), accuracy: rating, comment: val("fbComment"), weakest: PILLARS[result.weakest].name }) });
+  } catch(e){ console.warn(e); }
+  $("fbThanks").classList.remove("hidden"); $("fbBtn").textContent = "Sent";
+}
+
+/* ---------- One-page PDF ---------- */
+function buildReport(){
+  const r = result, name = $("fName").value.trim();
+  const date = new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
+  $("report").innerHTML = `
+    <div class="rhead"><div><div class="pillar-tag" style="font-size:11px">The 5 Pillars Career Check</div><h1>${esc(name)}'s career map</h1></div>
+      <div class="small" style="text-align:right;font-size:12px">${date}<br>Chihiro Shibayama &middot; Musicians Career Coach</div></div>
+    <div class="rgrid"><div id="rChartPdf">${pentagon(r.scores, 280)}</div><ul class="scores">${scoreList(r)}</ul></div>
+    <div class="rcall">${calloutsHtml(r)}</div>
+    <h3>Your 3 next steps</h3>
+    <ol class="steps">${stepsHtml(r)}</ol>
+    <div class="rfoot"><span>Next: a live 5 Pillars group debrief. Details at ${esc(CONFIG.website)}</span><span>${esc(CONFIG.website)}</span></div>`;
+}
+// The PDF renderer can't draw inline SVG reliably, so the chart is turned into a PNG first.
+function svgToPng(svg, px){
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      const ratio = img.width && img.height ? img.height/img.width : 280/392;
+      const cv = document.createElement("canvas"); cv.width = px; cv.height = Math.round(px*ratio);
+      const ctx = cv.getContext("2d"); ctx.fillStyle = "#fff"; ctx.fillRect(0,0,cv.width,cv.height);
+      ctx.drawImage(img, 0, 0, cv.width, cv.height); resolve(cv.toDataURL("image/png"));
+    };
+    img.onerror = reject;
+    const sized = svg.replace('width="100%"', 'width="784" height="560"');
+    img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(sized);
   });
-  $("copy-btn").addEventListener("click",()=>{
-    const text="Name: "+state.name+"\n5 Pillars Quiz code: "+encode(state.answers);
-    const msg=$("copy-msg");
-    const fallback=()=>{ const r=document.createRange(); r.selectNodeContents($("code-out")); const s=getSelection(); s.removeAllRanges(); s.addRange(r); msg.textContent="Code selected. Copy it from your menu."; };
-    try{ navigator.clipboard.writeText(text).then(()=>{ msg.textContent="Copied. Paste it into your reply to Chihiro."; }, fallback); }catch(e){ fallback(); }
-  });
-
-  // ---- coach view
-  const NS="http://www.w3.org/2000/svg";
-  function el(tag,attrs,parent){ const n=document.createElementNS(NS,tag); for(const k in attrs) n.setAttribute(k,attrs[k]); if(parent) parent.appendChild(n); return n; }
-  function radar(sc, prev){
-    const cx=240, cy=190, R=125;
-    const svg=el("svg",{viewBox:"0 0 480 380",class:"radar",role:"img","aria-label":"Pentagon scorecard: "+P.map((p,i)=>p.name+" "+sc[i]+" of 10").join(", ")});
-    const pt=(i,r)=>{ const a=-Math.PI/2 + i*2*Math.PI/5; return [cx+r*Math.cos(a), cy+r*Math.sin(a)]; };
-    for(let ring=1;ring<=10;ring++){
-      const pts=[0,1,2,3,4].map(i=>pt(i,R*ring/10).join(",")).join(" ");
-      el("polygon",{points:pts,fill:"none",stroke:"var(--line)","stroke-width":ring%5===0?1.6:0.8},svg);
+}
+async function downloadPdf(){
+  const btn = $("pdfBtn"); btn.disabled = true; btn.textContent = "Preparing PDF…";
+  const name = ($("fName").value.trim() || "My").replace(/[^\w-]+/g,"-");
+  const y = window.scrollY; window.scrollTo(0,0);   // html2canvas renders blank if the page is scrolled
+  const host = $("reportHost"); host.style.left = "0"; host.style.zIndex = "-1";
+  try {
+    const chart = $("rChartPdf");
+    if (chart && chart.querySelector("svg")){
+      const png = await svgToPng(chart.innerHTML, 784);
+      chart.innerHTML = `<img src="${png}" style="width:100%;display:block" alt="Pentagon chart">`;
     }
-    for(let i=0;i<5;i++){ const [x,y]=pt(i,R); el("line",{x1:cx,y1:cy,x2:x,y2:y,stroke:"var(--line)","stroke-width":1},svg); }
-    [5,10].forEach(v=>{ const [x,y]=pt(0,R*v/10); const t=el("text",{x:x+6,y:y+4,"font-size":11,fill:"var(--muted)"},svg); t.style.fill="var(--muted)"; t.textContent=v; });
-    if(prev){
-      const pp=prev.map((s,i)=>pt(i,Math.max(R*s/10,2)).join(",")).join(" ");
-      el("polygon",{points:pp,fill:"var(--muted)","fill-opacity":0.12,stroke:"var(--muted)","stroke-width":2,"stroke-dasharray":"6 4","stroke-linejoin":"round"},svg);
-      prev.forEach((s,i)=>{ const [x,y]=pt(i,R*s/10); el("circle",{cx:x,cy:y,r:3.5,fill:"var(--muted)"},svg); });
-    }
-    const poly=sc.map((s,i)=>pt(i,Math.max(R*s/10,2)).join(",")).join(" ");
-    el("polygon",{points:poly,fill:"var(--brass)","fill-opacity":0.22,stroke:"var(--brass)","stroke-width":2.5,"stroke-linejoin":"round"},svg);
-    sc.forEach((s,i)=>{ const [x,y]=pt(i,R*s/10); el("circle",{cx:x,cy:y,r:5,fill:"var(--brass)"},svg); });
-    const anchors=["middle","start","start","end","end"], dy=[-14,4,20,20,4];
-    P.forEach((p,i)=>{
-      const [x,y]=pt(i,R+16);
-      const t=el("text",{x:x,y:y+dy[i],"text-anchor":anchors[i],"font-size":14,"font-weight":700},svg); t.textContent=p.name;
-      const v=el("text",{x:x,y:y+dy[i]+16,"text-anchor":anchors[i],"font-size":12},svg); v.style.fill="var(--muted)"; v.textContent=prev?(prev[i]+" → "+sc[i]):(sc[i]+" / 10");
-    });
-    return svg;
-  }
-  let last=null;
-  function prepSummary(ans, prevAns){
-    last={ans, prevAns};
-    const sc=scores(ans), min=Math.min(...sc), sel=$("sum-focus");
-    if(!sel.options.length) P.forEach((p,i)=>{ const o=document.createElement("option"); o.value=i; o.textContent=p.name+" (Pillar "+(i+1)+")"; sel.appendChild(o); });
-    sel.value=String(sc.indexOf(min));
-    $("sum-prev-wrap").hidden=!prevAns;
-    if(!$("sum-date").value){ const d=new Date(); $("sum-date").value=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
-    $("summary-card").hidden=false;
-  }
-  function fmtDate(v){ if(!v) return ""; const d=new Date(v+"T12:00:00"); return isNaN(d)?v:d.toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"}); }
-  function mk(tag,cls,text,parent){ const n=document.createElement(tag); if(cls) n.className=cls; if(text!=null) n.textContent=text; if(parent) parent.appendChild(n); return n; }
-  function buildSheet(){
-    const name=$("sum-name").value.trim(), date=fmtDate($("sum-date").value), prevDate=fmtDate($("sum-prev-date").value);
-    const steps=["sum-a1","sum-a2","sum-a3"].map(id=>$(id).value.trim()).filter(Boolean);
-    const sc=scores(last.ans), prev=last.prevAns?scores(last.prevAns):null, fi=+$("sum-focus").value;
-    const sheet=$("print-sheet"); sheet.textContent="";
-    const ps=mk("div","ps",null,sheet);
-    const head=mk("div","ps-head",null,ps);
-    const hl=mk("div",null,null,head); mk("div","ps-eyebrow","Creating Your Own Path",hl); mk("h1",null,prev?"5 Pillars Progress Summary":"5 Pillars Session Summary",hl);
-    const hr=mk("div","ps-meta",null,head); mk("b",null,name,hr); mk("span",null,date,hr);
-    if(prev && prevDate){ mk("br",null,null,hr); mk("span",null,"Compared with "+prevDate,hr); }
-    const top=mk("div","ps-top",null,ps);
-    top.appendChild(radar(sc,prev));
-    const right=mk("div",null,null,top);
-    const tb=mk("table",null,null,right);
-    P.forEach((p,i)=>{
-      const tr=mk("tr",null,null,tb); mk("td",null,(i+1)+". "+p.name,tr);
-      mk("td","n",prev?(prev[i]+" → "+sc[i]):(sc[i]+" / 10"),tr);
-      if(prev){ const d=sc[i]-prev[i]; mk("td","d "+(d>0?"up":d<0?"down":""),d>0?"+"+d:d<0?String(d):"·",tr); }
-    });
-    const tot=sc.reduce((a,b)=>a+b,0);
-    if(prev){ const pt=prev.reduce((a,b)=>a+b,0); mk("div","ps-total","Overall "+pt+" → "+tot+" of 50. Dashed shape: earlier result. Solid: today.",right); }
-    else mk("div","ps-total","Overall "+tot+" of 50",right);
-    const f=mk("div","ps-focus",null,ps); mk("small",null,"Our focus",f); mk("div",null,P[fi].name,f); mk("span",null,P[fi].sub,f);
-    if(steps.length){ const s=mk("div",null,null,ps); mk("h2",null,"Your next steps",s); const ul=mk("ul","ps-steps",null,s); steps.forEach(t=>mk("li",null,t,ul)); }
-    const note=$("sum-note").value.trim();
-    if(note){ const s=mk("div",null,null,ps); mk("h2",null,"A note from Chihiro",s); mk("p","ps-note",note,s); }
-    const ft=mk("div","ps-foot",null,ps); mk("span",null,"Chihiro Shibayama · Musicians Career Coach",ft); mk("span",null,"chihiroshibayama.com",ft);
-    return {name, date:$("sum-date").value};
-  }
-  // ---- PDF drawn directly (artifact version, where the print dialog is unavailable)
-  const LIGHT={ink:[27,36,51],muted:[91,101,118],line:[213,219,227],brass:[154,111,34],soft:[243,231,207],good:[47,122,85],gap:[178,58,58]};
-  function buildPdf(){
-    const {jsPDF}=window.jspdf; const doc=new jsPDF({unit:"pt",format:"letter"});
-    const W=612, M=48; const col=(c,f)=>doc[f](...LIGHT[c]);
-    const name=$("sum-name").value.trim(), dateV=$("sum-date").value, date=fmtDate(dateV), prevDate=fmtDate($("sum-prev-date").value);
-    const steps=["sum-a1","sum-a2","sum-a3"].map(id=>$(id).value.trim()).filter(Boolean), note=$("sum-note").value.trim();
-    const sc=scores(last.ans), prev=last.prevAns?scores(last.prevAns):null, fi=+$("sum-focus").value;
-    // header
-    doc.setFont("helvetica","bold"); doc.setFontSize(9); col("brass","setTextColor"); doc.setCharSpace(1.2);
-    doc.text("CREATING YOUR OWN PATH",M,58); doc.setCharSpace(0);
-    doc.setFontSize(22); col("ink","setTextColor"); doc.text(prev?"5 Pillars Progress Summary":"5 Pillars Session Summary",M,84);
-    doc.setFontSize(13); doc.text(name,W-M,62,{align:"right"});
-    doc.setFont("helvetica","normal"); doc.setFontSize(10); col("muted","setTextColor"); doc.text(date,W-M,77,{align:"right"});
-    if(prev && prevDate) doc.text("Compared with "+prevDate,W-M,90,{align:"right"});
-    col("brass","setDrawColor"); doc.setLineWidth(1.5); doc.line(M,100,W-M,100);
-    // radar
-    const cx=170, cy=250, R=88;
-    const pt=(i,r)=>{ const a=-Math.PI/2+i*2*Math.PI/5; return [cx+r*Math.cos(a), cy+r*Math.sin(a)]; };
-    const poly=(vals,style)=>{ const p=vals.map((v,i)=>pt(i,Math.max(R*v/10,1.5))); const segs=p.slice(1).map((q,k)=>[q[0]-p[k][0],q[1]-p[k][1]]); doc.lines(segs,p[0][0],p[0][1],[1,1],style,true); };
-    col("line","setDrawColor");
-    for(let r=1;r<=10;r++){ doc.setLineWidth(r%5===0?1:0.5); poly([r,r,r,r,r],"S"); }
-    doc.setLineWidth(0.5); for(let i=0;i<5;i++){ const [x,y]=pt(i,R); doc.line(cx,cy,x,y); }
-    if(prev){ col("muted","setDrawColor"); doc.setLineWidth(1.2); doc.setLineDashPattern([4,3],0); poly(prev,"S"); doc.setLineDashPattern([],0); }
-    doc.saveGraphicsState(); doc.setGState(new doc.GState({opacity:0.25})); col("brass","setFillColor"); poly(sc,"F"); doc.restoreGraphicsState();
-    col("brass","setDrawColor"); doc.setLineWidth(2); poly(sc,"S");
-    col("brass","setFillColor"); sc.forEach((v,i)=>{ const [x,y]=pt(i,R*v/10); doc.circle(x,y,3,"F"); });
-    const al=["center","left","left","right","right"], dy=[-12,4,16,16,4];
-    P.forEach((p,i)=>{ const [x,y]=pt(i,R+12);
-      doc.setFont("helvetica","bold"); doc.setFontSize(9); col("ink","setTextColor"); doc.text(p.name,x,y+dy[i],{align:al[i]});
-      doc.setFont("helvetica","normal"); doc.setFontSize(8.5); col("muted","setTextColor"); doc.text(prev?(prev[i]+" to "+sc[i]):(sc[i]+" / 10"),x,y+dy[i]+11,{align:al[i]}); });
-    // scores table
-    const tx=344, tr=W-M; let ty=170;
-    doc.setFont("helvetica","bold"); doc.setFontSize(8.5); col("muted","setTextColor");
-    doc.text("PILLAR",tx,ty);
-    if(prev){ doc.text("BEFORE",tr-96,ty,{align:"right"}); doc.text("NOW",tr-50,ty,{align:"right"}); doc.text("CHANGE",tr,ty,{align:"right"}); }
-    else doc.text("SCORE",tr,ty,{align:"right"});
-    ty+=8; col("line","setDrawColor"); doc.setLineWidth(0.6);
-    P.forEach((p,i)=>{ ty+=20; doc.setFont("helvetica","normal"); doc.setFontSize(10); col("ink","setTextColor"); doc.text((i+1)+". "+p.name,tx,ty);
-      if(prev){ const d=sc[i]-prev[i]; col("muted","setTextColor"); doc.text(String(prev[i]),tr-96,ty,{align:"right"}); col("ink","setTextColor"); doc.text(String(sc[i]),tr-50,ty,{align:"right"});
-        doc.setFont("helvetica","bold"); col(d>0?"good":d<0?"gap":"muted","setTextColor"); doc.text(d>0?"+"+d:d<0?String(d):"0",tr,ty,{align:"right"}); }
-      else doc.text(sc[i]+" / 10",tr,ty,{align:"right"});
-      doc.line(tx,ty+7,tr,ty+7); });
-    const tot=sc.reduce((a,b)=>a+b,0); doc.setFont("helvetica","normal"); doc.setFontSize(9); col("muted","setTextColor");
-    ty+=24; doc.text(prev?("Overall "+prev.reduce((a,b)=>a+b,0)+" to "+tot+" of 50"):("Overall "+tot+" of 50"),tx,ty);
-    if(prev){ ty+=12; doc.text("Dashed shape: earlier result. Solid: today.",tx,ty); }
-    // focus
-    let y=385; col("soft","setFillColor"); doc.roundedRect(M,y,W-2*M,64,8,8,"F");
-    doc.setFont("helvetica","bold"); doc.setFontSize(8.5); col("brass","setTextColor"); doc.setCharSpace(1); doc.text("OUR FOCUS",M+16,y+19); doc.setCharSpace(0);
-    doc.setFontSize(17); col("ink","setTextColor"); doc.text(P[fi].name,M+16,y+40);
-    doc.setFont("helvetica","normal"); doc.setFontSize(10); col("muted","setTextColor"); doc.text(P[fi].sub,M+16,y+54);
-    y+=94;
-    if(steps.length){ doc.setFont("helvetica","bold"); doc.setFontSize(13); col("ink","setTextColor"); doc.text("Your next steps",M,y); y+=20;
-      doc.setFont("helvetica","normal"); doc.setFontSize(11); col("ink","setDrawColor"); doc.setLineWidth(1);
-      steps.forEach(s=>{ const lines=doc.splitTextToSize(s,W-2*M-26); doc.rect(M,y-9,10,10,"S"); doc.text(lines,M+24,y); y+=lines.length*14+8; }); y+=10; }
-    if(note){ doc.setFont("helvetica","bold"); doc.setFontSize(13); col("ink","setTextColor"); doc.text("A note from Chihiro",M,y); y+=20;
-      doc.setFont("helvetica","normal"); doc.setFontSize(11); const lines=doc.splitTextToSize(note,W-2*M-16);
-      col("brass","setFillColor"); doc.rect(M,y-10,2.5,lines.length*14+2,"F"); doc.text(lines,M+14,y); }
-    col("line","setDrawColor"); doc.setLineWidth(0.6); doc.line(M,744,W-M,744);
-    doc.setFontSize(9); col("muted","setTextColor"); doc.text("Chihiro Shibayama · Musicians Career Coach",M,760); doc.text("chihiroshibayama.com",W-M,760,{align:"right"});
-    return {blob:doc.output("blob"), filename:"5 Pillars Summary - "+name.replace(/[\\/:*?"<>|]/g,"")+(dateV?" - "+dateV:"")+".pdf"};
-  }
-  async function downloadSummary(){
-    const err=$("sum-err"), hint=$("sum-hint");
-    if(!last){ err.textContent="Show a client's results first."; err.hidden=false; return; }
-    if(!$("sum-name").value.trim()){ err.textContent="Add the client's name so it appears on the summary."; err.hidden=false; return; }
-    if(!window.jspdf){ err.textContent="The PDF tool didn't load. Reload the page and try again."; err.hidden=false; return; }
-    err.hidden=true;
-    let dl=null; try{ dl=await window.claude.use("downloads"); }catch(e){}
-    if(!dl){ err.textContent="Downloads aren't available in this view. Open the page in your browser at claude.ai and try again."; err.hidden=false; return; }
-    const {blob,filename}=buildPdf();
-    try{ await dl.save({filename, data:blob}); hint.textContent="Saved. Attach the PDF to an email to your client."; }
-    catch(e){ if(e && e.code==="declined") hint.textContent="Download canceled."; else { err.textContent="The PDF couldn't be saved. Try again in a moment."; err.hidden=false; } }
-  }
-  function printSummary(){
-    if(ARTIFACT) return downloadSummary();
-    const err=$("sum-err");
-    if(!last){ err.textContent="Show a client's results first."; err.hidden=false; return; }
-    if(!$("sum-name").value.trim()){ err.textContent="Add the client's name so it appears on the summary."; err.hidden=false; return; }
-    err.hidden=true;
-    const info=buildSheet(), old=document.title;
-    document.title="5 Pillars Summary - "+info.name+(info.date?" - "+info.date:"");
-    const restore=()=>{ document.title=old; window.removeEventListener("afterprint",restore); };
-    window.addEventListener("afterprint",restore);
-    window.print();
-  }
-
-  function renderResults(ans, isExample, prevAns){
-    const sc=scores(ans), min=Math.min(...sc), box=$("results"); box.textContent="";
-    const prev=prevAns?scores(prevAns):null;
-    prepSummary(ans, prevAns);
-    box.style.display="flex"; box.style.flexDirection="column"; box.style.gap="14px";
-    if(isExample){ const t=document.createElement("div"); t.className="example-tag"; t.textContent="EXAMPLE RESULTS, NOT A REAL CLIENT"; box.appendChild(t); }
-    if(prev){
-      const tot=sc.reduce((a,b)=>a+b,0), ptot=prev.reduce((a,b)=>a+b,0), d=tot-ptot;
-      const sum=document.createElement("p"); sum.className="note";
-      sum.textContent="Overall: "+ptot+" → "+tot+" out of 50 ("+(d>0?"+":"")+d+"). Dashed shape is the earlier result; solid is the latest.";
-      box.appendChild(sum);
-    }
-    box.appendChild(radar(sc, prev));
-    const list=document.createElement("div"); list.className="scores";
-    P.forEach((p,i)=>{
-      const row=document.createElement("div"); row.className="score";
-      const b=document.createElement("b"); b.textContent=(i+1)+". "+p.name;
-      const n=document.createElement("span"); n.className="num";
-      const c=document.createElement("span");
-      if(prev){
-        const d=sc[i]-prev[i];
-        n.textContent=prev[i]+" → "+sc[i];
-        c.className="chip "+(d>0?"t-good":d<0?"t-gap":"t-mid");
-        c.textContent=d>0?"+"+d:d<0?String(d):"No change";
-      } else {
-        n.textContent=sc[i]+"/10";
-        const [label,cls]=sc[i]===min?["Start here","start"]:tier(sc[i]);
-        c.className="chip "+cls; c.textContent=label;
-      }
-      row.append(b,n,c); list.appendChild(row);
-    });
-    box.appendChild(list);
-    if(prev){
-      const flips=(from,to)=>Q.filter((q,k)=>prevAns[k]===from && ans[k]===to);
-      [["Changed to Yes", flips(false,true), "Wins to celebrate."],
-       ["Changed to No", flips(true,false), "Often a sign of more honest self-assessment. Worth talking through."]].forEach(([title,items,hint])=>{
-        const d=document.createElement("details"); d.open=items.length>0;
-        const s=document.createElement("summary"); s.textContent=title+" ("+items.length+")"; d.appendChild(s);
-        const h=document.createElement("p"); h.className="none"; h.textContent=items.length?hint:"None."; d.appendChild(h);
-        if(items.length){ const ul=document.createElement("ul"); items.forEach(q=>{ const li=document.createElement("li"); li.textContent=P[q.pi].name+": "+q.t; ul.appendChild(li); }); d.appendChild(ul); }
-        box.appendChild(d);
-      });
-    }
-    const h=document.createElement("h2"); h.textContent=prev?"Talking points: where they still answer No":"Talking points: where they answered No"; h.style.fontSize="18px"; box.appendChild(h);
-    P.forEach((p,pi)=>{
-      const d=document.createElement("details"); if(sc[pi]===min) d.open=true;
-      const s=document.createElement("summary"); s.textContent=p.name+" ("+(10-sc[pi])+" No)"; d.appendChild(s);
-      const nos=p.q.filter((_,qi)=>!ans[pi*10+qi]);
-      if(!nos.length){ const x=document.createElement("p"); x.className="none"; x.textContent="All Yes. This pillar is working."; d.appendChild(x); }
-      else { const ul=document.createElement("ul"); nos.forEach(t=>{ const li=document.createElement("li"); li.textContent=t; ul.appendChild(li); }); d.appendChild(ul); }
-      box.appendChild(d);
-    });
-    box.hidden=false;
-  }
-  function decodeInput(){
-    const ans=decode($("code-in").value), err=$("code-err");
-    if(!ans){ err.textContent="That code doesn't check out. Look for a typo; it should look like CYOP-XXXXX-XXXXX-XX."; err.hidden=false; return; }
-    let prevAns=null;
-    if($("prev-in").value.trim()){
-      prevAns=decode($("prev-in").value);
-      if(!prevAns){ err.textContent="The earlier code doesn't check out. Look for a typo, or clear that box to see the latest result alone."; err.hidden=false; return; }
-    }
-    err.hidden=true; renderResults(ans,false,prevAns);
-  }
-  const SAMPLE=[1,1,0,1,0,1,1,0,1,1, 1,1,1,1,1,1,1,1,0,1, 1,0,0,1,0,1,0,0,1,1, 0,0,1,0,0,1,0,0,1,0, 1,1,1,0,1,1,0,1,1,1].map(Boolean);
-
-  const SAMPLE_LATER=[1,1,1,1,0,1,1,1,1,1, 1,1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,0,1,1,1, 1,0,1,1,1,1,0,0,1,1, 1,1,1,0,1,1,1,1,1,1].map(Boolean);
-  async function initCoach(){
-    if(!window.claude || !window.claude.use) return;
-    let user=null; try{ user=await window.claude.use("user"); }catch(e){}
-    if(!user) return;
-    let owner=false; try{ owner=!!(await user.isOwner()); }catch(e){}
-    if(!owner) return;
-    $("access-show").textContent=ACCESS;
-    $("coach").hidden=false;
-    $("decode-btn").addEventListener("click",decodeInput);
-    $("code-in").addEventListener("keydown",e=>{ if(e.key==="Enter") decodeInput(); });
-    $("prev-in").addEventListener("keydown",e=>{ if(e.key==="Enter") decodeInput(); });
-    $("sum-print").addEventListener("click",printSummary);
-    $("sample-btn").addEventListener("click",()=>{ $("code-in").value=encode(SAMPLE_LATER); $("prev-in").value=encode(SAMPLE); renderResults(SAMPLE_LATER,true,SAMPLE); });
-    $("preview-btn").addEventListener("click",()=>{ previewMode=true; state={name:"Preview", answers:Array(N).fill(null), i:0, done:false}; show("quiz"); renderQ(); $("quiz").scrollIntoView({behavior:"smooth"}); });
-    renderResults(SAMPLE_LATER,true,SAMPLE);
-  }
-
-  // ---- boot
-  if(ARTIFACT){
-    $("email-field").hidden=true; $("email-in").required=false;
-    $("done-note").textContent="She'll read your results before your session, and you'll go through them together.";
-    $("sum-print").textContent="Download summary PDF";
-    $("sum-hint").textContent="The PDF downloads to your device, ready to attach to an email to your client.";
-  }
-  load();
-  if(state.name) $("name-in").value=state.name;
-  if(state.email) $("email-in").value=state.email;
-  if(state.done) renderDone();
-  else if(state.name && state.answers.some(a=>a!==null)){ show("quiz"); renderQ(); }
-  else show("gate");
-})();
+    await html2pdf().set({
+      margin:0, filename:`5-Pillars-Results-${name}.pdf`,
+      image:{type:"jpeg",quality:0.95},
+      html2canvas:{scale:2, useCORS:true, backgroundColor:"#ffffff", scrollX:0, scrollY:0, windowWidth:900},
+      jsPDF:{unit:"px", format:[816,1056], orientation:"portrait", hotfixes:["px_scaling"]}
+    }).from($("report")).save();
+  } catch(e){ console.error(e); alert("Sorry, the PDF couldn't be created in this browser. Try another browser, or take a screenshot of your results."); }
+  host.style.left = "-10000px"; window.scrollTo(0,y);
+  btn.disabled = false; btn.textContent = "Download my one-page PDF";
+}
 </script>
 </body>
 </html>

@@ -5,6 +5,7 @@ import Footer from './components/layout/Footer'
 import Home from './pages/Home'
 import Bio from './pages/Bio'
 import Teaching from './pages/Teaching'
+import Coaching from './pages/Coaching'
 import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
 import Media from './pages/Media'
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/bio" element={<Bio />} />
           <Route path="/teaching" element={<Teaching />} />
+          <Route path="/coaching" element={<Coaching />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/media" element={<Media />} />

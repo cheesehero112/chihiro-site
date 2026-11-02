@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 const pages = [
 	{ to: '/bio', label: 'Biography' },
 	{ to: '/teaching', label: 'Teaching & Lessons' },
+	{ to: '/coaching', label: 'Career Coaching' },
 	{ to: '/blog', label: 'Blog' },
 	{ to: '/media', label: 'Media' },
 ];

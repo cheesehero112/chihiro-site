@@ -589,7 +589,7 @@ async function makePdf(){
     doc.setPage(pg);
     doc.setDrawColor(...C.line); doc.setLineWidth(0.75); doc.line(M, 742, R, 742);
     font(8.5); color(C.muted);
-    doc.text("Next: a live 5 Pillars group debrief. Details at " + CONFIG.website, M, 758);
+    doc.text("Next: a live 5 Pillars group debrief. Details at " + CONFIG.website + "/coaching", M, 758);
     doc.text(CONFIG.website, R, 758, {align:"right"});
   }
   return doc;

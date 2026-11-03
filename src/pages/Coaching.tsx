@@ -41,8 +41,8 @@ export default function Coaching() {
     <div className="pt-[80px]">
 
       {/* HERO */}
-      <section className="px-6 lg:px-16 py-16 lg:py-24 border-b border-light-gray">
-        <div className="max-w-7xl mx-auto">
+      <section className="grid grid-cols-1 md:grid-cols-2 min-h-[calc(90vh-80px)] border-b border-light-gray">
+        <div className="flex flex-col justify-center px-6 lg:px-16 py-16 lg:py-24 md:border-r border-light-gray order-2 md:order-1">
           <p className="eyebrow mb-5">Career coaching for musicians</p>
           <h1 className="font-serif font-normal leading-tight text-black mb-6" style={{ fontSize: 'clamp(2.75rem, 6vw, 4.5rem)' }}>
             Create your <em className="text-accent">own path.</em>
@@ -53,7 +53,16 @@ export default function Coaching() {
           <p className="text-[17px] text-text-gray font-light leading-relaxed max-w-xl mb-10">
             The 5 Pillars Career Check is a free, 10-minute assessment for freelance musicians. Find out exactly where your career is strong, where it's stuck, and what to do next.
           </p>
-          <a href={QUIZ_URL} className="btn-primary">Take the free quiz</a>
+          <a href={QUIZ_URL} className="btn-primary self-start">Take the free quiz</a>
+        </div>
+
+        <div className="relative bg-off-white overflow-hidden min-h-[110vw] md:min-h-0 order-1 md:order-2">
+          <img
+            src="/images/coaching-portrait.jpg"
+            alt="Chihiro Shibayama holding marimba mallets outdoors"
+            className="w-full h-full object-cover absolute inset-0"
+            style={{ objectPosition: '65% 8%' }}
+          />
         </div>
       </section>
 

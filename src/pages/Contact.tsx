@@ -24,20 +24,20 @@ function ContactForm() {
         <div className="flex flex-col gap-2">
           <label htmlFor="c-name" className="text-[12px] tracking-[0.2em] uppercase text-mid-gray">Your name</label>
           <input id="c-name" type="text" name="name" placeholder="Jane Smith" required
-            className="bg-white border border-light-gray text-black px-4 py-3 text-[16px] font-light outline-none focus:border-black transition-colors" />
+            className="bg-white border border-black/45 text-black px-4 py-3 text-[16px] font-light outline-none focus:border-black transition-colors" />
           <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-500 text-xs" />
         </div>
         <div className="flex flex-col gap-2">
           <label htmlFor="c-email" className="text-[12px] tracking-[0.2em] uppercase text-mid-gray">Email address</label>
           <input id="c-email" type="email" name="email" placeholder="jane@email.com" required
-            className="bg-white border border-light-gray text-black px-4 py-3 text-[16px] font-light outline-none focus:border-black transition-colors" />
+            className="bg-white border border-black/45 text-black px-4 py-3 text-[16px] font-light outline-none focus:border-black transition-colors" />
           <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-xs" />
         </div>
       </div>
       <div className="flex flex-col gap-2">
         <label htmlFor="c-subject" className="text-[12px] tracking-[0.2em] uppercase text-mid-gray">I'm inquiring about</label>
         <select id="c-subject" name="subject"
-          className="bg-white border border-light-gray text-black px-4 py-3 text-[16px] font-light outline-none focus:border-black transition-colors appearance-none cursor-pointer">
+          className="bg-white border border-black/45 text-black px-4 py-3 text-[16px] font-light outline-none focus:border-black transition-colors appearance-none cursor-pointer">
           <option value="">Select a topic...</option>
           <option>Private lessons — beginner</option>
           <option>Private lessons — intermediate / advanced</option>
@@ -53,7 +53,7 @@ function ContactForm() {
         <label htmlFor="c-message" className="text-[12px] tracking-[0.2em] uppercase text-mid-gray">Message</label>
         <textarea id="c-message" name="message" rows={5}
           placeholder="Tell me a bit about yourself and what you're looking for..."
-          className="bg-white border border-light-gray text-black px-4 py-3 text-[16px] font-light outline-none focus:border-black transition-colors resize-y" />
+          className="bg-white border border-black/45 text-black px-4 py-3 text-[16px] font-light outline-none focus:border-black transition-colors resize-y" />
         <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-500 text-xs" />
       </div>
       <button type="submit" disabled={state.submitting}
@@ -133,7 +133,7 @@ export default function Contact() {
           { tag: 'Free · 15 minutes', title: 'Consultation Call', desc: 'Not sure where to start? Book a free 15-minute call to chat about goals and find the right fit.' },
         ].map(({ tag, title, desc }) => (
           <div key={title} className="bg-white px-8 lg:px-10 py-10">
-            <span className="text-2xs tracking-[0.2em] uppercase text-accent block mb-3">{tag}</span>
+            <span className="text-xs tracking-[0.2em] uppercase text-accent-dark block mb-3">{tag}</span>
             <h3 className="font-serif text-[20px] text-black mb-3">{title}</h3>
             <p className="text-[15px] text-text-gray font-light leading-relaxed">{desc}</p>
           </div>

@@ -68,9 +68,9 @@ export default function Blog() {
               </div>
               <div className="p-7 lg:p-8 flex flex-col flex-1">
                 <span className="text-[12px] tracking-[0.15em] uppercase text-mid-gray block mb-3">{date}</span>
-                <h2 className="font-serif text-[20px] text-black leading-snug mb-3 group-hover:text-accent transition-colors">{title}</h2>
+                <h2 className="font-serif text-[20px] text-black leading-snug mb-3 group-hover:text-accent-dark transition-colors">{title}</h2>
                 <p className="text-[15px] text-text-gray leading-relaxed mb-5 flex-1">{excerpt}</p>
-                <span className="text-[13px] tracking-[0.15em] uppercase text-accent">Read →</span>
+                <span className="text-[13px] tracking-[0.15em] uppercase text-accent-dark">Read →</span>
               </div>
             </Link>
           ))}

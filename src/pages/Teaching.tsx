@@ -37,9 +37,9 @@ export default function Teaching() {
             alt="Chihiro Shibayama"
             className="w-full h-full object-cover object-top absolute inset-0"
           />
-          <div className="absolute bottom-8 left-8 bg-black/60 px-5 py-4 border-l-[3px] border-accent max-w-[240px]">
+          <div className="absolute bottom-8 left-8 bg-black/75 px-5 py-4 border-l-[3px] border-accent max-w-[240px]">
             <p className="font-serif italic text-[15px] text-white leading-snug mb-1.5">"…impressive soloist…"</p>
-            <p className="text-2xs tracking-[0.2em] uppercase text-accent">— The New York Times</p>
+            <p className="text-xs tracking-[0.2em] uppercase text-white/85">— The New York Times</p>
           </div>
         </div>
       </section>
@@ -54,7 +54,7 @@ export default function Teaching() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-light-gray border border-light-gray">
             {whyReasons.map(({ num, title, text }) => (
               <div key={num} className="bg-off-white px-8 lg:px-10 py-10 relative">
-                <span className="absolute top-6 right-6 font-serif text-[56px] text-black/5 leading-none">{num}</span>
+                <span aria-hidden="true" data-num={num} className="absolute top-6 right-6 font-serif text-[56px] text-black/5 leading-none before:content-[attr(data-num)]" />
                 <h3 className="font-serif text-[20px] text-black mb-3">{title}</h3>
                 <p className="text-[15px] text-text-gray font-light leading-relaxed">{text}</p>
               </div>
@@ -124,8 +124,8 @@ export default function Teaching() {
             {/* 8-Lesson Pack — Recommended */}
             <div className="bg-black p-8 flex flex-col">
               <div className="flex flex-wrap items-center gap-2 mb-4">
-                <span className="text-[11px] tracking-[0.2em] uppercase text-white/80">Most flexible</span>
-                <span className="text-[11px] tracking-[0.12em] uppercase bg-accent text-black px-2 py-0.5 font-normal">Recommended</span>
+                <span className="text-[12px] tracking-[0.2em] uppercase text-white/80">Most flexible</span>
+                <span className="text-[12px] tracking-[0.12em] uppercase bg-accent text-black px-2 py-0.5 font-normal">Recommended</span>
               </div>
               <h3 className="font-serif text-[22px] text-white mb-4">8-Lesson Pack</h3>
               <div className="flex items-baseline gap-1.5 mb-1">
@@ -221,7 +221,7 @@ export default function Teaching() {
             ].map(({ num, title, desc }) => (
               <div key={num}>
                 <span className="font-serif text-[44px] text-black leading-none block mb-2">{num}</span>
-                <p className="text-2xs tracking-[0.15em] uppercase text-black mb-3">{title}</p>
+                <p className="text-xs tracking-[0.15em] uppercase text-black mb-3">{title}</p>
                 <p className="text-[15px] text-text-gray font-light leading-relaxed">{desc}</p>
               </div>
             ))}
@@ -258,6 +258,7 @@ export default function Teaching() {
           </p>
           <div className="bg-white border border-light-gray overflow-hidden">
             <iframe
+              title="Lesson inquiry form"
               src="https://docs.google.com/forms/d/e/1FAIpQLSeEUIk58KXpBGSLBeOP7SIxTfSDN5quCjeJDygQNCbtVG7rVg/viewform?embedded=true"
               width="100%"
               height="2604"

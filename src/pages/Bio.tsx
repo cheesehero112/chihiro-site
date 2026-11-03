@@ -184,7 +184,7 @@ export default function Bio() {
 					</h3>
 					<p className='text-[17px] text-text-gray font-light leading-relaxed mb-6'>
 						A passionate new music advocate, Chihiro has performed and recorded with Alarm Will Sound, American Contemporary Music Ensemble (ACME), S.E.M. Ensemble, New Juilliard Ensemble, and AXIOM. She toured China in 2015 to perform at the Beijing Modern Music Festival, and has appeared on Amazon Prime's <em>Mozart in the Jungle</em>. She is co-founder of{' '}
-						<a href='https://www.musefriends.org' target='_blank' rel='noopener noreferrer' className='text-accent no-underline border-b border-accent/30 hover:border-accent'>
+						<a href='https://www.musefriends.org' target='_blank' rel='noopener noreferrer' className='text-accent-dark no-underline border-b border-accent/30 hover:border-accent'>
 							Multicultural Sonic Evolution (MuSE)
 						</a>.
 					</p>

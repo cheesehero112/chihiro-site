@@ -84,7 +84,7 @@ export default function Media() {
                     </div>
                   </div>
                   <div className="p-5 lg:p-6">
-                    <span className="text-2xs tracking-[0.15em] uppercase text-accent block mb-2">{tag}</span>
+                    <span className="text-xs tracking-[0.15em] uppercase text-accent-dark block mb-2">{tag}</span>
                     <p className="font-serif text-[16px] text-black leading-snug">{title}</p>
                   </div>
                 </a>
@@ -98,10 +98,10 @@ export default function Media() {
               >
                 <div className="aspect-video flex flex-col items-center justify-center gap-3">
                   <p className="font-serif italic text-[18px] text-mid-gray">View all videos</p>
-                  <span className="text-2xs tracking-[0.15em] uppercase text-accent">YouTube Channel →</span>
+                  <span className="text-xs tracking-[0.15em] uppercase text-accent-dark">YouTube Channel →</span>
                 </div>
                 <div className="p-5 lg:p-6">
-                  <span className="text-2xs tracking-[0.15em] uppercase text-accent block mb-2">YouTube</span>
+                  <span className="text-xs tracking-[0.15em] uppercase text-accent-dark block mb-2">YouTube</span>
                   <p className="font-serif text-[16px] text-black leading-snug">More performances, lessons & original content</p>
                 </div>
               </a>
@@ -132,11 +132,11 @@ export default function Media() {
                     </div>
                   )}
                   <div className="p-8 lg:p-10 flex flex-col gap-3 flex-1">
-                    <span className="text-2xs tracking-[0.2em] uppercase text-accent">{type}</span>
+                    <span className="text-xs tracking-[0.2em] uppercase text-accent-dark">{type}</span>
                     <h2 className="font-serif text-[22px] text-black leading-snug">{title}</h2>
                     <p className="text-[12px] tracking-[0.08em] uppercase text-mid-gray">{pub}</p>
                     <p className="text-[16px] text-text-gray font-light leading-relaxed flex-1">{desc}</p>
-                    <span className="flex items-center gap-2 text-[11px] tracking-[0.15em] uppercase text-accent mt-2">
+                    <span className="flex items-center gap-2 text-[12px] tracking-[0.15em] uppercase text-accent-dark mt-2">
                       Read article <ExternalLink size={12} />
                     </span>
                   </div>
@@ -167,10 +167,10 @@ export default function Media() {
                   rel="noopener noreferrer"
                   className="bg-white p-8 lg:p-10 no-underline flex flex-col gap-3 hover:bg-off-white transition-colors group"
                 >
-                  <span className="text-2xs tracking-[0.15em] uppercase text-mid-gray">{year}</span>
+                  <span className="text-xs tracking-[0.15em] uppercase text-mid-gray">{year}</span>
                   <h3 className="font-serif text-[18px] text-black leading-snug">{title}</h3>
                   <p className="text-[15px] text-text-gray font-light flex-1">{ensemble}</p>
-                  <span className="flex items-center gap-2 text-[11px] tracking-[0.15em] uppercase text-accent mt-2">
+                  <span className="flex items-center gap-2 text-[12px] tracking-[0.15em] uppercase text-accent-dark mt-2">
                     View recording <ExternalLink size={12} />
                   </span>
                 </a>

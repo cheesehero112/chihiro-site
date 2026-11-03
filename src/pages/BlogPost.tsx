@@ -71,7 +71,7 @@ function renderInline(text: string) {
     const italic = part.match(/^\*(.+)\*$/)
     if (italic) return <em key={i} className="italic">{italic[1]}</em>
     const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
-    if (link) return <a key={i} href={link[2]} target="_blank" rel="noopener noreferrer" className="text-accent no-underline border-b border-accent/30 hover:border-accent transition-colors">{link[1]}</a>
+    if (link) return <a key={i} href={link[2]} target="_blank" rel="noopener noreferrer" className="text-accent-dark no-underline border-b border-accent/30 hover:border-accent transition-colors">{link[1]}</a>
     return part
   })
 }
@@ -92,7 +92,7 @@ export default function BlogPost() {
         {/* Header */}
         <div className="mb-12">
           <div className="flex items-center gap-5 mb-8">
-            <Link to="/blog" className="text-[13px] tracking-[0.15em] uppercase text-accent no-underline hover:opacity-70 transition-opacity">
+            <Link to="/blog" className="text-[13px] tracking-[0.15em] uppercase text-accent-dark no-underline hover:opacity-70 transition-opacity">
               ← All posts
             </Link>
             <span className="text-[13px] tracking-[0.15em] uppercase text-mid-gray">{post.date}</span>
@@ -113,7 +113,7 @@ export default function BlogPost() {
             {prev && (
               <Link to={`/blog/${prev.slug}`} className="no-underline group">
                 <span className="text-[12px] tracking-[0.15em] uppercase text-mid-gray block mb-2">← Previous</span>
-                <span className="font-serif text-[18px] text-black group-hover:text-accent transition-colors">{prev.title}</span>
+                <span className="font-serif text-[18px] text-black group-hover:text-accent-dark transition-colors">{prev.title}</span>
               </Link>
             )}
           </div>
@@ -121,7 +121,7 @@ export default function BlogPost() {
             {next && (
               <Link to={`/blog/${next.slug}`} className="no-underline group">
                 <span className="text-[12px] tracking-[0.15em] uppercase text-mid-gray block mb-2">Next →</span>
-                <span className="font-serif text-[18px] text-black group-hover:text-accent transition-colors">{next.title}</span>
+                <span className="font-serif text-[18px] text-black group-hover:text-accent-dark transition-colors">{next.title}</span>
               </Link>
             )}
           </div>

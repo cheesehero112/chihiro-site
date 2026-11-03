@@ -83,7 +83,7 @@ export default function Nav() {
                   onClick={() => setOpen(false)}
                   className={({ isActive }) =>
                     `block py-5 text-[13px] tracking-[0.15em] uppercase no-underline ${
-                      isActive ? 'text-accent' : 'text-black'
+                      isActive ? 'text-accent-dark' : 'text-black'
                     }`
                   }
                 >

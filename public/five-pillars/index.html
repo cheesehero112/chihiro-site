@@ -360,6 +360,14 @@ function computeResult(){
   }
   return { scores, weakest, strongest, steps };
 }
+// Bar color: orange for the focus pillar, green for every pillar tied for the top score.
+// If all five scores are equal, there's no focus pillar: all green when strong, otherwise neutral.
+function barKind(r, i){
+  const max = Math.max(...r.scores), min = Math.min(...r.scores), s = r.scores[i];
+  if (max === min) return s >= 8 ? "strong" : "";
+  if (i === r.weakest) return "weak";
+  return s === max ? "strong" : "";
+}
 function band(s){ return s>=8 ? "Strength" : s>=5 ? "Solid, room to sharpen" : "Growth area"; }
 
 /* ---------- Pentagon chart ---------- */
@@ -390,7 +398,7 @@ function pentagon(scores, size){
 /* ---------- Results rendering ---------- */
 function scoreList(r){
   return PILLARS.map((p,i)=>{
-    const cls = i===r.weakest ? "weak" : i===r.strongest ? "strong" : "";
+    const cls = barKind(r, i);
     return `<li><div class="name"><span>${p.name}</span><span>${r.scores[i]}/10 &middot; <span class="small">${band(r.scores[i])}</span></span></div><div class="bar ${cls}"><span style="width:${r.scores[i]*10}%"></span></div></li>`;
   }).join("");
 }
@@ -546,7 +554,7 @@ async function makePdf(){
     font(9.5,"bold"); color(C.ink); doc.text(sc, R - bw, y, {align:"right"});
     const barY = y + 6, barW = R - sx;
     doc.setFillColor(...C.line); doc.roundedRect(sx, barY, barW, 5, 2.5, 2.5, "F");
-    const fill = i===r.weakest ? C.accent : i===r.strongest ? C.good : C.ink;
+    const kind = barKind(r, i), fill = kind==="weak" ? C.accent : kind==="strong" ? C.good : C.ink;
     if (s > 0){ doc.setFillColor(...fill); doc.roundedRect(sx, barY, Math.max(barW*s/10, 5), 5, 2.5, 2.5, "F"); }
     y += 33;
   });

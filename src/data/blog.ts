@@ -81,8 +81,6 @@ As always, please feel free to contact me with any comments, requests, or questi
 
 I can't believe it's already the last week of February. Time flies! I was very fortunate to have an in-person performance opportunity this past weekend. The work involved playing 5 concerti for a professional video recording with just one 3 hour rehearsal and one 4 hour dress rehearsal. Since I haven't played in an orchestra for about a year, I wanted to make sure to sound my best. How did I do that? That's today's topic!
 
-[image:timpani-rehearsal.webp|I missed playing with people in the same room so much!]
-
 ## Here is the step-by-step guide on how to prepare for your first rehearsal!
 
 **1) Get the music ASAP**

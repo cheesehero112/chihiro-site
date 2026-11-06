@@ -154,7 +154,7 @@ export default function Bio() {
 						Based in Longmont, Colorado, Chihiro runs Shibayama Percussion Studio, where she teaches students of all ages and levels in person and online, drawing on more than two decades of teaching experience. She is currently developing <em>Creating Your Own Path: How to Build a Sustainable Music Career</em>, a webinar drawing on the strategies and lessons she's gathered navigating a multi-decade career across genres, cities, and life stages.
 					</p>
 					<p className='text-[17px] text-text-gray font-light leading-relaxed mb-6'>
-						As a performer, Chihiro continues to play with the Longmont Symphony, the Colorado Symphony, and other regional ensembles, and she actively seeks collaborations with musicians in her community.
+						As a performer, Chihiro is a member of the Longmont Symphony Orchestra and a frequent substitute with the Colorado Symphony. She also performs with other regional ensembles and actively seeks collaborations with musicians in her community.
 					</p>
 					<Link to='/teaching' className='text-link'>View lesson options →</Link>
 

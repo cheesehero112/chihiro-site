@@ -1,5 +1,13 @@
+import { Link } from 'react-router-dom'
 import { whyReasons } from '../data'
 import { Stat } from '../components/ui'
+
+// e.g. 'January 15'. The "Spring enrollment closes" line is hidden while this is empty.
+const SPRING_ENROLLMENT_CLOSES = ''
+
+// Real quotes only, first name and last initial. The section stays hidden while this is empty.
+// Example: { quote: '…', name: 'Jane S.', detail: 'Parent of a 10-year-old student' }
+const testimonials: { quote: string; name: string; detail?: string }[] = []
 
 export default function Teaching() {
   return (
@@ -13,18 +21,18 @@ export default function Teaching() {
             <p className="text-xs tracking-[0.25em] uppercase text-black/70 font-medium">Shibayama Percussion Studio</p>
           </div>
           <h1 className="font-serif font-normal leading-[1.05] text-black mb-8" style={{ fontSize: 'clamp(2.75rem, 5.5vw, 4.5rem)' }}>
-            World-class<br />percussion<br /><em className="text-accent">instruction.</em>
+            Percussion lessons<br />in Longmont<br /><em className="text-accent">and online.</em>
           </h1>
           <p className="text-[17px] text-text-gray font-light leading-relaxed max-w-md mb-12">
-            Juilliard-trained, New York City–seasoned, and now right here in Longmont, CO. Instruction for every percussionist — from first-time beginners to pre-college and beyond.
+            Learn snare, mallets, timpani, and drumset from a Juilliard-trained member of the Longmont Symphony. Daytime lessons are available for homeschool students and adults, and online lessons are available nationwide and internationally. Students of all ages and levels are welcome, from first-time beginners to those preparing for auditions.
           </p>
-          <div className="flex gap-8 pb-10 border-b border-light-gray mb-10">
+          <div className="flex flex-wrap gap-x-5 gap-y-6 sm:gap-x-8 pb-10 border-b border-light-gray mb-10">
             <Stat num="25+" label="Years performing" />
             <Stat num="20+" label="Years teaching" />
             <Stat num="Juilliard" label="B.M. & M.M." />
           </div>
           <div className="flex flex-wrap gap-4">
-            <a href="#contact" className="btn-primary">Book a trial lesson</a>
+            <a href="#contact" className="btn-primary">Book a free 15-minute call</a>
             <a href="#lessons" className="text-[15px] tracking-[0.15em] uppercase text-mid-gray no-underline border-b border-light-gray pb-px">
               View options ↓
             </a>
@@ -106,6 +114,67 @@ export default function Teaching() {
           <p className="text-[16px] text-text-gray font-light leading-relaxed mt-8 max-w-2xl">
             Every student develops a personalized curriculum. Beginners explore different instruments to find what excites them. Advanced students build the multi-instrument proficiency that audition panels expect.
           </p>
+        </div>
+      </section>
+
+      {/* WHO I TEACH */}
+      <section className="bg-off-white px-6 lg:px-16 py-16 lg:py-24 border-b border-light-gray">
+        <div className="max-w-7xl mx-auto">
+          <p className="eyebrow mb-5">Who I teach</p>
+          <h2 className="section-title mb-14">
+            Lessons for <em>every student.</em>
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-light-gray border border-light-gray">
+            {[
+              {
+                tag: 'In-person · Daytime',
+                title: 'Homeschool students',
+                desc: 'Daytime private lessons that fit a homeschool schedule, plus small studio classes of up to three students.',
+              },
+              {
+                tag: 'In-person · Daytime',
+                title: 'Adults',
+                desc: 'Beginner-friendly daytime lessons on marimba, drums, and percussion. It\'s never too late to start.',
+              },
+              {
+                tag: 'In-person · Daytime',
+                title: 'Parents & young children',
+                desc: 'Small daytime classes for up to three parent-child pairs.',
+              },
+              {
+                tag: 'Online',
+                title: 'Online lessons',
+                desc: 'Live lessons for students outside Colorado, nationwide and internationally.',
+              },
+              {
+                tag: 'In-person or online',
+                title: 'Audition prep',
+                desc: 'Preparation for All-State, honor bands, youth orchestras, and school auditions.',
+                link: { to: '/audition-prep', label: 'Conservatory & arts school auditions →' },
+              },
+            ].map(({ tag, title, desc, link }) => (
+              <div key={title} className="bg-white px-8 py-10">
+                <span className="text-xs tracking-[0.2em] uppercase text-accent-dark block mb-3">{tag}</span>
+                <h3 className="font-serif text-[20px] text-black mb-3">{title}</h3>
+                <p className="text-[15px] text-text-gray font-light leading-relaxed">{desc}</p>
+                {link && <Link to={link.to} className="text-link inline-block mt-5">{link.label}</Link>}
+              </div>
+            ))}
+            <div className="bg-black px-8 py-10 flex flex-col justify-center">
+              <p className="font-serif text-[22px] text-white leading-snug mb-3">Tuesday and Wednesday daytime lessons are currently available.</p>
+              {SPRING_ENROLLMENT_CLOSES && (
+                <p className="text-[15px] text-white/85 font-light leading-relaxed mb-3">
+                  Spring enrollment closes {SPRING_ENROLLMENT_CLOSES}.
+                </p>
+              )}
+              <a
+                href="#contact"
+                className="self-start mt-3 text-[13px] tracking-[0.18em] uppercase border border-white text-white px-6 py-3 hover:bg-white hover:text-black transition-all no-underline"
+              >
+                Book a free 15-minute call
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -229,6 +298,38 @@ export default function Teaching() {
         </div>
       </section>
 
+      {/* TESTIMONIALS — hidden until real quotes are added above */}
+      {testimonials.length > 0 && (
+        <section className="bg-off-white border-t border-light-gray px-6 lg:px-16 py-16 lg:py-24">
+          <div className="max-w-7xl mx-auto">
+            <p className="eyebrow mb-5">Kind words</p>
+            <h2 className="section-title mb-14">From students <em>and families.</em></h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-light-gray border border-light-gray">
+              {testimonials.map(({ quote, name, detail }) => (
+                <figure key={name + quote.slice(0, 20)} className="bg-white px-8 py-10 flex flex-col">
+                  <blockquote className="font-serif italic text-[18px] text-black leading-snug mb-6">"{quote}"</blockquote>
+                  <figcaption className="mt-auto">
+                    <span className="text-xs tracking-[0.2em] uppercase text-black block">{name}</span>
+                    {detail && <span className="text-[14px] text-mid-gray font-light">{detail}</span>}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* AUDITION PREP CTA STRIP */}
+      <section className="bg-black px-6 lg:px-16 py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <p className="font-serif italic text-white text-[1.25rem]">Preparing for summer music program, conservatory, or college auditions?</p>
+        <Link
+          to="/audition-prep"
+          className="whitespace-nowrap text-[15px] tracking-[0.18em] uppercase border border-white text-white px-8 py-3 hover:bg-white hover:text-black transition-all no-underline"
+        >
+          Audition prep →
+        </Link>
+      </section>
+
       {/* FAQ */}
       <section className="border-t border-light-gray px-6 lg:px-16 py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
@@ -246,6 +347,12 @@ export default function Teaching() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* JAPANESE LINK */}
+      <section lang="ja" className="border-t border-light-gray px-6 lg:px-16 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+        <p className="text-[16px] text-black font-normal">日本語でのオンラインレッスンをご希望の方へ</p>
+        <Link to="/ja" className="text-link">日本語ページはこちら →</Link>
       </section>
 
       {/* BOOKING FORM */}

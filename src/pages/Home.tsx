@@ -86,7 +86,7 @@ export default function Home() {
         <div className="flex flex-col gap-px bg-light-gray">
           {[
             { num: '01', title: 'Performer', desc: 'Broadway, Metropolitan Opera, Carnegie Hall, symphonies, new music ensembles, and television across the US and internationally.' },
-            { num: '02', title: 'Educator', desc: '20+ years of private teaching, faculty at Diller-Quaile and Third Street Music School, and Juilliard Summer Percussion Seminar.' },
+            { num: '02', title: 'Educator', desc: '20+ years of private teaching, former faculty at Diller-Quaile and Third Street Music School, and Juilliard Summer Percussion Seminar.' },
             { num: '03', title: 'Arts Advocate', desc: 'Co-founder of MuSE (Multicultural Sonic Evolution), a non-profit creating multicultural environments through music and the arts.' },
           ].map(({ num, title, desc }) => (
             <div key={num} className="bg-white px-8 lg:px-10 py-8 flex items-start gap-6 hover:bg-off-white transition-colors">
@@ -160,12 +160,12 @@ export default function Home() {
 
       {/* BOOKING CTA STRIP */}
       <section className="bg-black px-6 lg:px-16 py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
-        <p className="font-serif italic text-white text-[1.25rem]">Ready to start? Book your trial lesson.</p>
+        <p className="font-serif italic text-white text-[1.25rem]">Ready to start? Let's talk first.</p>
         <a
           href="/teaching#contact"
           className="whitespace-nowrap text-[15px] tracking-[0.18em] uppercase border border-white text-white px-8 py-3 hover:bg-white hover:text-black transition-all no-underline"
         >
-          Book a trial lesson →
+          Book a free 15-minute call →
         </a>
       </section>
 

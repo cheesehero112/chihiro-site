@@ -81,7 +81,7 @@ As always, please feel free to contact me with any comments, requests, or questi
 
 I can't believe it's already the last week of February. Time flies! I was very fortunate to have an in-person performance opportunity this past weekend. The work involved playing 5 concerti for a professional video recording with just one 3 hour rehearsal and one 4 hour dress rehearsal. Since I haven't played in an orchestra for about a year, I wanted to make sure to sound my best. How did I do that? That's today's topic!
 
-[image:first-rehearsal-photo.webp|I missed playing with people in the same room so much!]
+[image:timpani-rehearsal.webp|I missed playing with people in the same room so much!]
 
 ## Here is the step-by-step guide on how to prepare for your first rehearsal!
 
@@ -231,7 +231,7 @@ It's hard to believe it's already the last week of January! I hope you are stayi
 
 I started to think a lot about how to effectively get the most done in my practice session as I continue to do the [30-Day 10min Practice Challenge](https://www.instagram.com/chihiroplayspercussion/channel/?hl=en).
 
-[image:3tips-photo.webp|Day 14 of the 30-Day Practice Challenge]
+[image:practice-challenge.webp|Day 14 of the 30-Day Practice Challenge]
 
 ## Here is the list of 3 tips you can start using today to practice effectively.
 
@@ -468,7 +468,7 @@ Today's challenge is called ["Timpani Tuning Challenge (happy birthday)"](https:
 
 This challenge is inspired by my DCI (Drum Corps International) days as a timpanist of the Glassmen, where I played basically a tuba part on 5 drums. This challenge will have you play the famous happy birthday song on 2 and 3 drums because we don't always have 5 drums, right? Here are [some pictures](https://drive.google.com/drive/folders/1ovKuAqXtkuitJC4psZIcbZFgrJu4dx2g?usp=sharing) from my DCI days.
 
-[image:glassmen-timpani.webp|Me playing timpani for DCI championship with the Glassmen]
+[image:Glassmen-timpani.jpg|Me playing timpani for DCI championship with the Glassmen]
 
 **This challenge will train your ability to:**
 

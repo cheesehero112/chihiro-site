@@ -73,4 +73,4 @@ Your post content here. Supports **bold**, *italic*,
 - **Videos**: `src/data/index.ts` → `videos`
 - **Press**: `src/data/index.ts` → `pressItems`
 - **Recordings**: `src/data/index.ts` → `recordings`
-- **Contact form**: Uses Formspree ID `mreyadbw` — update in `Teaching.tsx` and `Contact.tsx`
+- **Lesson inquiry form**: Google Form — embedded in `Teaching.tsx`, linked from `Contact.tsx` (`INQUIRY_FORM_URL`)

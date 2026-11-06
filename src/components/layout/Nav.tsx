@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react'
 const links = [
   { to: '/bio', label: 'Biography' },
   { to: '/teaching', label: 'Teaching' },
+  { to: '/audition-prep', label: 'Audition Prep' },
   { to: '/coaching', label: 'Coaching' },
   { to: '/blog', label: 'Blog' },
   { to: '/media', label: 'Media' },
@@ -28,7 +29,7 @@ export default function Nav() {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-shadow ${scrolled ? 'shadow-sm' : ''}`}>
       <nav className="bg-white/90 backdrop-blur-sm border-b border-accent">
-        <div className="max-w-7xl mx-auto px-6 lg:px-16 flex items-center justify-between h-[80px]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-16 flex items-center justify-between gap-6 h-[80px]">
 
           {/* Logo */}
           <Link to="/" className="no-underline">
@@ -36,13 +37,13 @@ export default function Nav() {
           </Link>
 
           {/* Desktop links */}
-          <ul className="hidden min-[1140px]:flex items-center gap-9 list-none">
+          <ul className="hidden min-[1280px]:flex items-center gap-6 xl:gap-8 list-none">
             {links.map(({ to, label }) => (
               <li key={to}>
                 <NavLink
                   to={to}
                   className={({ isActive }) =>
-                    `text-[13px] font-medium tracking-[0.12em] uppercase no-underline transition-colors ${
+                    `text-[13px] font-medium tracking-[0.12em] uppercase no-underline whitespace-nowrap transition-colors ${
                       isActive ? 'text-black border-b border-black pb-px' : 'text-black hover:text-mid-gray'
                     }`
                   }
@@ -56,14 +57,14 @@ export default function Nav() {
           {/* Desktop CTA */}
           <Link
             to="/teaching"
-            className="hidden min-[1140px]:inline-block text-[13px] tracking-[0.12em] uppercase border border-black px-5 py-2 transition-all hover:bg-black hover:text-white no-underline text-black whitespace-nowrap"
+            className="hidden min-[1280px]:inline-block text-[13px] tracking-[0.12em] uppercase border border-black px-5 py-2 transition-all hover:bg-black hover:text-white no-underline text-black whitespace-nowrap"
           >
             Private Lessons
           </Link>
 
           {/* Mobile menu button */}
           <button
-            className="min-[1140px]:hidden p-2 text-black"
+            className="min-[1280px]:hidden p-2 text-black"
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
           >
@@ -74,7 +75,7 @@ export default function Nav() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="min-[1140px]:hidden fixed inset-0 top-[80px] bg-white z-40 flex flex-col px-6 pt-8 pb-12">
+        <div className="min-[1280px]:hidden fixed inset-0 top-[80px] bg-white z-40 flex flex-col px-6 pt-8 pb-12">
           <ul className="list-none flex flex-col gap-0 border-t border-light-gray">
             {links.map(({ to, label }) => (
               <li key={to} className="border-b border-light-gray">

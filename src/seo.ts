@@ -115,8 +115,8 @@ export function getMeta(pathname: string): PageMeta {
   return pages['/']
 }
 
-// Each page is built as <route>/index.html, which Netlify serves at <route>/
-export const canonicalUrl = (pathname: string) => SITE_URL + (pathname === '/' ? '/' : pathname.replace(/\/?$/, '/'))
+// Netlify serves pages without a trailing slash (/teaching/ redirects to /teaching)
+export const canonicalUrl = (pathname: string) => SITE_URL + (pathname === '/' ? '/' : pathname.replace(/\/$/, ''))
 
 const escape = (s: string) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 

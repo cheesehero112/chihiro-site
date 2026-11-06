@@ -19,6 +19,17 @@ const pillars = [
   { num: '05', name: 'Mindset', sub: 'The inner game', text: 'Defining success on your own terms and moving through rejection.' },
 ]
 
+const testimonials = [
+  {
+    quote: 'The freelance world can often seem insecure and capricious. With amazing clarity, Chihiro helps us to be better aware of our current strengths and weaknesses and then gives us very practical steps to take matters into our own hands! Her experience and insight provide a shortcut to improving our freelance life!',
+    name: 'Gabrielle',
+  },
+  {
+    quote: 'I just went through your quiz and thought it was so great. The statements were thought-provoking, and the whole experience was really seamless. I loved the final analysis, along with the three next steps.',
+    name: 'Jennifer',
+  },
+]
+
 const transformations = [
   { title: 'You stop guessing.', text: 'You know which one or two things will move your career this season, and you can let the rest wait.' },
   { title: 'You become the musician contractors want to hire again and again.', text: "You show up prepared, you're easy to work with, and you stay on their radar between gigs." },
@@ -129,6 +140,27 @@ export default function Coaching() {
               <p className="font-serif italic text-[22px] text-black leading-snug mb-6">It's free, and it always will be.</p>
               <a href={QUIZ_URL} className="btn-primary">Take the free quiz</a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className="px-6 lg:px-16 py-16 lg:py-24 border-b border-light-gray" aria-labelledby="testimonials-title">
+        <div className="max-w-7xl mx-auto">
+          <p className="eyebrow mb-5">What quiz-takers say</p>
+          <h2 id="testimonials-title" className="section-title mb-12">
+            Clarity, in their<br /><em>own words.</em>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-light-gray border border-light-gray">
+            {testimonials.map(({ quote, name }) => (
+              <figure key={name} className="bg-white px-8 lg:px-10 py-10 flex flex-col m-0">
+                <span aria-hidden="true" className="font-serif text-[64px] leading-none text-accent mb-2">“</span>
+                <blockquote className="font-serif italic text-[20px] lg:text-[22px] text-black leading-snug mb-6 flex-1">
+                  {quote}
+                </blockquote>
+                <figcaption className="text-[12px] tracking-[0.2em] uppercase text-mid-gray">— {name}</figcaption>
+              </figure>
+            ))}
           </div>
         </div>
       </section>

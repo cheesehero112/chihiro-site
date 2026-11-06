@@ -208,12 +208,12 @@ const CONFIG = {
   kitTagIds: { outreach:"", reputation:"", network:"", income:"", mindset:"" },
   // Call to action at the bottom of the results
   ctaTitle: "Unpack your results with me, live",
-  ctaText: "Your results are a starting point. In a small-group Zoom session (10 people max), I'll walk through what your pentagon shape is telling you, why your focus pillar matters most right now, and how to turn your next steps into a plan you'll actually follow. You'll also hear how other musicians are tackling the same challenges. Bring your PDF and your questions.",
-  ctaMeta: "90 minutes · Founding price $25 (regularly $50)",
-  ctaButton: "Notify me about the next debrief",
-  // Kit form for the debrief waitlist (one click adds the quiz-taker's email)
+  ctaText: "Your results show where to focus. Map Your Path: A Live 5 Pillars Workshop is where we work out how. On Zoom, I'll walk through what the 5 Pillars mean, what your pentagon shape is telling you, and the next steps for each pillar. You'll choose your focus for the next 30 days and bring your questions for live Q&A. Can't make it live? You'll get the recording.",
+  ctaMeta: "90 minutes · Recording included · Founding price $25 (regularly $50)",
+  ctaButton: "Notify me about the next workshop",
+  // Kit form for the workshop waitlist (one click adds the quiz-taker's email)
   waitlistFormId: "10134517",
-  ctaUrl: "https://chihiroshibayama.com",   // replace with the debrief sign-up link
+  ctaUrl: "https://chihiroshibayama.com",   // replace with the workshop sign-up link
   website: "chihiroshibayama.com"
 };
 
@@ -480,7 +480,7 @@ async function submitAll(){
   renderResults();
 }
 
-/* ---------- Debrief waitlist (one click) ---------- */
+/* ---------- Workshop waitlist (one click) ---------- */
 async function joinWaitlist(){
   const btn = $("ctaBtn"); btn.disabled = true; btn.textContent = "Adding you…";
   if (CONFIG.waitlistFormId && !PREVIEW){
@@ -598,7 +598,7 @@ async function makePdf(){
     doc.setPage(pg);
     doc.setDrawColor(...C.line); doc.setLineWidth(0.75); doc.line(M, 742, R, 742);
     font(8.5); color(C.muted);
-    doc.text("Next: a live 5 Pillars group debrief. Details at " + CONFIG.website + "/coaching", M, 758);
+    doc.text("Next: Map Your Path, a live 5 Pillars workshop. Details at " + CONFIG.website + "/coaching", M, 758);
     doc.text(CONFIG.website, R, 758, {align:"right"});
   }
   return doc;

@@ -133,7 +133,7 @@ export default function Coaching() {
         </div>
       </section>
 
-      {/* DEBRIEF */}
+      {/* MAP YOUR PATH WORKSHOP */}
       <section className="bg-off-white px-6 lg:px-16 py-16 lg:py-24">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           <div>
@@ -142,26 +142,26 @@ export default function Coaching() {
               Clarity is the start.<br /><em>A plan is what changes things.</em>
             </h2>
             <p className="text-[17px] text-text-gray font-light leading-relaxed mb-5">
-              Your results show <em>where</em> to focus. The 5 Pillars Group Debrief is where we work out <em>how</em>.
+              Your results show <em>where</em> to focus. Map Your Path is where we work out <em>how</em>.
             </p>
             <p className="text-[17px] text-text-gray font-light leading-relaxed">
-              In a small group on Zoom, I'll walk through what your pentagon shape means, why your focus pillar matters most right now, and how to turn your next steps into habits you'll actually keep. You'll also hear how other musicians are handling the same challenges, because you're far less alone in this than it feels.
+              In this live workshop on Zoom, I'll walk through what the 5 Pillars mean, what your pentagon shape is telling you, and the next steps for each pillar. You'll choose your focus for the next 30 days and bring your questions for live Q&A. Can't make it live? You'll get the recording.
             </p>
           </div>
 
           <div className="bg-white border border-light-gray p-8 lg:p-10 flex flex-col self-start">
-            <span className="text-[12px] tracking-[0.2em] uppercase text-mid-gray mb-4">Live on Zoom · 10 people max</span>
-            <h3 className="font-serif text-[26px] text-black mb-4">5 Pillars Group Debrief</h3>
+            <span className="text-[12px] tracking-[0.2em] uppercase text-mid-gray mb-4">Live on Zoom · Recording included</span>
+            <h3 className="font-serif text-[26px] text-black mb-4">Map Your Path: A Live 5 Pillars Workshop</h3>
             <div className="flex items-baseline gap-2 mb-1">
               <span className="font-serif text-[38px] text-black leading-none">$25</span>
               <span className="text-[14px] text-mid-gray">founding price</span>
             </div>
-            <p className="text-[14px] text-mid-gray italic mb-6">Regularly $50 · 90 minutes</p>
+            <p className="text-[14px] text-mid-gray italic mb-6">Regularly $50 · 90 minutes · Date and time TBA</p>
             <ul className="list-none flex flex-col mb-8">
-              <Bullet>What your pentagon shape is telling you</Bullet>
-              <Bullet>Why your focus pillar matters most right now</Bullet>
-              <Bullet>Turning your next steps into a plan you follow</Bullet>
-              <Bullet>How other musicians tackle the same challenges</Bullet>
+              <Bullet>What the 5 Pillars mean and what your pentagon shape is telling you</Bullet>
+              <Bullet>Next steps for each pillar</Bullet>
+              <Bullet>Your one focus for the next 30 days</Bullet>
+              <Bullet>Live Q&A and ideas from other musicians</Bullet>
             </ul>
             <p className="text-[15px] text-text-gray font-light leading-relaxed mb-6">
               To join the waitlist, take the quiz and tap <strong className="font-medium text-black">“Notify me”</strong> on your results page.

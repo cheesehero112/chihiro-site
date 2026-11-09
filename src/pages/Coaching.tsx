@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Stat } from '../components/ui'
+import Testimonials from '../components/Testimonials'
+import { testimonials } from '../data/testimonials'
 
 const QUIZ_URL = '/five-pillars' // standalone quiz page (not part of the React app), so plain <a> links
 
@@ -17,17 +19,6 @@ const pillars = [
   { num: '03', name: 'Network', sub: 'Relationships that compound', text: 'Relationships that keep paying off for years.' },
   { num: '04', name: 'Income Architecture', sub: 'Designing the portfolio', text: 'Income that holds up when one stream slows down.' },
   { num: '05', name: 'Mindset', sub: 'The inner game', text: 'Defining success on your own terms and moving through rejection.' },
-]
-
-const testimonials = [
-  {
-    quote: 'The freelance world can often seem insecure and capricious. With amazing clarity, Chihiro helps us to be better aware of our current strengths and weaknesses and then gives us very practical steps to take matters into our own hands! Her experience and insight provide a shortcut to improving our freelance life!',
-    name: 'Gabrielle',
-  },
-  {
-    quote: 'I just went through your quiz and thought it was so great. The statements were thought-provoking, and the whole experience was really seamless. I loved the final analysis, along with the three next steps.',
-    name: 'Jennifer',
-  },
 ]
 
 const transformations = [
@@ -151,17 +142,7 @@ export default function Coaching() {
           <h2 id="testimonials-title" className="section-title mb-12">
             Clarity, in their<br /><em>own words.</em>
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-light-gray border border-light-gray">
-            {testimonials.map(({ quote, name }) => (
-              <figure key={name} className="bg-white px-8 lg:px-10 py-10 flex flex-col m-0">
-                <span aria-hidden="true" className="font-serif text-[64px] leading-none text-accent mb-2">“</span>
-                <blockquote className="font-serif italic text-[20px] lg:text-[22px] text-black leading-snug mb-6 flex-1">
-                  {quote}
-                </blockquote>
-                <figcaption className="text-[12px] tracking-[0.2em] uppercase text-mid-gray">— {name}</figcaption>
-              </figure>
-            ))}
-          </div>
+          <Testimonials items={testimonials} />
         </div>
       </section>
 

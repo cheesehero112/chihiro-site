@@ -180,7 +180,7 @@ export default function Coaching() {
               <Bullet>Your one focus for the next 30 days</Bullet>
               <Bullet>Live Q&A and ideas from other musicians</Bullet>
             </ul>
-            <a href={WORKSHOP_REGISTER_URL} className="btn text-center">Reserve your spot · $25</a>
+            <a href={WORKSHOP_REGISTER_URL} className="btn-primary text-center">Reserve your spot · $25</a>
             <p className="text-[15px] text-text-gray font-light leading-relaxed mt-6">
               Haven't taken the quiz yet? <a href={QUIZ_URL} className="text-black border-b border-black/40 no-underline hover:border-black">Take it free</a> before the workshop so you can bring your results.
             </p>

@@ -187,8 +187,8 @@ footer{text-align:center;font-size:.8rem;color:var(--muted);margin-top:24px}
       <h2 id="ctaTitle"></h2>
       <p id="ctaText"></p>
       <p id="ctaMeta" style="font-weight:600"></p>
-      <button class="btn" id="ctaBtn" type="button" onclick="joinWaitlist()"></button>
-      <p class="hidden" id="ctaDone" style="font-weight:600;margin:12px 0 0">You're on the list! I'll email you the date as soon as it's set.</p>
+      <button class="btn" id="ctaBtn" type="button" onclick="registerWorkshop()"></button>
+      <p class="hidden" id="ctaDone" style="font-weight:600;margin:12px 0 0">Checkout opened in a new tab. Don't see it? <a id="ctaLink" href="#" target="_blank" rel="noopener">Open checkout</a></p>
     </div>
   </section>
 
@@ -209,11 +209,12 @@ const CONFIG = {
   // Call to action at the bottom of the results
   ctaTitle: "Unpack your results with me, live",
   ctaText: "Your results show where to focus. Map Your Path: A Live 5 Pillars Workshop is where we work out how. On Zoom, I'll walk through what the 5 Pillars mean, what your pentagon shape is telling you, and the next steps for each pillar. You'll choose your focus for the next 30 days and bring your questions for live Q&A. Can't make it live? You'll get the recording.",
-  ctaMeta: "90 minutes · Recording included · Founding price $25 (regularly $50)",
-  ctaButton: "Notify me about the next workshop",
-  // Kit form for the workshop waitlist (one click adds the quiz-taker's email)
+  ctaMeta: "Thursday, December 3 · 2:00–3:30 pm MT (4:00 pm ET / 1:00 pm PT) · Recording included · Founding price $25 (regularly $50)",
+  ctaButton: "Reserve my spot · $25",
+  // Kit form that records who clicked the workshop button (useful for follow-up emails)
   waitlistFormId: "10134517",
-  ctaUrl: "https://chihiroshibayama.com",   // replace with the workshop sign-up link
+  // Map Your Path checkout (Stripe payment link). Paste the link between the quotes.
+  ctaUrl: "https://buy.stripe.com/fZu9AM7Bn0mn17rdRy5gc03",
   website: "chihiroshibayama.com"
 };
 
@@ -480,16 +481,18 @@ async function submitAll(){
   renderResults();
 }
 
-/* ---------- Workshop waitlist (one click) ---------- */
-async function joinWaitlist(){
-  const btn = $("ctaBtn"); btn.disabled = true; btn.textContent = "Adding you…";
+/* ---------- Workshop registration ---------- */
+// Opens Stripe checkout in a new tab (so results stay on screen) and records the click in Kit.
+function registerWorkshop(){
+  window.open(CONFIG.ctaUrl, "_blank", "noopener");
+  $("ctaLink").href = CONFIG.ctaUrl;
   if (CONFIG.waitlistFormId && !PREVIEW){
     const f = new URLSearchParams();
     f.append("email_address", val("fEmail")); f.append("first_name", val("fName"));
     f.append("fields[weakest_pillar]", PILLARS[result.weakest].name);
-    try { await fetch(`https://app.kit.com/forms/${CONFIG.waitlistFormId}/subscriptions`, { method:"POST", mode:"no-cors", body: f }); } catch(e){ console.warn("Waitlist submit failed", e); }
+    fetch(`https://app.kit.com/forms/${CONFIG.waitlistFormId}/subscriptions`, { method:"POST", mode:"no-cors", body: f, keepalive:true }).catch(e => console.warn("Kit submit failed", e));
   }
-  btn.classList.add("hidden"); $("ctaDone").classList.remove("hidden");
+  $("ctaDone").classList.remove("hidden");
 }
 
 /* ---------- Feedback ---------- */
@@ -598,7 +601,7 @@ async function makePdf(){
     doc.setPage(pg);
     doc.setDrawColor(...C.line); doc.setLineWidth(0.75); doc.line(M, 742, R, 742);
     font(8.5); color(C.muted);
-    doc.text("Next: Map Your Path, a live 5 Pillars workshop. Details at " + CONFIG.website + "/coaching", M, 758);
+    doc.text("Next: Map Your Path, live on Zoom Thu Dec 3, 2:00 pm MT. Reserve at " + CONFIG.website + "/coaching", M, 758);
     doc.text(CONFIG.website, R, 758, {align:"right"});
   }
   return doc;

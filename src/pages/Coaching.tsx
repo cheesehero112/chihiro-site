@@ -4,6 +4,8 @@ import Testimonials from '../components/Testimonials'
 import { testimonials } from '../data/testimonials'
 
 const QUIZ_URL = '/five-pillars' // standalone quiz page (not part of the React app), so plain <a> links
+// Map Your Path checkout (Stripe payment link). Paste the link between the quotes.
+const WORKSHOP_REGISTER_URL = 'https://buy.stripe.com/fZu9AM7Bn0mn17rdRy5gc03'
 
 const painPoints = [
   { title: 'Practice harder at the wrong thing.', text: "You polish excerpts for months while the real gap is that the people who hire don't know your name." },
@@ -169,17 +171,19 @@ export default function Coaching() {
               <span className="font-serif text-[38px] text-black leading-none">$25</span>
               <span className="text-[14px] text-mid-gray">founding price</span>
             </div>
-            <p className="text-[14px] text-mid-gray italic mb-6">Regularly $50 · 90 minutes · Date and time TBA</p>
+            <p className="text-[14px] text-mid-gray italic mb-4">Regularly $50 · 90 minutes</p>
+            <p className="text-[16px] text-black font-medium mb-1">Thursday, December 3, 2026</p>
+            <p className="text-[14px] text-text-gray mb-6">2:00–3:30 pm Mountain · 4:00 pm Eastern · 1:00 pm Pacific</p>
             <ul className="list-none flex flex-col mb-8">
               <Bullet>What the 5 Pillars mean and what your pentagon shape is telling you</Bullet>
               <Bullet>Next steps for each pillar</Bullet>
               <Bullet>Your one focus for the next 30 days</Bullet>
               <Bullet>Live Q&A and ideas from other musicians</Bullet>
             </ul>
-            <p className="text-[15px] text-text-gray font-light leading-relaxed mb-6">
-              To join the waitlist, take the quiz and tap <strong className="font-medium text-black">“Notify me”</strong> on your results page.
+            <a href={WORKSHOP_REGISTER_URL} className="btn text-center">Reserve your spot · $25</a>
+            <p className="text-[15px] text-text-gray font-light leading-relaxed mt-6">
+              Haven't taken the quiz yet? <a href={QUIZ_URL} className="text-black border-b border-black/40 no-underline hover:border-black">Take it free</a> before the workshop so you can bring your results.
             </p>
-            <a href={QUIZ_URL} className="btn-outline text-center">Take the quiz to join</a>
             <p className="text-[15px] text-text-gray font-light leading-relaxed mt-6">
               Prefer one-on-one? <Link to="/contact" className="text-black border-b border-black/40 no-underline hover:border-black">Get in touch</Link> about a private session to go through your results together.
             </p>

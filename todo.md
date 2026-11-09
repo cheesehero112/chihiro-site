@@ -24,7 +24,8 @@ git restore .
 - [ ] 3 blog downloads link to Kit pages that no longer exist: "Rhythm Challenge", "Timpani Tuning Challenge", "5 Steps to Play on Broadway". For each: new Kit link, host the PDF on the site, or remove the download mention.
 
 **Dates to fill in**
-- [ ] Map Your Path workshop date and time (Coaching page says "Date and time TBA")
+- [x] Map Your Path workshop date and time: Thu Dec 3, 2026, 2:00–3:30 pm MT
+- [x] Map Your Path Stripe payment link added
 - [ ] Spring enrollment closing date (Teaching page line stays hidden until this is set)
 
 **Content to provide**

@@ -99,7 +99,7 @@ footer{text-align:center;font-size:.8rem;color:var(--muted);margin-top:24px}
 </form>
 
 <main class="wrap">
-  <div class="brand">Chihiro Shibayama &middot; Musicians Career Coach</div>
+  <div class="brand">Chihiro Shibayama &middot; Percussionist &amp; Career Coach for Musicians</div>
 
   <!-- ===== Intro ===== -->
   <section id="intro">
@@ -538,7 +538,7 @@ async function makePdf(){
   font(22,"bold"); color(C.ink); doc.text(name ? `${name}'s career map` : "Your career map", M, 82);
   font(9); color(C.muted);
   doc.text(date, R, 62, {align:"right"});
-  doc.text("Chihiro Shibayama · Musicians Career Coach", R, 75, {align:"right"});
+  doc.text("Chihiro Shibayama · Percussionist & Career Coach for Musicians", R, 75, {align:"right"});
   doc.setDrawColor(...C.ink); doc.setLineWidth(1.5); doc.line(M, 94, R, 94);
 
   // Pentagon chart (left)

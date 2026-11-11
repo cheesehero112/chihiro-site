@@ -424,7 +424,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px soli
     if(steps.length){ const s=mk("div",null,null,ps); mk("h2",null,"Your next steps",s); const ul=mk("ul","ps-steps",null,s); steps.forEach(t=>mk("li",null,t,ul)); }
     const note=$("sum-note").value.trim();
     if(note){ const s=mk("div",null,null,ps); mk("h2",null,"A note from Chihiro",s); mk("p","ps-note",note,s); }
-    const ft=mk("div","ps-foot",null,ps); mk("span",null,"Chihiro Shibayama · Musicians Career Coach",ft); mk("span",null,"chihiroshibayama.com",ft);
+    const ft=mk("div","ps-foot",null,ps); mk("span",null,"Chihiro Shibayama · Percussionist & Career Coach for Musicians",ft); mk("span",null,"chihiroshibayama.com",ft);
     return {name, date:$("sum-date").value};
   }
   // ---- PDF drawn directly (artifact version, where the print dialog is unavailable)
@@ -486,7 +486,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px soli
       doc.setFont("helvetica","normal"); doc.setFontSize(11); const lines=doc.splitTextToSize(note,W-2*M-16);
       col("brass","setFillColor"); doc.rect(M,y-10,2.5,lines.length*14+2,"F"); doc.text(lines,M+14,y); }
     col("line","setDrawColor"); doc.setLineWidth(0.6); doc.line(M,744,W-M,744);
-    doc.setFontSize(9); col("muted","setTextColor"); doc.text("Chihiro Shibayama · Musicians Career Coach",M,760); doc.text("chihiroshibayama.com",W-M,760,{align:"right"});
+    doc.setFontSize(9); col("muted","setTextColor"); doc.text("Chihiro Shibayama · Percussionist & Career Coach for Musicians",M,760); doc.text("chihiroshibayama.com",W-M,760,{align:"right"});
     return {blob:doc.output("blob"), filename:"5 Pillars Summary - "+name.replace(/[\\/:*?"<>|]/g,"")+(dateV?" - "+dateV:"")+".pdf"};
   }
   async function downloadSummary(){

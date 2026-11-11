@@ -172,7 +172,7 @@ footer{text-align:center;font-size:.8rem;color:var(--muted);margin-top:24px}
       <h2>Your 3 next steps</h2>
       <p class="small">Chosen from the questions you answered "no" in your weakest pillar. Small moves, done this week, add up.</p>
       <ol class="steps" id="rSteps"></ol>
-      <button class="btn" id="pdfBtn" onclick="downloadPdf()">Download my one-page PDF</button>
+      <button class="btn" id="pdfBtn" onclick="downloadPdf()">Open my one-page PDF</button>
     </div>
 
     <div class="card" id="fbCard">
@@ -609,9 +609,27 @@ async function makePdf(){
 async function downloadPdf(){
   const btn = $("pdfBtn"); btn.disabled = true; btn.textContent = "Preparing PDF…";
   const fname = (pdfSafe($("fName").value.trim()) || "My").replace(/[^\w-]+/g,"-");
-  try { (await makePdf()).save(`5-Pillars-Results-${fname}.pdf`); }
-  catch(e){ console.error(e); alert("Sorry, the PDF couldn't be created in this browser. Try another browser, or take a screenshot of your results."); }
-  btn.disabled = false; btn.textContent = "Download my one-page PDF";
+  const filename = `5-Pillars-Results-${fname}.pdf`;
+  // Open the tab right away, while the tap still counts as the person's action, so pop-up blockers allow it.
+  let win = null;
+  try {
+    win = window.open("", "_blank");
+    if (win) win.document.write('<!doctype html><title>Your 5 Pillars results</title><meta name="viewport" content="width=device-width,initial-scale=1"><p style="font:16px/1.5 system-ui,sans-serif;color:#1d2430;padding:40px 24px;text-align:center">Preparing your PDF…</p>');
+  } catch(e){ win = null; }
+  try {
+    const doc = await makePdf();
+    doc.setProperties({ title: filename.replace(/\.pdf$/,"") });
+    if (win && !win.closed){
+      win.location.href = URL.createObjectURL(doc.output("blob"));
+    } else {
+      doc.save(filename);   // pop-up blocked: download instead
+    }
+  } catch(e){
+    console.error(e);
+    if (win && !win.closed) win.close();
+    alert("Sorry, the PDF couldn't be created in this browser. Try another browser, or take a screenshot of your results.");
+  }
+  btn.disabled = false; btn.textContent = "Open my one-page PDF";
 }
 
 /* ---------- Preview mode ---------- */

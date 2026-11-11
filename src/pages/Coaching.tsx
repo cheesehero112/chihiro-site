@@ -4,8 +4,8 @@ import Testimonials from '../components/Testimonials'
 import { testimonials } from '../data/testimonials'
 
 const QUIZ_URL = '/five-pillars' // standalone quiz page (not part of the React app), so plain <a> links
-// Map Your Path checkout (Stripe payment link). Paste the link between the quotes.
-const WORKSHOP_REGISTER_URL = 'https://buy.stripe.com/fZu9AM7Bn0mn17rdRy5gc03'
+// Map Your Path sign-up: Kit landing page (form 10134517) collects name + email, then its Join button goes to Stripe.
+const WORKSHOP_REGISTER_URL = 'https://chihiroshibayama.kit.com/mapyourpathworkshop'
 
 const painPoints = [
   { title: 'Practice harder at the wrong thing.', text: "You polish excerpts for months while the real gap is that the people who hire don't know your name." },

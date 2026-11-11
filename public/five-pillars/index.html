@@ -517,7 +517,10 @@ function svgToPng(svg, w, h){
       ctx.drawImage(img, 0, 0, w, h); resolve(cv.toDataURL("image/png"));
     };
     img.onerror = reject;
-    img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg.replace('width="100%"', `width="${w}" height="${h}"`));
+    // Give the image fixed pixel dimensions and drop the on-page sizing style: Safari/WebKit (all iPhone browsers)
+    // applies the style's max-width when drawing, which squashed the pentagon in the PDF.
+    const fixed = svg.replace('width="100%"', `width="${w}" height="${h}" preserveAspectRatio="xMidYMid meet"`).replace(/ style="[^"]*"/, "");
+    img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(fixed);
   });
 }
 // Standard PDF fonts only cover Latin characters, so other scripts fall back to a generic title.

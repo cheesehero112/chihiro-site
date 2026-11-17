@@ -50,7 +50,7 @@ export default function Testimonials({ items }: { items: Testimonial[] }) {
           >
             <figure className="bg-white border border-light-gray px-8 lg:px-10 py-10 flex flex-col m-0 w-full">
               <span aria-hidden="true" className="font-serif text-[64px] leading-none text-accent mb-2">“</span>
-              <blockquote className="font-serif italic text-[20px] lg:text-[22px] text-black leading-snug mb-8 flex-1">
+              <blockquote className="font-serif italic text-[20px] lg:text-[22px] text-black leading-snug mb-8 flex-1 whitespace-pre-line">
                 {quote}
               </blockquote>
               <figcaption className="flex items-center gap-4">

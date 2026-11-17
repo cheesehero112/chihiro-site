@@ -22,4 +22,9 @@ export const testimonials: Testimonial[] = [
     name: 'Gabrielle',
     title: 'Freelance violinist',
   },
+  {
+    quote: 'Wow, I love this! Even if you already have a good idea of what you need to do or where you want to go, this is such a great opportunity to step back and rethink what you need to do, what you want to do, and what you’re capable of doing.\n\nI highly recommend this to everyone, not just musicians! Take the quiz and see where you are right now. It’s a great way to reflect on yourself and your next steps!',
+    name: 'Megumi',
+    title: 'Percussionist',
+  },
 ]

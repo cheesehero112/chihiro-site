@@ -173,6 +173,15 @@ footer{text-align:center;font-size:.8rem;color:var(--muted);margin-top:24px}
       <p class="small">Chosen from the questions you answered "no" in your weakest pillar. Small moves, done this week, add up.</p>
       <ol class="steps" id="rSteps"></ol>
       <button class="btn" id="pdfBtn" onclick="downloadPdf()">Open my one-page PDF</button>
+      <p class="small" id="ctaTeaser" style="margin:14px 0 0"></p>
+    </div>
+
+    <div class="card cta" id="workshop" style="scroll-margin-top:56px">
+      <h2 id="ctaTitle"></h2>
+      <p id="ctaText"></p>
+      <p id="ctaMeta" style="font-weight:600"></p>
+      <button class="btn" id="ctaBtn" type="button" onclick="registerWorkshop()"></button>
+      <p class="hidden" id="ctaDone" style="font-weight:600;margin:12px 0 0">Checkout opened in a new tab. Don't see it? <a id="ctaLink" href="#" target="_blank" rel="noopener">Open checkout</a></p>
     </div>
 
     <div class="card" id="fbCard">
@@ -181,14 +190,6 @@ footer{text-align:center;font-size:.8rem;color:var(--muted);margin-top:24px}
       <div class="stars" id="stars"></div>
       <textarea id="fbComment" placeholder="Anything that surprised you, felt off, or was missing? (optional)"></textarea>
       <div class="row" style="margin-top:12px"><button class="btn secondary" id="fbBtn" onclick="sendFeedback()" disabled>Send feedback</button><span class="small hidden" id="fbThanks">Thank you, received.</span></div>
-    </div>
-
-    <div class="card cta">
-      <h2 id="ctaTitle"></h2>
-      <p id="ctaText"></p>
-      <p id="ctaMeta" style="font-weight:600"></p>
-      <button class="btn" id="ctaBtn" type="button" onclick="registerWorkshop()"></button>
-      <p class="hidden" id="ctaDone" style="font-weight:600;margin:12px 0 0">Checkout opened in a new tab. Don't see it? <a id="ctaLink" href="#" target="_blank" rel="noopener">Open checkout</a></p>
     </div>
   </section>
 
@@ -211,6 +212,9 @@ const CONFIG = {
   ctaText: "Your results show where to focus. Map Your Path: A Live 5 Pillars Workshop is where we work out how. On Zoom, I'll walk through what the 5 Pillars mean, what your pentagon shape is telling you, and the next steps for each pillar. You'll choose your focus for the next 30 days and bring your questions for live Q&A. Can't make it live? You'll get the recording.",
   ctaMeta: "Thursday, December 3 · 2:00–3:30 pm MT (4:00 pm ET / 1:00 pm PT) · Recording included · Founding price $25 (regularly $50)",
   ctaButton: "Reserve my spot · $25",
+  // One line under the PDF button that points down to the workshop box. Leave "" to hide it.
+  ctaTeaser: "Want help turning these steps into a plan? I'm walking through the 5 Pillars live on Zoom, Thursday, Dec 3.",
+  ctaTeaserLink: "See the details",
   // Kit form that records who clicked the workshop button (useful for follow-up emails)
   waitlistFormId: "10134517",
   // Map Your Path checkout (Stripe payment link). Paste the link between the quotes.
@@ -422,6 +426,9 @@ function renderResults(){
   $("rSteps").innerHTML = stepsHtml(r);
   $("ctaTitle").textContent = CONFIG.ctaTitle; $("ctaText").textContent = CONFIG.ctaText; $("ctaMeta").textContent = CONFIG.ctaMeta;
   $("ctaBtn").textContent = CONFIG.ctaButton;
+  if (CONFIG.ctaTeaser){
+    $("ctaTeaser").innerHTML = esc(CONFIG.ctaTeaser) + ' <a href="#workshop" onclick="event.preventDefault();$(\'workshop\').scrollIntoView({behavior:\'smooth\',block:\'start\'})">' + esc(CONFIG.ctaTeaserLink) + ' ↓</a>';
+  } else { $("ctaTeaser").classList.add("hidden"); }
   $("stars").innerHTML = [1,2,3,4,5].map(n=>`<button type="button" aria-label="${n} of 5" onclick="rate(${n})">${n}</button>`).join("");
   show("results");
 }

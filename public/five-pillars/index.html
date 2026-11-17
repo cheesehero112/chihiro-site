@@ -205,6 +205,9 @@ footer{text-align:center;font-size:.8rem;color:var(--muted);margin-top:24px}
    ============================================================ */
 const CONFIG = {
   quizVersion: "2026-11",
+  // Google Sheet that stores every quiz result and feedback (Apps Script web app URL ending in /exec).
+  // Leave "" to fall back to Netlify Forms.
+  sheetUrl: "https://script.google.com/macros/s/AKfycbyZ1EmN9aCxGTbPiJ2FXADrvhrmYzoWzouu7HmxSMsM26x6Bwrzo0KfvHsT7jwcbURg/exec",
   // Kit (ConvertKit): the number in your form's URL, e.g. app.kit.com/forms/1234567 -> "1234567"
   kitFormId: "10134444",
   // Optional: Kit tag IDs, one per weakest pillar. Leave blank to skip tagging.
@@ -438,6 +441,11 @@ function renderResults(){
 /* ---------- Submit ---------- */
 function encode(obj){ return Object.keys(obj).map(k => encodeURIComponent(k)+"="+encodeURIComponent(obj[k] ?? "")).join("&"); }
 function val(id){ return $(id).value.trim(); }
+// Saves a submission to the Google Sheet (or Netlify Forms if no sheet is set up yet).
+function saveRecord(data){
+  if (CONFIG.sheetUrl) return fetch(CONFIG.sheetUrl, { method:"POST", mode:"no-cors", body: new URLSearchParams(data), keepalive:true });
+  return fetch(location.pathname, { method:"POST", headers:{"Content-Type":"application/x-www-form-urlencoded"}, body: encode(data) });
+}
 
 async function submitAll(){
   const err = $("aErr");
@@ -471,8 +479,8 @@ async function submitAll(){
       steps_shown: result.steps.map(s => `${PILLARS[s.pi].name} Q${s.qi+1}`).join(", "),
       quiz_version: CONFIG.quizVersion
     };
-    // 1) Full answers -> Netlify Forms (your database)
-    try { await fetch(location.pathname, { method:"POST", headers:{"Content-Type":"application/x-www-form-urlencoded"}, body: encode(data) }); } catch(e){ console.warn("Netlify submit failed", e); }
+    // 1) Full answers -> Google Sheet (your database)
+    try { await saveRecord(data); } catch(e){ console.warn("Saving results failed", e); }
     // 2) Name + email -> Kit mailing list
     if (CONFIG.kitFormId){
       const kit = new URLSearchParams();
@@ -509,8 +517,7 @@ function rate(n){ rating = n; [...$("stars").children].forEach((b,i)=>b.classLis
 async function sendFeedback(){
   $("fbBtn").disabled = true;
   if (!PREVIEW) try {
-    await fetch(location.pathname, { method:"POST", headers:{"Content-Type":"application/x-www-form-urlencoded"},
-      body: encode({ "form-name":"five-pillars-feedback", email: val("fEmail"), accuracy: rating, comment: val("fbComment"), weakest: PILLARS[result.weakest].name }) });
+    await saveRecord({ "form-name":"five-pillars-feedback", email: val("fEmail"), accuracy: rating, comment: val("fbComment"), weakest: PILLARS[result.weakest].name });
   } catch(e){ console.warn(e); }
   $("fbThanks").classList.remove("hidden"); $("fbBtn").textContent = "Sent";
 }

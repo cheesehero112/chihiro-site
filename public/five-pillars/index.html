@@ -81,9 +81,9 @@ textarea{min-height:80px}
 .stars button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 #ctaTeaser a{color:var(--accent);font-weight:600;text-decoration:none;white-space:nowrap}
 #ctaTeaser a:hover{text-decoration:underline}
-.cta{background:var(--ink);color:#fff;border:0}
-.cta h2{color:#fff}
-.cta .btn{background:#fff;color:var(--ink)}
+.cta{background:var(--accent-soft);color:var(--ink);border:1px solid #e9cfc3}
+.cta h2{color:var(--ink)}
+.cta .btn{background:var(--accent);color:#fff}
 footer{text-align:center;font-size:.8rem;color:var(--muted);margin-top:24px}
 
 </style>
@@ -217,6 +217,18 @@ const CONFIG = {
   ctaText: "Your results show where to focus. Map Your Path: A Live 5 Pillars Workshop is where we work out how. On Zoom, I'll walk through what the 5 Pillars mean, what your pentagon shape is telling you, and the next steps for each pillar. You'll choose your focus for the next 30 days and bring your questions for live Q&A. Can't make it live? You'll get the recording.",
   ctaMeta: "Thursday, December 3 · 2:00–3:30 pm MT (4:00 pm ET / 1:00 pm PT) · Recording included · Founding price $25 (regularly $50)",
   ctaButton: "Reserve my spot · $25",
+  // Personalized workshop message, chosen by the quiz-taker's weakest pillar.
+  // The heading is built automatically: "Your [strongest] is strong, but your [weakest] is holding you back."
+  // If someone's pillars are all even, the general ctaTitle / ctaText above are shown instead.
+  ctaByWeakest: {
+    outreach: "That's the most common pattern I see: about half the musicians who take this quiz score lowest in Outreach. They're prepared, reliable players, and the people who could hire them just don't know them yet. On Dec 3, I'll show you how to fix that with the \"lukewarm calling\" approach that got me my first Broadway sub calls. You'll leave knowing the first three people you'll reach out to and what you'll say. Can't make it live? You'll get the recording.",
+    income: "Income Architecture is one of the most common weak spots I see. Playing well doesn't automatically add up to a steady living. On Dec 3, I'll show you how to look at where your income really comes from and how to build a steadier mix, and you'll leave with one concrete change to make in the next 30 days. Can't make it live? You'll get the recording.",
+    network: "Most musicians know more people than they think. The relationships just aren't working for them yet. On Dec 3, I'll show you how to stay in touch with peers, mentors and contractors without it feeling transactional, and you'll leave with the people you'll reconnect with this month. Can't make it live? You'll get the recording.",
+    mindset: "Skills and connections only take you as far as the story you tell yourself about your career. On Dec 3, I'll talk about handling rejection, comparison and uncertainty, and you'll leave with one practice to carry into the next 30 days. Can't make it live? You'll get the recording.",
+    reputation: "Reputation is what makes people call you back. People hire who they want next to them in the pit, eight shows a week. On Dec 3, I'll share what that looks like in practice, and you'll leave with one habit to start at your next gig. Can't make it live? You'll get the recording."
+  },
+  // Line under the PDF button for personalized results. [weakest] is replaced with their weakest pillar.
+  ctaTeaserPersonal: "Want help with your [weakest]? I'm covering it live on Zoom, Thursday, Dec 3.",
   // One line under the PDF button that points down to the workshop box. Leave "" to hide it.
   ctaTeaser: "Want help turning these steps into a plan? I'm walking through the 5 Pillars live on Zoom, Thursday, Dec 3.",
   ctaTeaserLink: "See the details",
@@ -429,10 +441,15 @@ function renderResults(){
   $("rScores").innerHTML = scoreList(r);
   $("rCallouts").innerHTML = calloutsHtml(r);
   $("rSteps").innerHTML = stepsHtml(r);
-  $("ctaTitle").textContent = CONFIG.ctaTitle; $("ctaText").textContent = CONFIG.ctaText; $("ctaMeta").textContent = CONFIG.ctaMeta;
+  const W = PILLARS[r.weakest], S = PILLARS[r.strongest];
+  const personal = r.weakest !== r.strongest && CONFIG.ctaByWeakest && CONFIG.ctaByWeakest[W.key];
+  $("ctaTitle").textContent = personal ? `Your ${S.name} is strong, but your ${W.name} is holding you back.` : CONFIG.ctaTitle;
+  $("ctaText").textContent = personal ? CONFIG.ctaByWeakest[W.key] : CONFIG.ctaText;
+  $("ctaMeta").textContent = CONFIG.ctaMeta;
+  const teaser = personal && CONFIG.ctaTeaserPersonal ? CONFIG.ctaTeaserPersonal.replace("[weakest]", W.name) : CONFIG.ctaTeaser;
   $("ctaBtn").textContent = CONFIG.ctaButton;
-  if (CONFIG.ctaTeaser){
-    $("ctaTeaser").innerHTML = esc(CONFIG.ctaTeaser) + ' <a href="#workshop" onclick="event.preventDefault();$(\'workshop\').scrollIntoView({behavior:\'smooth\',block:\'start\'})">' + esc(CONFIG.ctaTeaserLink) + ' ↓</a>';
+  if (teaser){
+    $("ctaTeaser").innerHTML = esc(teaser) + ' <a href="#workshop" onclick="event.preventDefault();$(\'workshop\').scrollIntoView({behavior:\'smooth\',block:\'start\'})">' + esc(CONFIG.ctaTeaserLink) + ' ↓</a>';
   } else { $("ctaTeaser").classList.add("hidden"); }
   $("stars").innerHTML = [1,2,3,4,5].map(n=>`<button type="button" aria-label="${n} of 5" onclick="rate(${n})">${n}</button>`).join("");
   show("results");

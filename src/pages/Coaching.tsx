@@ -154,13 +154,13 @@ export default function Coaching() {
           <div>
             <p className="eyebrow mb-5">Go deeper together</p>
             <h2 className="section-title mb-6">
-              Clarity is the start.<br /><em>A plan is what changes things.</em>
+              You're the musician people love working with.<br /><em>So why isn't your phone ringing?</em>
             </h2>
             <p className="text-[17px] text-text-gray font-light leading-relaxed mb-5">
-              Your results show <em>where</em> to focus. Map Your Path is where we work out <em>how</em>.
+              Out of 100+ musicians who've taken the 5 Pillars quiz, the most common result is strong Reputation and lower Outreach: prepared, reliable players whom the people who could hire them just don't know yet. That isn't a talent problem, and it's fixable.
             </p>
             <p className="text-[17px] text-text-gray font-light leading-relaxed">
-              In this live workshop on Zoom, I'll walk through what the 5 Pillars mean, what your pentagon shape is telling you, and the next steps for each pillar. You'll choose your focus for the next 30 days and bring your questions for live Q&A. Can't make it live? You'll get the recording.
+              In this live workshop on Zoom, I'll share the “lukewarm calling” approach that got me my first Broadway sub calls, and we'll look at what your own pentagon is telling you, whichever pillar is holding you back. Can't make it live? You'll get the recording.
             </p>
           </div>
 
@@ -175,9 +175,10 @@ export default function Coaching() {
             <p className="text-[16px] text-black font-medium mb-1">Thursday, December 3, 2026</p>
             <p className="text-[14px] text-text-gray mb-6">2:00–3:30 pm Mountain · 4:00 pm Eastern · 1:00 pm Pacific</p>
             <ul className="list-none flex flex-col mb-8">
-              <Bullet>What the 5 Pillars mean and what your pentagon shape is telling you</Bullet>
-              <Bullet>Next steps for each pillar</Bullet>
-              <Bullet>Your one focus for the next 30 days</Bullet>
+              <Bullet>Why great players get overlooked, and why it's rarely about how well you play</Bullet>
+              <Bullet>My “lukewarm calling” approach: who to contact first, what to say, and how to follow up</Bullet>
+              <Bullet>Your first three people to reach out to, and what you'll say</Bullet>
+              <Bullet>What your pentagon shape says, and your one focus for the next 30 days</Bullet>
               <Bullet>Live Q&A and ideas from other musicians</Bullet>
             </ul>
             <a href={WORKSHOP_REGISTER_URL} className="btn-primary text-center">Reserve your spot · $25</a>

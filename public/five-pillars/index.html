@@ -631,13 +631,42 @@ async function makePdf(){
     y += need;
   });
 
+  // Workshop box (same message as the results page). Set pdfWorkshop:false in CONFIG to drop it after Dec 3.
+  if (CONFIG.pdfWorkshop !== false){
+    const W = PILLARS[r.weakest], S = PILLARS[r.strongest];
+    const personal = r.weakest !== r.strongest && CONFIG.ctaByWeakest && CONFIG.ctaByWeakest[W.key];
+    const title = personal ? `Your ${S.name} is strong, but your ${W.name} is holding you back.` : CONFIG.ctaTitle;
+    const text = (personal ? CONFIG.ctaByWeakest[W.key] : CONFIG.ctaText).replace(/\s*Can't make it live\?.*$/, "");
+    const meta = "Map Your Path: A Live 5 Pillars Workshop · Thu, Dec 3 · 2:00–3:30 pm MT · Recording included · $25";
+    const pad = 13, inner = R - M - pad*2;
+    font(13,"bold"); const tl = doc.splitTextToSize(title, inner);
+    font(9.5); let bl = doc.splitTextToSize(text, inner);
+    font(8.5,"bold"); const ml = doc.splitTextToSize(meta, inner);
+    const size = lines => pad + tl.length*16 + 2 + lines*13 + 6 + ml.length*12 + 8 + 24 + pad;
+    let h = size(bl.length);
+    // Keep the PDF to one page: if the full message doesn't fit, show the heading, date and button only.
+    if (y + h > 734){ bl = []; h = size(0); }
+    if (y + h > 734){ doc.addPage(); y = 60; bl = doc.splitTextToSize(text, inner); h = size(bl.length); }
+    doc.setFillColor(...C.accentSoft); doc.roundedRect(M, y, R - M, h, 8, 8, "F");
+    let ty = y + pad + 11;
+    font(13,"bold"); color(C.ink); doc.text(tl, M + pad, ty, {lineHeightFactor:1.25}); ty += tl.length*16 + 2;
+    if (bl.length){ font(9.5); doc.text(bl, M + pad, ty, {lineHeightFactor:1.4}); ty += bl.length*13 + 6; } else { ty += 6; }
+    font(8.5,"bold"); doc.text(ml, M + pad, ty - 4, {lineHeightFactor:1.4}); ty += (ml.length-1)*12 + 6;
+    const label = "Reserve my spot:  " + CONFIG.website + "/coaching";
+    font(10,"bold"); const bw2 = doc.getTextWidth(label) + 30;
+    doc.setFillColor(...C.accent); doc.roundedRect(M + pad, ty, bw2, 24, 12, 12, "F");
+    doc.setTextColor(255,255,255); doc.text(label, M + pad + 15, ty + 16);
+    doc.link(M + pad, ty, bw2, 24, { url: "https://" + CONFIG.website + "/coaching" });
+    y += h + 10;
+  }
+
   // Footer (every page)
   const pages = doc.getNumberOfPages();
   for (let pg = 1; pg <= pages; pg++){
     doc.setPage(pg);
     doc.setDrawColor(...C.line); doc.setLineWidth(0.75); doc.line(M, 742, R, 742);
     font(8.5); color(C.muted);
-    doc.text("Next: Map Your Path, live on Zoom Thu Dec 3, 2:00 pm MT. Reserve at " + CONFIG.website + "/coaching", M, 758);
+    doc.text("Chihiro Shibayama · Percussionist & Career Coach for Musicians", M, 758);
     doc.text(CONFIG.website, R, 758, {align:"right"});
   }
   return doc;

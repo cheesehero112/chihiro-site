@@ -236,6 +236,8 @@ const CONFIG = {
   waitlistFormId: "10134517",
   // Map Your Path checkout (Stripe payment link). Paste the link between the quotes.
   ctaUrl: "https://buy.stripe.com/fZu9AM7Bn0mn17rdRy5gc03",
+  // When the workshop ends (Mountain Time). PDFs downloaded after this leave out the workshop box.
+  workshopEnds: "2026-12-03T15:30:00-07:00",
   website: "chihiroshibayama.com"
 };
 
@@ -631,8 +633,9 @@ async function makePdf(){
     y += need;
   });
 
-  // Workshop box (same message as the results page). Set pdfWorkshop:false in CONFIG to drop it after Dec 3.
-  if (CONFIG.pdfWorkshop !== false){
+  // Workshop box (same message as the results page), with a button straight to Stripe checkout.
+  // It's left out of PDFs downloaded after the workshop ends (CONFIG.workshopEnds), so no one gets an outdated invite.
+  if (CONFIG.pdfWorkshop !== false && Date.now() < Date.parse(CONFIG.workshopEnds)){
     const W = PILLARS[r.weakest], S = PILLARS[r.strongest];
     const personal = r.weakest !== r.strongest && CONFIG.ctaByWeakest && CONFIG.ctaByWeakest[W.key];
     const title = personal ? `Your ${S.name} is strong, but your ${W.name} is holding you back.` : CONFIG.ctaTitle;
@@ -652,11 +655,11 @@ async function makePdf(){
     font(13,"bold"); color(C.ink); doc.text(tl, M + pad, ty, {lineHeightFactor:1.25}); ty += tl.length*16 + 2;
     if (bl.length){ font(9.5); doc.text(bl, M + pad, ty, {lineHeightFactor:1.4}); ty += bl.length*13 + 6; } else { ty += 6; }
     font(8.5,"bold"); doc.text(ml, M + pad, ty - 4, {lineHeightFactor:1.4}); ty += (ml.length-1)*12 + 6;
-    const label = "Reserve my spot:  " + CONFIG.website + "/coaching";
+    const label = "Reserve my spot  ·  $25", href = CONFIG.ctaUrl;
     font(10,"bold"); const bw2 = doc.getTextWidth(label) + 30;
     doc.setFillColor(...C.accent); doc.roundedRect(M + pad, ty, bw2, 24, 12, 12, "F");
     doc.setTextColor(255,255,255); doc.text(label, M + pad + 15, ty + 16);
-    doc.link(M + pad, ty, bw2, 24, { url: "https://" + CONFIG.website + "/coaching" });
+    doc.link(M + pad, ty, bw2, 24, { url: href });
     y += h + 10;
   }
 

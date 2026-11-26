@@ -27,4 +27,9 @@ export const testimonials: Testimonial[] = [
     name: 'Megumi',
     title: 'Percussionist',
   },
+  {
+    quote: 'Chihiro is exactly the kind of expert and coach you should want if you are looking to get started in the freelance musician world! As a graduate of the Juilliard School, and a performer both at the Metropolitan Opera and on Broadway, she has exactly the expertise and knowledge to help people accomplish exactly what she did. Her 5 Pillars quiz is a great start to uncover your current strengths and weaknesses relating to the field. Anyone who is able to work with her would be very wise to do so!',
+    name: 'Sean Swenson',
+    title: 'Freelance percussionist & timpanist',
+  },
 ]
